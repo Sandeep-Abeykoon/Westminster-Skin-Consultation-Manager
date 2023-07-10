@@ -1,11 +1,13 @@
 package Console;
 
-import Utilities.Validation;
+import Utilities.Validations;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+
 
 public class WestminsterSkinConsultationManager implements SkinConsultationManager {
     private static int maxDoctors;
+    private static final ArrayList<Doctor> doctorArray = new ArrayList<>();
 
     public WestminsterSkinConsultationManager(int maxNumberOfDoctors){
         maxDoctors = maxNumberOfDoctors;
@@ -27,7 +29,13 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
                 
                 """);
 
-        return Validation.getInput(1,6);
+        return Validations.optionInput(1,6);
     }
 
+    @Override
+    public void addDoctor() {
+        if(doctorArray.size() < maxDoctors){
+            System.out.println("\n-------- ADD A Doctor --------\n");
+        }
+    }
 }
