@@ -54,7 +54,7 @@ abstract class Validation {
         if(value >= lowerBound && value <= upperBound){
             return true;
         }
-        errorMessage = INVALID_BOUNDS_MESSAGE;
+        errorMessage = String.format(INVALID_BOUNDS_MESSAGE, lowerBound, upperBound);
         return false;
     }
 
@@ -98,7 +98,7 @@ abstract class Validation {
         if(difference >= minAge && difference <= maxAge){
             return true;
         }
-        errorMessage = INVALID_AGE_MESSAGE;
+        errorMessage = String.format(INVALID_AGE_MESSAGE, minAge, maxAge);
         return false;
     }
 }

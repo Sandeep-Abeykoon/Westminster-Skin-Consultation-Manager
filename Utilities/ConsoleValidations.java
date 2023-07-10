@@ -6,7 +6,7 @@ public abstract class ConsoleValidations extends Validation {
     private static final  String OPTION = "Enter your option : ";
     private static final String FIRST_NAME = "Enter the Doctor's first name : ";
     private static final String SURNAME = "Enter the Doctor's surname name : ";
-    private static final String DATE_OF_BIRTH = "Enter the date of birth in the following format (YY/MM/DD)";
+    private static final String DATE_OF_BIRTH = "Enter the date of birth in the following format (YY-MM-DD) : ";
 
     public static String optionInput(int lowerBound, int upperBound){
         String input = getInput(OPTION);
