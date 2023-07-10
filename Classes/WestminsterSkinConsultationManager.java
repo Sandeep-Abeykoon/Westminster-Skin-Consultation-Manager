@@ -39,6 +39,7 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
         if(doctorArray.size() < maxDoctors){
             System.out.println("\n-------- ADD A Doctor --------\n");
             String firstName = ConsoleValidations.nameInput("first");
+            System.out.println(firstName);
             String surname = ConsoleValidations.nameInput("surname");
             LocalDate dateOfBirth = ConsoleValidations.dateInput();
         }
