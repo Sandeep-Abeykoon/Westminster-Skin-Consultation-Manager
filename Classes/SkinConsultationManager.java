@@ -1,4 +1,4 @@
-package Console;
+package Classes;
 
 public interface SkinConsultationManager {
     String displayMenu();

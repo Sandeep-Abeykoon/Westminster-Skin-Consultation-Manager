@@ -5,10 +5,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 abstract class Validation {
-    protected final static Scanner scanner = new Scanner(System.in);
+    protected static String errorMessage = "";
+    private final static Scanner scanner = new Scanner(System.in);
     private final static String EMPTY_MESSAGE = "THE INPUT CANNOT BE EMPTY !";
     private final static String NUMERICAL_INVALID_MESSAGE = "ONLY NUMERICAL INPUT IS ALLOWED !";
-    private final static String INVALID_BOUNDS_MESSAGE = "PLEASE ENTER AN OPTION BETWEEN %s AND %s %n";
+    private final static String INVALID_BOUNDS_MESSAGE = "PLEASE ENTER AN OPTION BETWEEN %s AND %s ! %n";
     private final static String WHITE_SPACE_MESSAGE = "A NAME CANNOT HAVE WHITESPACES !";
     private final static String INVALID_WORD_MESSAGE = "ONLY LETTERS CAN BE INCLUDED !";
 
@@ -33,7 +34,7 @@ abstract class Validation {
         try{
             int d = Integer.parseInt(input);
         }catch (NumberFormatException e){
-            System.out.println(NUMERICAL_INVALID_MESSAGE + "\n");
+            errorMessage = NUMERICAL_INVALID_MESSAGE;
             return false;
         }
         return true;
@@ -44,7 +45,7 @@ abstract class Validation {
         if(value >= lowerBound && value <= upperBound){
             return true;
         }
-        System.out.printf(INVALID_BOUNDS_MESSAGE, lowerBound, upperBound + " !\n");
+        errorMessage = INVALID_BOUNDS_MESSAGE;
         return false;
     }
 
@@ -52,7 +53,7 @@ abstract class Validation {
         Pattern pattern = Pattern.compile("\\s");
         Matcher matcher = pattern.matcher(input);
         if(matcher.find()){
-            System.out.println(WHITE_SPACE_MESSAGE + "\n");
+            errorMessage = WHITE_SPACE_MESSAGE;
             return false;
         }
         return true;
@@ -62,8 +63,10 @@ abstract class Validation {
         if(input.matches("[a-zA-Z]+")){
             return true;
         }
-        System.out.println(INVALID_WORD_MESSAGE + "\n");
+        errorMessage = INVALID_WORD_MESSAGE;
         return false;
     }
+
+
 }
 

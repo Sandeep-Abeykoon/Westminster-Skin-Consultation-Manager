@@ -1,7 +1,8 @@
-package Console;
+package Classes;
 
-import Utilities.Validations;
+import Utilities.ConsoleValidations;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 
@@ -29,14 +30,16 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
                 
                 """);
 
-        return Validations.optionInput(1,6);
+        return ConsoleValidations.optionInput(1,6);
     }
 
     @Override
     public void addDoctor() {
         if(doctorArray.size() < maxDoctors){
             System.out.println("\n-------- ADD A Doctor --------\n");
-            Validations.nameInput("first");
+            String firstName = ConsoleValidations.nameInput("first");
+            String surname = ConsoleValidations.nameInput("surname");
+            LocalTime dateOfBirth =
         }
     }
 }

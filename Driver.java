@@ -1,4 +1,4 @@
-import Console.WestminsterSkinConsultationManager;
+import Classes.WestminsterSkinConsultationManager;
 
 public class Driver {
     public static void main(String[] args) {

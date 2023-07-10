@@ -1,4 +1,4 @@
-package Console;
+package Classes;
 
 public class Doctor extends Person {
     private String medicalLicenceNumber;
