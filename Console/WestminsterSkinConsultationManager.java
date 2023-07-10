@@ -36,6 +36,7 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
     public void addDoctor() {
         if(doctorArray.size() < maxDoctors){
             System.out.println("\n-------- ADD A Doctor --------\n");
+            Validations.nameInput("first");
         }
     }
 }

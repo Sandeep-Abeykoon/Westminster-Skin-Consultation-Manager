@@ -7,7 +7,7 @@ public abstract class Validations extends Validation {
 
     public static String optionInput(int lowerBound, int upperBound){
         String input = getInput(OPTION);
-        if(checkNumerical(input, false) && checkBounds(input, lowerBound, upperBound)){
+        if(checkNumerical(input) && checkBounds(input, lowerBound, upperBound)){
             return input;
         }
         optionInput(lowerBound, upperBound);
@@ -17,7 +17,7 @@ public abstract class Validations extends Validation {
     public static String nameInput(String nameCategory){
         String category = nameCategory.equals("first") ? FIRST_NAME : LAST_NAME;
         String input = getInput(category);
-        if(checkNumerical(input, true) && containsNumbers(input)){
+        if(checkWhiteSpaces(input) && containsOtherCharacters(input)){
             return input;
         }
         nameInput(nameCategory);

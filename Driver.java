@@ -6,8 +6,7 @@ public class Driver {
 
         while (true) {
             switch (manager.displayMenu()) {
-                case "1":
-                    System.out.println("hi");
+                case "1": manager.addDoctor();
             }
         }
     }
