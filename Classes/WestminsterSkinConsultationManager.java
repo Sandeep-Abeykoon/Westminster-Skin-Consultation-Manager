@@ -1,6 +1,8 @@
 package Classes;
 
-import Utilities.ConsoleValidations;
+import Functionalities.DoctorFunctionalities;
+import Functionalities.FunctionalPrompts.ConsolePrompts;
+import InputValidations.ConsoleValidations;
 
 import java.time.LocalDate;
 
@@ -37,11 +39,24 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
     @Override
     public void addDoctor() {
         if(doctorArray.size() < maxDoctors){
-            System.out.println("\n-------- ADD A Doctor --------\n");
+            System.out.println(ConsolePrompts.ADD_DOCTOR);
             String firstName = ConsoleValidations.nameInput("first");
-            System.out.println(firstName);
             String surname = ConsoleValidations.nameInput("surname");
             LocalDate dateOfBirth = ConsoleValidations.dateInput();
+            String mobileNumber = ConsoleValidations.mobileNumberInput(10);
+            String medicalLicenseNumber = ConsoleValidations.medicalLicenseNumberInput();
+            String specialization = ConsoleValidations.specialisationInput();
+
+            if(!(DoctorFunctionalities.alreadyRegistered(medicalLicenseNumber))){
+                doctorArray.add(new Doctor(firstName, surname, dateOfBirth, mobileNumber, medicalLicenseNumber, specialization));
+                System.out.println(ConsolePrompts.DOCTOR_REGISTERED);
+            }else {
+                System.out.println(ConsolePrompts.DOCTOR_ALREADY_REGISTERED);
+            }
         }
+    }
+
+    public static ArrayList<Doctor> getDoctorList() {
+        return doctorArray;
     }
 }

@@ -1,4 +1,4 @@
-package Utilities;
+package InputValidations;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -9,7 +9,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-abstract class Validation {
+abstract class Validations {
     protected static LocalDate date;
     protected static String errorMessage = "";
     private final static Scanner scanner = new Scanner(System.in);
@@ -21,6 +21,8 @@ abstract class Validation {
     private final static String INVALID_DATE_MESSAGE = "ENTER A DATE WHICH MATCHES THE GIVEN DATE FORMAT !";
     private final static String FUTURE_DATE_OF_BIRTH_MESSAGE = "THE DATE OF BIRTH CANNOT BE A FUTURE DATE !";
     private final static String INVALID_AGE_MESSAGE = "THE AGE SHOULD BE BETWEEN %s AND %s !";
+    private final static String INVALID_CHARACTER_COUNT_MESSAGE = "INPUT HAVING %s CHARACTERS SHOULD BE ENTERED !";
+    private final static String MIN_CHARACTER_COUNT_MESSAGE = "THE INPUT SHOULD HAVE AT LEAST MINIMUM OF %s CHARACTERS !";
 
     protected static String getInput(String prompt){
         System.out.print(prompt);
@@ -76,6 +78,14 @@ abstract class Validation {
         return false;
     }
 
+    protected static boolean containsOnlyNumbers(String input){
+        if(input.matches("[0-9]+")){
+            return true;
+        }
+        errorMessage = NUMERICAL_INVALID_MESSAGE;
+        return false;
+    }
+
     protected static boolean dateFormat(String input){
         try{
             date = LocalDate.parse(input, DateTimeFormatter.ofPattern("uuuu-M-d").withResolverStyle(ResolverStyle.STRICT));
@@ -99,6 +109,22 @@ abstract class Validation {
             return true;
         }
         errorMessage = String.format(INVALID_AGE_MESSAGE, minAge, maxAge);
+        return false;
+    }
+
+    protected static boolean characterCount(String input, int size){
+        if(input.length() == size){
+            return true;
+        }
+        errorMessage = String.format(INVALID_CHARACTER_COUNT_MESSAGE, size);
+        return false;
+    }
+
+    protected static boolean minCharacterCount(String input, int size){
+        if(input.length() >= size){
+            return true;
+        }
+        errorMessage = String.format(MIN_CHARACTER_COUNT_MESSAGE, size);
         return false;
     }
 }
