@@ -2,6 +2,7 @@ package SubFunctionalities;
 
 import Classes.Doctor;
 import Classes.WestminsterSkinConsultationManager;
+import SubFunctionalities.FunctionalPrompts.ConsolePrompts;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +26,8 @@ public abstract class DoctorFunctionalities {
     }
 
     public static void printHeader(){
-        
+        System.out.println(ConsolePrompts.HEADERS);
+        System.out.println(ConsolePrompts.DASH_STREAM_144);
     }
 }
 

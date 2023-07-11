@@ -87,7 +87,8 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
     public void printDoctors(){
         if (!(doctorArray.size() == 0)){
             ArrayList<Doctor> sortedArray = DoctorFunctionalities.sortedDoctorArray();
-            System.out.println(ConsolePrompts);
+            System.out.println(ConsolePrompts.DOCTOR_DETAILS);
+            DoctorFunctionalities.printHeader();
         }else {
             System.out.println(ConsolePrompts.NO_DOCTORS);
             NavigationFunctionalities.goToMenu();
