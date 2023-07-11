@@ -1,8 +1,9 @@
 package Classes;
 
-import Functionalities.DoctorFunctionalities;
-import Functionalities.FunctionalPrompts.ConsolePrompts;
+import SubFunctionalities.DoctorFunctionalities;
+import SubFunctionalities.FunctionalPrompts.ConsolePrompts;
 import InputValidations.ConsoleValidations;
+import SubFunctionalities.NavigationFunctionalities;
 
 import java.time.LocalDate;
 
@@ -38,8 +39,8 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
 
     @Override
     public void addDoctor() {
+        System.out.println(ConsolePrompts.ADD_DOCTOR);
         if(doctorArray.size() < maxDoctors){
-            System.out.println(ConsolePrompts.ADD_DOCTOR);
             String firstName = ConsoleValidations.nameInput("first");
             String surname = ConsoleValidations.nameInput("surname");
             LocalDate dateOfBirth = ConsoleValidations.dateInput();
@@ -47,13 +48,43 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
             String medicalLicenseNumber = ConsoleValidations.medicalLicenseNumberInput();
             String specialization = ConsoleValidations.specialisationInput();
 
-            if(!(DoctorFunctionalities.alreadyRegistered(medicalLicenseNumber))){
+            if((DoctorFunctionalities.alreadyRegistered(medicalLicenseNumber) == null)){
                 doctorArray.add(new Doctor(firstName, surname, dateOfBirth, mobileNumber, medicalLicenseNumber, specialization));
                 System.out.println(ConsolePrompts.DOCTOR_REGISTERED);
             }else {
-                System.out.println(ConsolePrompts.DOCTOR_ALREADY_REGISTERED);
+                System.out.printf(ConsolePrompts.DOCTOR_ALREADY_REGISTERED, medicalLicenseNumber);
             }
+            if(NavigationFunctionalities.IterateOption(ConsolePrompts.ADD_DOCTOR_OPTION).equals("1")){
+                addDoctor();
+            }
+        }else{
+            NavigationFunctionalities.goToMenu();
         }
+    }
+
+    public void deleteDoctor(){
+        System.out.println(ConsolePrompts.DELETE_DOCTOR);
+        if (!(doctorArray.size() == 0)){
+            String medicalLicenseNumber = ConsoleValidations.medicalLicenseNumberInput();
+            Doctor doctor = DoctorFunctionalities.alreadyRegistered(medicalLicenseNumber);
+            if(doctor == null){
+                System.out.printf(ConsolePrompts.NO_MATCHING_DOCTORS, medicalLicenseNumber);
+            }else {
+                System.out.println(doctor);
+                doctorArray.remove(doctor);
+                System.out.println(ConsolePrompts.DOCTOR_REMOVED);
+            }
+            if(NavigationFunctionalities.IterateOption(ConsolePrompts.DELETE_DOCTOR_OPTION).equals("1")){
+                deleteDoctor();
+            }
+        }else{
+            System.out.println(ConsolePrompts.NO_DOCTORS);
+            NavigationFunctionalities.goToMenu();
+        }
+    }
+
+    public void printDoctors(){
+        
     }
 
     public static ArrayList<Doctor> getDoctorList() {

@@ -1,17 +1,17 @@
-package Functionalities;
+package SubFunctionalities;
 
 import Classes.Doctor;
 import Classes.WestminsterSkinConsultationManager;
 
 public abstract class DoctorFunctionalities {
 
-    public static boolean alreadyRegistered(String medicalLicenceNumber) {
+    public static Doctor alreadyRegistered(String medicalLicenceNumber) {
         for(Doctor doctor: WestminsterSkinConsultationManager.getDoctorList()){
             if(doctor.getMedicalLicenceNumber().equals(medicalLicenceNumber)){
-                return true;
+                return doctor;
             }
         }
-        return false;
+        return null;
     }
 }
 

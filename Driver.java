@@ -6,7 +6,9 @@ public class Driver {
 
         while (true) {
             switch (manager.displayMenu()) {
-                case "1": manager.addDoctor();
+                case "1" -> manager.addDoctor();
+                case "2" -> manager.deleteDoctor();
+                case "3" -> manager.printDoctors();
             }
         }
     }

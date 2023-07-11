@@ -15,4 +15,9 @@ public abstract class Person {
         this.dateOfBirth = dateOfBirth;
         this.mobileNumber = mobileNumber;
     }
+
+    @Override
+    public String toString() {
+        return "\nName : " + this.name + "\nSurname : " + this.surname + "\nDate of Birth : " + this.dateOfBirth + "\nMobile number : " + this.mobileNumber;
+    }
 }

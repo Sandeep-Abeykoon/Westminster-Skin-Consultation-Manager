@@ -16,4 +16,8 @@ public class Doctor extends Person {
         return this.medicalLicenceNumber;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "\nMedical Licence Number : " + this.medicalLicenceNumber + "\nSpecialisation : " + this.specialisation;
+    }
 }
