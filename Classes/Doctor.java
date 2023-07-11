@@ -16,8 +16,16 @@ public class Doctor extends Person implements Comparable<Doctor>{
         return this.medicalLicenceNumber;
     }
 
+    public String getSpecialisation(){
+        return this.specialisation;
+    }
+
     public int compareTo(Doctor o) {
         return this.getSurname().compareTo(o.getSurname());
+    }
+
+    public void printDetails() {
+        System.out.printf("%-20s%-20s%-20s%-20s%-28s%-20s%n", this.getName(), this.getSurname(), this.getDateOfBirth(), this.getMobileNumber(), this.medicalLicenceNumber, this.specialisation);
     }
 
     @Override

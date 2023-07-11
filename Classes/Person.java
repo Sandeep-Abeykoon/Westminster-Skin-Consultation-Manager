@@ -16,9 +16,22 @@ public abstract class Person {
         this.mobileNumber = mobileNumber;
     }
 
-    public String getSurname() {
+    public String getName(){
+        return this.name;
+    }
+
+    public String getSurname(){
         return this.surname;
     }
+
+    public LocalDate getDateOfBirth(){
+        return this.dateOfBirth;
+    }
+
+    public String getMobileNumber(){
+        return this.mobileNumber;
+    }
+
 
     @Override
     public String toString() {
