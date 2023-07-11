@@ -91,7 +91,7 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
             System.out.println(ConsolePrompts.DOCTOR_DETAILS);
             DoctorFunctionalities.printHeader();
 
-            for(Doctor doctor: doctorArray){
+            for(Doctor doctor: sortedArray){
                 System.out.print("\t" + count + "\t\t");
                 doctor.printDetails();
                 System.out.println(ConsolePrompts.DASH_STREAM_144);
