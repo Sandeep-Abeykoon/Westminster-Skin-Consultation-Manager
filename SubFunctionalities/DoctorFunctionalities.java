@@ -3,6 +3,10 @@ package SubFunctionalities;
 import Classes.Doctor;
 import Classes.WestminsterSkinConsultationManager;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
+
 public abstract class DoctorFunctionalities {
 
     public static Doctor alreadyRegistered(String medicalLicenceNumber) {
@@ -12,6 +16,16 @@ public abstract class DoctorFunctionalities {
             }
         }
         return null;
+    }
+
+    public static ArrayList<Doctor> sortedDoctorArray(){
+        ArrayList<Doctor> copy = new ArrayList<>(WestminsterSkinConsultationManager.getDoctorList());
+        Collections.sort(copy);
+        return copy;
+    }
+
+    public static void printHeader(){
+        
     }
 }
 

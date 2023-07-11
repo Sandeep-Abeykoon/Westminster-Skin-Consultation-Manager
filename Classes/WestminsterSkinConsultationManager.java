@@ -58,6 +58,7 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
                 addDoctor();
             }
         }else{
+            System.out.printf(ConsolePrompts.DOCTORS_FULL, maxDoctors);
             NavigationFunctionalities.goToMenu();
         }
     }
@@ -84,7 +85,13 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
     }
 
     public void printDoctors(){
-        
+        if (!(doctorArray.size() == 0)){
+            ArrayList<Doctor> sortedArray = DoctorFunctionalities.sortedDoctorArray();
+            System.out.println(ConsolePrompts);
+        }else {
+            System.out.println(ConsolePrompts.NO_DOCTORS);
+            NavigationFunctionalities.goToMenu();
+        }
     }
 
     public static ArrayList<Doctor> getDoctorList() {

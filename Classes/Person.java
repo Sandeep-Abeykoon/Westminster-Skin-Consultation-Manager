@@ -16,6 +16,10 @@ public abstract class Person {
         this.mobileNumber = mobileNumber;
     }
 
+    public String getSurname() {
+        return this.surname;
+    }
+
     @Override
     public String toString() {
         return "\nName : " + this.name + "\nSurname : " + this.surname + "\nDate of Birth : " + this.dateOfBirth + "\nMobile number : " + this.mobileNumber;
