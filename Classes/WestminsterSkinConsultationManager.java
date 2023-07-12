@@ -1,5 +1,6 @@
 package Classes;
 
+import GUI.Menu;
 import Interfaces.SkinConsultationManager;
 import SubFunctionalities.CommonFunctionalities;
 import SubFunctionalities.DoctorFunctionalities;
@@ -119,7 +120,7 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
 
     @Override
     public void displayGUI() {
-
+        new Menu();
     }
 
     public static ArrayList<Doctor> getDoctorList() {
