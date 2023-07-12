@@ -29,5 +29,9 @@ public abstract class DoctorFunctionalities {
         System.out.println(ConsolePrompts.HEADERS);
         System.out.println(ConsolePrompts.DASH_STREAM_144);
     }
+
+    public static void printDetails(Doctor doctor) {
+        System.out.printf("%-20s%-20s%-20s%-20s%-28s%-20s%n", doctor.getData());
+    }
 }
 

@@ -9,6 +9,7 @@ public class Driver {
                 case "1" -> manager.addDoctor();
                 case "2" -> manager.deleteDoctor();
                 case "3" -> manager.printDoctors();
+                case "4" -> manager.saveData();
             }
         }
     }

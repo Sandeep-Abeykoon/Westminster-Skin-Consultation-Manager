@@ -63,7 +63,8 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
         }
     }
 
-    public void deleteDoctor(){
+    @Override
+    public void deleteDoctor() {
         System.out.println(ConsolePrompts.DELETE_DOCTOR);
         if (!(doctorArray.size() == 0)){
             String medicalLicenseNumber = ConsoleValidations.medicalLicenseNumberInput();
@@ -84,7 +85,8 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
         }
     }
 
-    public void printDoctors(){
+    @Override
+    public void printDoctors() {
         if (!(doctorArray.size() == 0)){
             int count = 1;
             ArrayList<Doctor> sortedArray = DoctorFunctionalities.sortedDoctorArray();
@@ -93,14 +95,19 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
 
             for(Doctor doctor: sortedArray){
                 System.out.print("\t" + count + "\t\t");
-                doctor.printDetails();
+                DoctorFunctionalities.printDetails(doctor);
                 System.out.println(ConsolePrompts.DASH_STREAM_144);
-
+                count++;
             }
         }else {
             System.out.println(ConsolePrompts.NO_DOCTORS);
-            NavigationFunctionalities.goToMenu();
         }
+        NavigationFunctionalities.goToMenu();
+    }
+
+    @Override
+    public void saveData() {
+        
     }
 
     public static ArrayList<Doctor> getDoctorList() {
