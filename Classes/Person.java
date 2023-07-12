@@ -1,6 +1,8 @@
 package Classes;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 
 public abstract class Person {
     private String name;
@@ -20,18 +22,33 @@ public abstract class Person {
         return this.name;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
     public String getSurname(){
         return this.surname;
+    }
+
+    public void setSurname(String surname){
+        this.surname = surname;
     }
 
     public LocalDate getDateOfBirth(){
         return this.dateOfBirth;
     }
 
+    public void setDateOfBirth(String dateOfBirth){
+        this.dateOfBirth = LocalDate.parse(dateOfBirth, DateTimeFormatter.ofPattern("uuuu-M-d").withResolverStyle(ResolverStyle.STRICT));
+    }
+
     public String getMobileNumber(){
         return this.mobileNumber;
     }
 
+    public void setMobileNumber(String mobileNumber){
+        this.mobileNumber = mobileNumber;
+    }
 
     @Override
     public String toString() {

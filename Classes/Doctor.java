@@ -1,10 +1,12 @@
 package Classes;
 
+import Interfaces.DataEntity;
+
 import java.time.LocalDate;
 
-public class Doctor extends Person implements Comparable<Doctor>{
-    private final String medicalLicenceNumber;
-    private final String specialisation;
+public class Doctor extends Person implements Comparable<Doctor>, DataEntity {
+    private String medicalLicenceNumber;
+    private String specialisation;
 
     public Doctor(String name, String surname, LocalDate dateOfBirth, String mobileNumber, String medicalLicenceNumber, String specialisation){
         super(name, surname, dateOfBirth, mobileNumber);
@@ -16,9 +18,19 @@ public class Doctor extends Person implements Comparable<Doctor>{
         return this.medicalLicenceNumber;
     }
 
+    @Override
+    public String[] getData() {
+        return new String[]{getName(),getSurname(),getDateOfBirth().toString(),getMobileNumber(),medicalLicenceNumber,specialisation};
+    }
 
-    public Object[] getData(){
-        return new Object[]{getName(),getSurname(),getDateOfBirth(),getMobileNumber(),medicalLicenceNumber,specialisation};
+    @Override
+    public void parseData(String[] data) {
+        this.setName(data[0]);
+        this.setName(data[1]);
+        this.setDateOfBirth(data[2]);
+        this.setMobileNumber(data[3]);
+        this.medicalLicenceNumber = data[4];
+        this.specialisation = data[5];
     }
 
     public int compareTo(Doctor o) {

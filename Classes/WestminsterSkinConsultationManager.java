@@ -1,13 +1,18 @@
 package Classes;
 
+import Interfaces.SkinConsultationManager;
+import SubFunctionalities.CommonFunctionalities;
 import SubFunctionalities.DoctorFunctionalities;
 import SubFunctionalities.FunctionalPrompts.ConsolePrompts;
-import InputValidations.ConsoleValidations;
+import SubFunctionalities.InputValidations.ConsoleValidations;
 import SubFunctionalities.NavigationFunctionalities;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class WestminsterSkinConsultationManager implements SkinConsultationManager {
@@ -107,7 +112,26 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
 
     @Override
     public void saveData() {
-        
+        try {
+            FileWriter fileWriter = new FileWriter("doctors.txt");
+            for(Doctor doctor: doctorArray){
+                CommonFunctionalities.writeData(fileWriter, doctor);
+            }
+            fileWriter.close();
+            System.out.println(ConsolePrompts.DATA_SAVED);
+        } catch (IOException e) {
+            System.out.println(ConsolePrompts.SAVE_ERROR);
+        }
+    }
+
+    @Override
+    public void loadData() {
+        CommonFunctionalities.loadData("doctors.txt", doctorArray, Doctor.class);
+    }
+
+    @Override
+    public void displayGUI() {
+
     }
 
     public static ArrayList<Doctor> getDoctorList() {

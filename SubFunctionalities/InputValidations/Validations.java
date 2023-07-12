@@ -1,4 +1,4 @@
-package InputValidations;
+package SubFunctionalities.InputValidations;
 
 import java.time.LocalDate;
 import java.time.Period;

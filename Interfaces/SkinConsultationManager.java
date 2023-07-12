@@ -1,4 +1,4 @@
-package Classes;
+package Interfaces;
 
 import java.util.ArrayList;
 
@@ -8,4 +8,6 @@ public interface SkinConsultationManager {
     void deleteDoctor();
     void printDoctors();
     void saveData();
+    void loadData();
+    void displayGUI();
 }
