@@ -112,16 +112,7 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
 
     @Override
     public void saveData() {
-        try {
-            FileWriter fileWriter = new FileWriter("doctors.txt");
-            for(Doctor doctor: doctorArray){
-                CommonFunctionalities.writeData(fileWriter, doctor);
-            }
-            fileWriter.close();
-            System.out.println(ConsolePrompts.DATA_SAVED);
-        } catch (IOException e) {
-            System.out.println(ConsolePrompts.SAVE_ERROR);
-        }
+        CommonFunctionalities.writeData();
     }
 
     @Override

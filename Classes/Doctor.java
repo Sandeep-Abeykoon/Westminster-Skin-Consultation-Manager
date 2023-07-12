@@ -8,6 +8,7 @@ public class Doctor extends Person implements Comparable<Doctor>, DataEntity {
     private String medicalLicenceNumber;
     private String specialisation;
 
+    @SuppressWarnings("unused")
     public Doctor(){
         super();
     }
@@ -30,7 +31,7 @@ public class Doctor extends Person implements Comparable<Doctor>, DataEntity {
     @Override
     public void parseData(String[] data) {
         this.setName(data[0]);
-        this.setName(data[1]);
+        this.setSurname(data[1]);
         this.setDateOfBirth(data[2]);
         this.setMobileNumber(data[3]);
         this.medicalLicenceNumber = data[4];

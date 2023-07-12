@@ -1,5 +1,6 @@
 package SubFunctionalities;
 
+import Classes.Doctor;
 import Interfaces.DataEntity;
 import SubFunctionalities.FunctionalPrompts.ConsolePrompts;
 
@@ -13,14 +14,21 @@ import java.util.Scanner;
 
 public class CommonFunctionalities {
 
-    public static void writeData(FileWriter writer, DataEntity object) {
-        String[] data = object.getData();
+    public static <T extends DataEntity> void writeData(String filename, ArrayList<T> entities, Class<T> entityType) {
         try {
-            writer.write(String.join(" ", data) + "\n");
+            FileWriter fileWriter = new FileWriter(filename);
+            for (T entity : entities) {
+                String[] data = entity.getData();
+                fileWriter.write(String.join(" ", data) + "\n");
+            }
+            fileWriter.close();
+            System.out.println(ConsolePrompts.DATA_SAVED);
         } catch (IOException e) {
-            System.out.println(ConsolePrompts.RECORD_SAVE_ERROR);
+            System.out.println(ConsolePrompts.SAVE_ERROR);
         }
     }
+
+
 
     public static <T extends DataEntity> void loadData(String fileName, ArrayList<T> entities, Class<T> entityType){
         System.out.println("Called the load data method in the sub functionality class");

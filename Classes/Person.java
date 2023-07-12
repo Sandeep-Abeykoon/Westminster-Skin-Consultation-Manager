@@ -5,14 +5,14 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 
 public abstract class Person {
-
-    public Person(){
-        super();
-    }
     private String name;
     private String surname;
     private LocalDate dateOfBirth;
     private String mobileNumber;
+
+    public Person(){
+        super();
+    }
 
     public Person(String name, String surname, LocalDate dateOfBirth, String mobileNumber){
         super();
