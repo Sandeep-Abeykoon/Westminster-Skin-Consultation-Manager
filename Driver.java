@@ -4,7 +4,7 @@ import SubFunctionalities.FunctionalPrompts.ConsolePrompts;
 public class Driver {
     public static void main(String[] args) {
         WestminsterSkinConsultationManager manager = new WestminsterSkinConsultationManager(10);
-
+        manager.loadData();
         mainLoop: while (true) {
             switch (manager.displayMenu()) {
                 case "1" -> manager.addDoctor();

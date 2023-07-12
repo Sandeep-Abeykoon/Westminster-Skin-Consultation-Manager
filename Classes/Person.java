@@ -5,6 +5,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 
 public abstract class Person {
+
+    public Person(){
+        super();
+    }
     private String name;
     private String surname;
     private LocalDate dateOfBirth;

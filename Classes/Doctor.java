@@ -8,6 +8,10 @@ public class Doctor extends Person implements Comparable<Doctor>, DataEntity {
     private String medicalLicenceNumber;
     private String specialisation;
 
+    public Doctor(){
+        super();
+    }
+
     public Doctor(String name, String surname, LocalDate dateOfBirth, String mobileNumber, String medicalLicenceNumber, String specialisation){
         super(name, surname, dateOfBirth, mobileNumber);
         this.medicalLicenceNumber = medicalLicenceNumber;

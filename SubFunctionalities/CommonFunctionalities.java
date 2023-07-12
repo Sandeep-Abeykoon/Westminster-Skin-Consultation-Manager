@@ -23,6 +23,7 @@ public class CommonFunctionalities {
     }
 
     public static <T extends DataEntity> void loadData(String fileName, ArrayList<T> entities, Class<T> entityType){
+        System.out.println("Called the load data method in the sub functionality class");
         try {
             File fileObject = new File(fileName);
             Scanner fileReader = new Scanner(fileObject);
