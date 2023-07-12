@@ -1,6 +1,5 @@
 package SubFunctionalities;
 
-import Classes.Doctor;
 import Interfaces.DataEntity;
 import SubFunctionalities.FunctionalPrompts.ConsolePrompts;
 
@@ -14,7 +13,7 @@ import java.util.Scanner;
 
 public class CommonFunctionalities {
 
-    public static <T extends DataEntity> void writeData(String filename, ArrayList<T> entities, Class<T> entityType) {
+    public static <T extends DataEntity> void writeData(String filename, ArrayList<T> entities) {
         try {
             FileWriter fileWriter = new FileWriter(filename);
             for (T entity : entities) {

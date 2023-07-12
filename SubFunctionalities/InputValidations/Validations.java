@@ -88,7 +88,7 @@ abstract class Validations {
 
     protected static boolean dateFormat(String input){
         try{
-            date = LocalDate.parse(input, DateTimeFormatter.ofPattern("uuuu-M-d").withResolverStyle(ResolverStyle.STRICT));
+            date = LocalDate.parse(input, DateTimeFormatter.ofPattern("u-M-d").withResolverStyle(ResolverStyle.STRICT));
         }catch (DateTimeParseException e){
             errorMessage = INVALID_DATE_MESSAGE;
             return false;

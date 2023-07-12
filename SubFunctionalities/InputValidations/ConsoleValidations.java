@@ -6,7 +6,7 @@ public abstract class ConsoleValidations extends Validations {
     private static final  String OPTION_PROMPT = "Enter your option : ";
     private static final String FIRST_NAME_PROMPT = "Enter the Doctor's first name : ";
     private static final String SURNAME_PROMPT = "Enter the Doctor's surname name : ";
-    private static final String DATE_OF_BIRTH_PROMPT = "Enter the date of birth in the following format (YY-MM-DD) : ";
+    private static final String DATE_OF_BIRTH_PROMPT = "Enter the date of birth in the following format (YYYY-MM-DD) : ";
     private static final String MOBILE_NUMBER_PROMPT = "Enter the mobile phone number in the following format 07x1234567 : ";
     private static final String MEDICAL_LICENSE_NUMBER_PROMPT = "Enter the medical license number : ";
     private static final String SPECIALISATION_PROMPT = "Enter the specialisation : ";
