@@ -7,12 +7,9 @@ import SubFunctionalities.FunctionalPrompts.ConsolePrompts;
 import SubFunctionalities.InputValidations.ConsoleValidations;
 import SubFunctionalities.NavigationFunctionalities;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.LocalDate;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 
 public class WestminsterSkinConsultationManager implements SkinConsultationManager {
@@ -112,12 +109,12 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
 
     @Override
     public void saveData() {
-        CommonFunctionalities.writeData("doctors.txt", doctorArray, Doctor.class);
+        CommonFunctionalities.writeData("TextFiles/doctors.txt", doctorArray, Doctor.class);
     }
 
     @Override
     public void loadData() {
-        CommonFunctionalities.loadData("doctors.txt", doctorArray, Doctor.class);
+        CommonFunctionalities.loadData("TextFiles/doctors.txt", doctorArray, Doctor.class);
     }
 
     @Override
