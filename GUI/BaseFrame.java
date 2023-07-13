@@ -1,6 +1,7 @@
 package GUI;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -22,9 +23,15 @@ public abstract class BaseFrame extends JFrame implements ActionListener {
         button.setHorizontalTextPosition(0);
         button.setVerticalTextPosition(0);
         button.setBackground(Color.GRAY);
+        button.addActionListener(this);
     }
 
     public void setTable(DefaultTableModel model, JTable table){
+
+        DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
+        cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        table.setDefaultRenderer(Object.class, cellRenderer);
+
         table.setModel(model);
         table.getTableHeader().setReorderingAllowed(false);
         table.setRowHeight(table.getRowHeight() + 15);

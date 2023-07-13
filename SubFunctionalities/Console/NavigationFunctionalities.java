@@ -1,4 +1,4 @@
-package SubFunctionalities;
+package SubFunctionalities.Console;
 
 import SubFunctionalities.InputValidations.ConsoleValidations;
 import SubFunctionalities.FunctionalPrompts.ConsolePrompts;

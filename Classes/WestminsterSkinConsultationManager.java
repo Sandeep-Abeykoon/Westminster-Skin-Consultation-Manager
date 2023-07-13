@@ -3,10 +3,10 @@ package Classes;
 import GUI.Menu;
 import Interfaces.SkinConsultationManager;
 import SubFunctionalities.CommonFunctionalities;
-import SubFunctionalities.DoctorFunctionalities;
+import SubFunctionalities.Console.DoctorFunctionalities;
 import SubFunctionalities.FunctionalPrompts.ConsolePrompts;
 import SubFunctionalities.InputValidations.ConsoleValidations;
-import SubFunctionalities.NavigationFunctionalities;
+import SubFunctionalities.Console.NavigationFunctionalities;
 
 import java.time.LocalDate;
 

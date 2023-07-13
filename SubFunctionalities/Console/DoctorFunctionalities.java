@@ -1,4 +1,4 @@
-package SubFunctionalities;
+package SubFunctionalities.Console;
 
 import Classes.Doctor;
 import Classes.WestminsterSkinConsultationManager;
@@ -26,7 +26,7 @@ public abstract class DoctorFunctionalities {
     }
 
     public static void printHeader() {
-        System.out.println(ConsolePrompts.HEADERS);
+        System.out.println(ConsolePrompts.TABLE_HEADERS);
         System.out.println(ConsolePrompts.DASH_STREAM_144);
     }
 

@@ -15,7 +15,7 @@ public abstract class ConsolePrompts {
     public static final String DASH_STREAM_65 = "-".repeat(65);
     public static final String DASH_STREAM_144 = "-".repeat(144) + "|";
     public static final String DOCTOR_DETAILS = "\n" + DASH_STREAM_65 + "DOCTOR DETAILS" + DASH_STREAM_65 + "|";
-    public static final String HEADERS = "\n\t\t|\tFIRST NAME \t\t|\tSURNAME \t\t|\tDATE OF BIRTH \t|\tMOBILE NUMBER \t|\tMEDICAL LICENCE NUMBER \t|\tSPECIALISATION\t\t\t|";
+    public static final String TABLE_HEADERS = "\n\t\t|\tFIRST NAME \t\t|\tSURNAME \t\t|\tDATE OF BIRTH \t|\tMOBILE NUMBER \t|\tMEDICAL LICENCE NUMBER \t|\tSPECIALISATION\t\t\t|";
     public static final String DATA_SAVED = "\nTHE DATA IS SUCCESSFULLY SAVED !\n";
     public static final String SAVE_ERROR = "\nTHERE WAS A PROBLEM WHILE TRYING TO SAVE DATA !\n";
     public static final String LOAD_ERROR = "\nTHERE WAS A PROBLEM LOADING THE DATA TO THE SYSTEM\n";

@@ -4,9 +4,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class Menu extends BaseFrame {
-private JButton viewDoctors;
-private JButton bookConsultation;
-private JButton exit;
+private JButton viewDoctors, bookConsultation, exit;
+
     public Menu(){
         super("Menu", 420, 420);
         addContent();
@@ -34,6 +33,7 @@ private JButton exit;
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.viewDoctors){
             this.dispose();
+            new ViewDoctors();
         }
     }
 }
