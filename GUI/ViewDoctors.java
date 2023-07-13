@@ -1,16 +1,15 @@
 package GUI;
 
-import Classes.WestminsterSkinConsultationManager;
 import SubFunctionalities.FunctionalPrompts.GUIPrompts;
-import SubFunctionalities.GUI.Functionalities;
+import SubFunctionalities.GUI.TableFunctionalities;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 
 public class ViewDoctors extends BaseFrame{
-
-    JButton back, sortByFName;
+    private JTable table;
+    private JButton back, sortByFName, sortByLName, reset;
     public ViewDoctors(){
         super("View Doctors", 1100, 600);
         this.addContent();
@@ -22,10 +21,10 @@ public class ViewDoctors extends BaseFrame{
     }
 
     private void addTable(){
-        JTable table = new JTable();
+        table = new JTable();
         DefaultTableModel model = new DefaultTableModel();
         this.setTable(model, table);
-        Functionalities.addTableData(model, GUIPrompts.TABLE_HEADERS, WestminsterSkinConsultationManager.getDoctorList());
+        TableFunctionalities.addTableData(model, GUIPrompts.TABLE_HEADERS, DOCTOR_ARRAY);
 
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setBounds(20, 80, 1050, 333);
@@ -41,11 +40,11 @@ public class ViewDoctors extends BaseFrame{
         this.setButton(sortByFName, 286, 480, 250, 40);
         this.add(sortByFName);
 
-        JButton sortByLName = new JButton("Sort by Last Name");
+        sortByLName = new JButton("Sort by Last Name");
         this.setButton(sortByLName, 546, 480, 250, 40);
         this.add(sortByLName);
 
-        JButton reset = new JButton("Reset");
+        reset = new JButton("Reset");
         this.setButton(reset, 806, 480, 250, 40);
         this.add(reset);
     }
@@ -57,7 +56,11 @@ public class ViewDoctors extends BaseFrame{
             this.dispose();
             new Menu();
         }else if(e.getSource() == this.sortByFName){
-
+            TableFunctionalities.sortTable(table, 1, SortOrder.ASCENDING, DOCTOR_ARRAY);
+        } else if(e.getSource() == this.sortByLName){
+            TableFunctionalities.sortTable(table, 2, SortOrder.ASCENDING, DOCTOR_ARRAY);
+        }else if(e.getSource() == this.reset){
+            this.table.setRowSorter(null);
         }
     }
 }

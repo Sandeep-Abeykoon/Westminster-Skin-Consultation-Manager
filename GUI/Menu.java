@@ -34,6 +34,8 @@ private JButton viewDoctors, bookConsultation, exit;
         if(e.getSource() == this.viewDoctors){
             this.dispose();
             new ViewDoctors();
+        } else if(e.getSource() == this.exit){
+            this.dispose();
         }
     }
 }

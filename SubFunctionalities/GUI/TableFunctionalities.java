@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Functionalities {
+public class TableFunctionalities {
     public static <T extends DataEntity> void addTableData(DefaultTableModel model, String[] headers, ArrayList<T> objectArray){
 
         //Adding the Header Names
