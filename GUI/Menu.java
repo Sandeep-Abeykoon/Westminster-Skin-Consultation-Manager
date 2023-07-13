@@ -37,7 +37,7 @@ private JButton viewDoctors, bookConsultation, exit;
 
         } else if(e.getSource() == this.bookConsultation) {
             this.dispose();
-            new CheckDoctorAvailability();
+            new Consultations();
 
         } else if(e.getSource() == this.exit){
             this.dispose();

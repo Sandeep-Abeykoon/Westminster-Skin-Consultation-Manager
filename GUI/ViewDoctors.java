@@ -22,7 +22,7 @@ public class ViewDoctors extends BaseFrame{
     }
 
     private void addLabels(){
-        JLabel heading = new JLabel("VIEW DOCTORS");
+        JLabel heading = new JLabel(GUIPrompts.VIEW_DOCTORS_HEADING);
         this.mainHeadingLabel(heading, 450, 20);
         this.add(heading);
     }
@@ -30,7 +30,7 @@ public class ViewDoctors extends BaseFrame{
     private void addTable(){
         table = new JTable();
         DefaultTableModel model = new DefaultTableModel();
-        this.setTable(model, table, false);
+        this.setTable(model, table);
         TableFunctionalities.addTableData(model, GUIPrompts.VIEW_TABLE_HEADERS, DOCTOR_ARRAY,"FULL");
 
         JScrollPane scrollPane = new JScrollPane(table);

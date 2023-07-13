@@ -31,15 +31,14 @@ public abstract class BaseFrame extends JFrame implements ActionListener {
         button.addActionListener(this);
     }
 
-    public void setTable(DefaultTableModel model, JTable table, boolean editable){
-
-        DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
-        cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        table.setDefaultRenderer(Object.class, cellRenderer);
+    public void setTable(DefaultTableModel model, JTable table){
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setHorizontalAlignment(SwingConstants.CENTER);
+        table.setDefaultRenderer(Object.class, renderer);
 
         table.setModel(model);
         table.getTableHeader().setReorderingAllowed(false);
-        table.setEnabled(editable);
+        table.setDefaultEditor(Object.class, null);
         table.setRowHeight(table.getRowHeight() + 15);
         table.setFont(new Font("Comic Sans", Font.PLAIN, 12));
         table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 12));
@@ -48,6 +47,11 @@ public abstract class BaseFrame extends JFrame implements ActionListener {
 
     public void mainHeadingLabel(JLabel label, int x, int y){
         label.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 24));
+        label.setBounds(x, y, 400, 30);
+    }
+
+    public void subHeadingLabel(JLabel label, int x, int y){
+        label.setFont(new Font("Arial", Font.BOLD, 12));
         label.setBounds(x, y, 400, 30);
     }
 }
