@@ -11,7 +11,7 @@ import java.util.List;
 
 
 public class TableFunctionalities {
-    public static <T extends DataEntity> void addTableData(DefaultTableModel model, String[] headers, ArrayList<T> objectArray){
+    public static <T extends DataEntity> void addTableData(DefaultTableModel model, String[] headers, ArrayList<T> objectArray, String type){
 
         //Adding the Header Names
         for(String column: headers){
@@ -20,10 +20,11 @@ public class TableFunctionalities {
         //Adding the row data
         int rowNumber = 1;
         for(T object : objectArray){
-            String[] objectData = object.getData();
-            String[] rowData = new String[objectData.length + 1];
-            rowData[0] = String.valueOf(rowNumber);
-            System.arraycopy(objectData, 0, rowData, 1, objectData.length);
+            String[] index = {String.valueOf(rowNumber)};
+            String[] rowData = new String[headers.length];
+
+            System.arraycopy(index, 0, rowData, 0, 1);
+            System.arraycopy(object.getData(type), 0, rowData, 1, object.getData(type).length);
             model.addRow(rowData);
             rowNumber++;
         }

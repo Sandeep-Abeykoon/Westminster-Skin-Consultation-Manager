@@ -8,10 +8,10 @@ private JButton viewDoctors, bookConsultation, exit;
 
     public Menu(){
         super("Menu", 420, 420);
-        addContent();
+        addContents();
     }
 
-    private void addContent(){
+    private void addContents(){
         addButtons();
     }
 
@@ -34,6 +34,11 @@ private JButton viewDoctors, bookConsultation, exit;
         if(e.getSource() == this.viewDoctors){
             this.dispose();
             new ViewDoctors();
+
+        } else if(e.getSource() == this.bookConsultation) {
+            this.dispose();
+            new CheckDoctorAvailability();
+
         } else if(e.getSource() == this.exit){
             this.dispose();
         }

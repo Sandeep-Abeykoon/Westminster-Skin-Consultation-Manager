@@ -17,7 +17,7 @@ public class CommonFunctionalities {
         try {
             FileWriter fileWriter = new FileWriter(filename);
             for (T entity : entities) {
-                String[] data = entity.getData();
+                String[] data = entity.getData("Full");
                 fileWriter.write(String.join(" ", data) + "\n");
             }
             fileWriter.close();

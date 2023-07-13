@@ -31,7 +31,7 @@ public abstract class DoctorFunctionalities {
     }
 
     public static void printDetails(Doctor doctor) {
-        System.out.printf("%-20s%-20s%-20s%-20s%-28s%-20s%n", (Object[]) doctor.getData());
+        System.out.printf("%-20s%-20s%-20s%-20s%-28s%-20s%n", (Object[]) doctor.getData("FULL"));
     }
 }
 

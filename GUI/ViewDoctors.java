@@ -12,10 +12,10 @@ public class ViewDoctors extends BaseFrame{
     private JButton back, sortByFName, sortByLName, reset;
     protected ViewDoctors(){
         super("View Doctors", 1100, 600);
-        this.addContent();
+        this.addContents();
     }
 
-    private void addContent(){
+    private void addContents(){
         addLabels();
         addTable();
         addButtons();
@@ -30,11 +30,11 @@ public class ViewDoctors extends BaseFrame{
     private void addTable(){
         table = new JTable();
         DefaultTableModel model = new DefaultTableModel();
-        this.setTable(model, table);
-        TableFunctionalities.addTableData(model, GUIPrompts.TABLE_HEADERS, DOCTOR_ARRAY);
+        this.setTable(model, table, false);
+        TableFunctionalities.addTableData(model, GUIPrompts.VIEW_TABLE_HEADERS, DOCTOR_ARRAY,"FULL");
 
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(25, 80, 1050, 333);
+        scrollPane.setBounds(18, 80, 1050, 333);
         this.add(scrollPane);
     }
 

@@ -5,6 +5,7 @@ import Interfaces.DataEntity;
 import java.time.LocalDate;
 
 public class Doctor extends Person implements Comparable<Doctor>, DataEntity {
+    private final static String TYPICAL_DATA = "TYPICAL_DATA";
     private String medicalLicenceNumber;
     private String specialisation;
 
@@ -24,8 +25,10 @@ public class Doctor extends Person implements Comparable<Doctor>, DataEntity {
     }
 
     @Override
-    public String[] getData() {
-        return new String[]{getName(),getSurname(),getDateOfBirth().toString(),getMobileNumber(),medicalLicenceNumber,specialisation};
+    public String[] getData(String type) {
+         String[] full = {getName(),getSurname(),getDateOfBirth().toString(),getMobileNumber(),medicalLicenceNumber,specialisation};
+         String[] typical = {getName() + " " + getSurname(), medicalLicenceNumber};
+         return type.equals(TYPICAL_DATA)? typical : full;
     }
 
     @Override
