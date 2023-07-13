@@ -10,14 +10,21 @@ import java.awt.event.ActionEvent;
 public class ViewDoctors extends BaseFrame{
     private JTable table;
     private JButton back, sortByFName, sortByLName, reset;
-    public ViewDoctors(){
+    protected ViewDoctors(){
         super("View Doctors", 1100, 600);
         this.addContent();
     }
 
     private void addContent(){
+        addLabels();
         addTable();
         addButtons();
+    }
+
+    private void addLabels(){
+        JLabel heading = new JLabel("VIEW DOCTORS");
+        this.mainHeadingLabel(heading, 450, 20);
+        this.add(heading);
     }
 
     private void addTable(){
@@ -27,7 +34,7 @@ public class ViewDoctors extends BaseFrame{
         TableFunctionalities.addTableData(model, GUIPrompts.TABLE_HEADERS, DOCTOR_ARRAY);
 
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(20, 80, 1050, 333);
+        scrollPane.setBounds(25, 80, 1050, 333);
         this.add(scrollPane);
     }
 
@@ -48,7 +55,6 @@ public class ViewDoctors extends BaseFrame{
         this.setButton(reset, 806, 480, 250, 40);
         this.add(reset);
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e){

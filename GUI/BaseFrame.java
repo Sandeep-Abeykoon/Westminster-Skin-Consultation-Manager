@@ -45,4 +45,9 @@ public abstract class BaseFrame extends JFrame implements ActionListener {
         table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 12));
         table.setGridColor(Color.BLACK);
     }
+
+    public void mainHeadingLabel(JLabel label, int x, int y){
+        label.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 24));
+        label.setBounds(x, y, 200, 30);
+    }
 }
