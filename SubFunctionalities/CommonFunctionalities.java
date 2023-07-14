@@ -1,7 +1,7 @@
 package SubFunctionalities;
 
 import Interfaces.DataEntity;
-import SubFunctionalities.FunctionalPrompts.ConsolePrompts;
+import SubFunctionalities.Prompts.ConsolePrompts;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,7 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class CommonFunctionalities {
+public abstract class CommonFunctionalities {
 
     public static <T extends DataEntity> void writeData(String filename, ArrayList<T> entities) {
         try {

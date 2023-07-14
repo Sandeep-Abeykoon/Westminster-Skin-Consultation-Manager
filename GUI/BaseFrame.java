@@ -51,7 +51,7 @@ public abstract class BaseFrame extends JFrame implements ActionListener {
     }
 
     public void subHeadingLabel(JLabel label, int x, int y){
-        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setFont(new Font("Arial", Font.BOLD, 12 ));
         label.setBounds(x, y, 400, 30);
     }
 }

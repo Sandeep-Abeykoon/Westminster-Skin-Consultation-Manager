@@ -1,5 +1,5 @@
 import Classes.WestminsterSkinConsultationManager;
-import SubFunctionalities.FunctionalPrompts.ConsolePrompts;
+import SubFunctionalities.Prompts.ConsolePrompts;
 
 public class Driver {
     public static void main(String[] args) {

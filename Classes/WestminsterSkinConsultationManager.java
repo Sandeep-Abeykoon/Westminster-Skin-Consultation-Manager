@@ -4,7 +4,7 @@ import GUI.Menu;
 import Interfaces.SkinConsultationManager;
 import SubFunctionalities.CommonFunctionalities;
 import SubFunctionalities.Console.DoctorFunctionalities;
-import SubFunctionalities.FunctionalPrompts.ConsolePrompts;
+import SubFunctionalities.Prompts.ConsolePrompts;
 import SubFunctionalities.InputValidations.ConsoleValidations;
 import SubFunctionalities.Console.NavigationFunctionalities;
 

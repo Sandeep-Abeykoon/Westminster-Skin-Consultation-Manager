@@ -1,4 +1,4 @@
-package SubFunctionalities.FunctionalPrompts;
+package SubFunctionalities.Prompts;
 
 public abstract class ConsolePrompts {
     public static final String ADD_DOCTOR_OPTION = "ADD A DOCTOR";

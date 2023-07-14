@@ -2,7 +2,7 @@ package SubFunctionalities.Console;
 
 import Classes.Doctor;
 import Classes.WestminsterSkinConsultationManager;
-import SubFunctionalities.FunctionalPrompts.ConsolePrompts;
+import SubFunctionalities.Prompts.ConsolePrompts;
 
 import java.util.ArrayList;
 import java.util.Collections;

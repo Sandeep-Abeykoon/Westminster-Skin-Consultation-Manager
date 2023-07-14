@@ -1,7 +1,7 @@
 package SubFunctionalities.Console;
 
 import SubFunctionalities.InputValidations.ConsoleValidations;
-import SubFunctionalities.FunctionalPrompts.ConsolePrompts;
+import SubFunctionalities.Prompts.ConsolePrompts;
 
 public abstract class NavigationFunctionalities {
 

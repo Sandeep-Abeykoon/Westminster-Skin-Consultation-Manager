@@ -1,7 +1,7 @@
 package GUI;
 
-import SubFunctionalities.FunctionalPrompts.GUIPrompts;
-import SubFunctionalities.GUI.TableFunctionalities;
+import SubFunctionalities.Prompts.GUIPrompts;
+import SubFunctionalities.GUI.Table;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -31,7 +31,7 @@ public class ViewDoctors extends BaseFrame{
         table = new JTable();
         DefaultTableModel model = new DefaultTableModel();
         this.setTable(model, table);
-        TableFunctionalities.addTableData(model, GUIPrompts.VIEW_TABLE_HEADERS, DOCTOR_ARRAY,"FULL");
+        Table.addTableData(model, GUIPrompts.VIEW_TABLE_HEADERS, DOCTOR_ARRAY,"FULL");
 
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setBounds(18, 80, 1050, 333);
@@ -62,9 +62,9 @@ public class ViewDoctors extends BaseFrame{
             this.dispose();
             new Menu();
         }else if(e.getSource() == this.sortByFName){
-            TableFunctionalities.sortTable(table, 1, SortOrder.ASCENDING, DOCTOR_ARRAY);
+            Table.sortTable(table, 1, SortOrder.ASCENDING, DOCTOR_ARRAY);
         } else if(e.getSource() == this.sortByLName){
-            TableFunctionalities.sortTable(table, 2, SortOrder.ASCENDING, DOCTOR_ARRAY);
+            Table.sortTable(table, 2, SortOrder.ASCENDING, DOCTOR_ARRAY);
         }else if(e.getSource() == this.reset){
             this.table.setRowSorter(null);
         }
