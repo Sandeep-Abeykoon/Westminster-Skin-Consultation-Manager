@@ -54,10 +54,10 @@ public class Consultations extends BaseFrame {
         this.subHeadingLabel(detailBoxHeading, 755, 400);
         this.add(detailBoxHeading);
 
-        JLabel displayData = new JLabel("Booking Details");
-        displayData.setHorizontalAlignment(SwingConstants.CENTER);
+        JLabel displayData = new JLabel(GUIPrompts.DETAIL_BOX_DEFAULT_1);
+        displayData.setVerticalAlignment(SwingConstants.TOP);
         displayData.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        displayData.setBounds(630, 430, 300, 100);
+        displayData.setBounds(630, 430, 300, 110);
         this.add(displayData);
     }
 
@@ -94,6 +94,9 @@ public class Consultations extends BaseFrame {
         this.add(endTime);
     }
 
+    private void getInputs(){
+
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
