@@ -9,4 +9,5 @@ public abstract class GUIPrompts {
     public static final String SELECT_DATE_SUBHEADING = "Select the date";
     public static final String SELECT_S_TIME_SUBHEADING = "Select the start time";
     public static final String SELECT_E_TIME_SUBHEADING = "Select the end time";
+    public static final String DETAIL_BOX_SUBHEADING = "DETAILS";
 }

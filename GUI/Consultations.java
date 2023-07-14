@@ -39,20 +39,25 @@ public class Consultations extends BaseFrame {
         this.add(tableHeading);
 
         JLabel dateHeading = new JLabel(GUIPrompts.SELECT_DATE_SUBHEADING);
-        this.subHeadingLabel(dateHeading, 380, 410);
+        this.subHeadingLabel(dateHeading, 370, 410);
         this.add(dateHeading);
 
         JLabel startTimeHeading = new JLabel(GUIPrompts.SELECT_S_TIME_SUBHEADING);
-        this.subHeadingLabel(startTimeHeading, 380, 450);
+        this.subHeadingLabel(startTimeHeading, 370, 450);
         this.add(startTimeHeading);
 
         JLabel endTimeHeading = new JLabel(GUIPrompts.SELECT_E_TIME_SUBHEADING);
-        this.subHeadingLabel(endTimeHeading, 380, 490);
+        this.subHeadingLabel(endTimeHeading, 370, 490);
         this.add(endTimeHeading);
 
-        JLabel displayData = new JLabel("Sandeep Abeykoon");
+        JLabel detailBoxHeading = new JLabel(GUIPrompts.DETAIL_BOX_SUBHEADING);
+        this.subHeadingLabel(detailBoxHeading, 755, 400);
+        this.add(detailBoxHeading);
+
+        JLabel displayData = new JLabel("Booking Details");
+        displayData.setHorizontalAlignment(SwingConstants.CENTER);
         displayData.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        displayData.setBounds(640, 430, 300, 100);
+        displayData.setBounds(630, 430, 300, 100);
         this.add(displayData);
     }
 
@@ -75,17 +80,17 @@ public class Consultations extends BaseFrame {
 
     private void addDatePicker(){
         JDatePickerImpl datePicker = DateTime.CreateDatePicker(new Date());
-        datePicker.setBounds(480, 410, 43, 30);
+        datePicker.setBounds(470, 410, 43, 30);
         this.add(datePicker);
     }
 
     private void addTimePicker(){
         JSpinner startTime = DateTime.CreateTimePicker();
-        startTime.setBounds(510, 450, 50, 30);
+        startTime.setBounds(500, 450, 50, 30);
         this.add(startTime);
 
         JSpinner endTime = DateTime.CreateTimePicker();
-        endTime.setBounds(510, 490, 50, 30);
+        endTime.setBounds(500, 490, 50, 30);
         this.add(endTime);
     }
 

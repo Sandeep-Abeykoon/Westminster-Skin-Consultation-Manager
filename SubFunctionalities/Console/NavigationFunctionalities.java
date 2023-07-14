@@ -13,6 +13,6 @@ public abstract class NavigationFunctionalities {
 
     public static void goToMenu(){
         System.out.println(ConsolePrompts.ENTER_ANY_NUMBER);
-        ConsoleValidations.optionInput(0, 9);
+        ConsoleValidations.optionInput(  0, 9);
     }
 }
