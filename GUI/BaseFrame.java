@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public abstract class BaseFrame extends JFrame implements ActionListener {
@@ -39,6 +40,7 @@ public abstract class BaseFrame extends JFrame implements ActionListener {
         table.setModel(model);
         table.getTableHeader().setReorderingAllowed(false);
         table.setDefaultEditor(Object.class, null);
+
         table.setRowHeight(table.getRowHeight() + 15);
         table.setFont(new Font("Comic Sans", Font.PLAIN, 12));
         table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 12));

@@ -5,6 +5,10 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.SqlDateModel;
 
 import javax.swing.*;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
@@ -46,5 +50,11 @@ public abstract class DateTime {
         timeSpinner.setEditor(editor);
 
         return timeSpinner;
+    }
+
+    public static String getTime(JSpinner jSpinner){
+        Date d = (Date) jSpinner.getModel().getValue();
+        LocalTime time = LocalDateTime.ofInstant(d.toInstant(), ZoneId.systemDefault()).toLocalTime();
+        return time.format(DateTimeFormatter.ofPattern("HH:mm"));
     }
 }
