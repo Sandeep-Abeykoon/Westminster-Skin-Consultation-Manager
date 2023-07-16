@@ -14,6 +14,7 @@ public abstract class GUIPrompts {
     public static final String DETAIL_BOX_DYNAMIC = "<html><br>&ensp;DOCTOR : %s<br>&ensp;DATE : %s<br>&ensp;START TIME : %s<br>&ensp;END TIME : %s<br></html>";
     public static final String DOCTOR_AVAILABLE = "&emsp;&emsp;&emsp;&emsp;&emsp;<font color='green'>DOCTOR IS AVAILABLE</font>";
     public static final String NO_ANY_DOCTORS = "<font color='red>NO ANY DOCTOR AVAILABLE FOR THE SLOT</font>";
+    public static final String ADD_PATIENT_DETAILS = "ADD PATIENT DETAILS";
 
     public static String appendToHtml(String original, String append){
         String truncate = original.replace("</html>", "");

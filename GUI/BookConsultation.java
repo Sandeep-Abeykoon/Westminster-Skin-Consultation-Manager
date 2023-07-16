@@ -1,5 +1,6 @@
 package GUI;
 
+import Classes.Consultation;
 import SubFunctionalities.GUI.ConsultationFunctionalities;
 import SubFunctionalities.GUI.DateTime;
 import SubFunctionalities.GUI.Table;
@@ -135,6 +136,7 @@ public class BookConsultation extends BaseFrame {
     }
 
     private void processInputs(){
+        bookConsultation.setEnabled(false);
         validate = new GUIValidations(selectedRow, date, startTime, endTime);
         boolean valid = validate.validateAll();
 
@@ -152,18 +154,19 @@ public class BookConsultation extends BaseFrame {
             new Menu();
 
         } else if (e.getSource() == checkAvailability) {
-
             boolean available = ConsultationFunctionalities.getDoctorAvailability(validate.getDoctorId(),
                     validate.getDate(), validate.getStartTime(), validate.getEndTime());
 
             if(available){
-
+                this.bookConsultation.setEnabled(true);
                 displayData.setText(GUIPrompts.appendToHtml(formattedText, GUIPrompts.DOCTOR_AVAILABLE));
 
             }else{
-                this.bookConsultation.setEnabled(available);
+                this.bookConsultation.setEnabled(false);
                 displayData.setText(GUIPrompts.appendToHtml(formattedText, GUIPrompts.NO_ANY_DOCTORS));
             }
+        } else if (e.getSource() == bookConsultation) {
+
         }
     }
 }

@@ -11,11 +11,11 @@ public class Consultation{
     private LocalTime endTime;
     private double cost;
     private String notes;
-    private Patient patient;
-    private Doctor doctor;
+    private String patientId;
+    private String doctorId;
 
-    public Doctor getDoctor(){
-        return this.doctor;
+    public String getDoctorId(){
+        return this.doctorId;
     }
 
     public LocalDate getDate(){
