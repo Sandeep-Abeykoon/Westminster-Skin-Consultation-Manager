@@ -16,7 +16,7 @@ import java.util.Date;
 public class Consultations extends BaseFrame {
     private String selectedRow, date, startTime, endTime;
     private JLabel displayData;
-    private JButton back;
+    private JButton back, checkAvailability;
 
     protected Consultations() {
         super("Consultations", 1100, 600);
@@ -91,8 +91,9 @@ public class Consultations extends BaseFrame {
         this.setButton(back, 20, 480, 250, 40);
         this.add(back);
 
-        JButton checkAvailability = new JButton("Check Availability");
-        this.setButton(checkAvailability, 815, 480, 250, 40);
+        checkAvailability = new JButton("Check Availability");
+        this.setButton(checkAvailability, 815, 450, 250, 40);
+        checkAvailability.setEnabled(false);
         this.add(checkAvailability);
     }
 
@@ -129,12 +130,18 @@ public class Consultations extends BaseFrame {
 
     private void processInputs(){
         GUIValidations validate = new GUIValidations(selectedRow, date, startTime, endTime);
-        validate.validateAll();
+        boolean valid = validate.validateAll();
 
         String[] outputs = validate.getValidation();
 
         String formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC), outputs[0], outputs[1], outputs[2], outputs[3]);
         displayData.setText(formattedText);
+
+        if(valid){
+            checkAvailability.setEnabled(true);
+        }else {
+            checkAvailability.setEnabled(false);
+        }
     }
 
     @Override
