@@ -1,5 +1,7 @@
 package GUI;
 
+import Classes.Consultation;
+import SubFunctionalities.GUI.ConsultationFunctionalities;
 import SubFunctionalities.GUI.DateTime;
 import SubFunctionalities.GUI.Table;
 import SubFunctionalities.InputValidations.GUIValidations;
@@ -140,7 +142,12 @@ public class BookConsultation extends BaseFrame {
 
         String formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC), outputs[0], outputs[1], outputs[2], outputs[3]);
         displayData.setText(formattedText);
-        checkAvailability.setEnabled(valid);
+
+        if (valid){
+            checkAvailability.setEnabled(true);
+            boolean availability = ConsultationFunctionalities.getDoctorAvailability()
+        }
+
     }
 
     @Override

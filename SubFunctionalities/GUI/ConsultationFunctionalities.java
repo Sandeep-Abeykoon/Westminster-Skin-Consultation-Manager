@@ -5,7 +5,7 @@ import Classes.Consultation;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public abstract class consultationFunctionalities {
+public abstract class ConsultationFunctionalities {
     public static boolean getDoctorAvailability(String doctorId, LocalDate date, LocalTime startTime, LocalTime endTime){
         for(Consultation consultation : Consultation.getConsultations()){
             if(consultation.getDoctor().getMedicalLicenceNumber().equals(doctorId)){

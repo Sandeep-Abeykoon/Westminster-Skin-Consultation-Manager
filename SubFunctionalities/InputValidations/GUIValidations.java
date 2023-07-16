@@ -3,6 +3,7 @@ package SubFunctionalities.InputValidations;
 import Classes.Doctor;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -15,7 +16,9 @@ public class GUIValidations extends Validations {
     private static final String TOO_LONG = "<font color='red'>SESSION TOO LONG</font>";
     private static final String TOO_SHORT = "<font color='red'>SESSION TOO SHORT</font>";
     private final ArrayList<String> outputs = new ArrayList<>();
-    String rowIndex, selectedDate, startTime, endTime;
+    String rowIndex, selectedDate, startTime, endTime, doctorId;
+    LocalDate consultationDate;
+    LocalTime sTime, eTime;
     public GUIValidations(String rowIndex, String date, String startTime, String endTime){
         super();
         this.rowIndex = rowIndex;
@@ -30,6 +33,7 @@ public class GUIValidations extends Validations {
             return false;
         }
         Doctor doctor = doctorArray.get(Integer.parseInt(rowIndex));
+        doctorId = doctor.getMedicalLicenceNumber();
         String fullName = "Dr "+ doctor.getName() + " " + doctor.getSurname();
         outputs.add(fullName);
         return true;
@@ -45,6 +49,7 @@ public class GUIValidations extends Validations {
             outputs.add(NOT_SELECTED);
             return false;
         }
+        consultationDate = date;
         outputs.add(String.valueOf(date));
         return true;
     }
@@ -55,9 +60,10 @@ public class GUIValidations extends Validations {
             return false;
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+
         if(!(startTime.equals("") || endTime.equals(""))){
-            LocalTime sTime = LocalTime.parse(startTime, formatter);
-            LocalTime eTime = LocalTime.parse(endTime, formatter);
+            sTime = LocalTime.parse(startTime, formatter);
+            eTime = LocalTime.parse(endTime, formatter);
 
             Duration duration = Duration.between(sTime,eTime);
             if (duration.toHours() > MAX_CONSULTATION_TIME){
