@@ -154,6 +154,7 @@ public class BookConsultation extends BaseFrame {
             new Menu();
 
         } else if (e.getSource() == checkAvailability) {
+            checkAvailability.setEnabled(false);
             boolean available = ConsultationFunctionalities.getDoctorAvailability(validate.getDoctorId(),
                     validate.getDate(), validate.getStartTime(), validate.getEndTime());
 
