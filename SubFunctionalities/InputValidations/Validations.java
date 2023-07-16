@@ -1,15 +1,21 @@
 package SubFunctionalities.InputValidations;
 
+import Classes.Doctor;
+import Classes.WestminsterSkinConsultationManager;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 abstract class Validations {
+    protected static final ArrayList<Doctor> doctorArray = WestminsterSkinConsultationManager.getDoctorList();
+
     protected static LocalDate date;
     protected static String errorMessage = "";
     private final static Scanner scanner = new Scanner(System.in);
@@ -95,12 +101,13 @@ abstract class Validations {
         }
         return true;
     }
-    protected static boolean futureDateOfBirth(){
-        if(!date.isBefore(LocalDate.now())){
-            errorMessage = FUTURE_DATE_OF_BIRTH_MESSAGE;
-            return false;
+
+    protected static boolean pastDate(){
+        if(date.isBefore(LocalDate.now())){
+            return true;
         }
-        return true;
+        errorMessage = FUTURE_DATE_OF_BIRTH_MESSAGE;
+        return false;
     }
 
     protected static boolean dateAgeRange(int minAge, int maxAge){

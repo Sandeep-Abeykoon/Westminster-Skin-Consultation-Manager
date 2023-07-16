@@ -12,7 +12,6 @@ import java.time.LocalDate;
 
 import java.util.ArrayList;
 
-
 public class WestminsterSkinConsultationManager implements SkinConsultationManager {
     private static int maxDoctors;
     private static final ArrayList<Doctor> doctorArray = new ArrayList<>();

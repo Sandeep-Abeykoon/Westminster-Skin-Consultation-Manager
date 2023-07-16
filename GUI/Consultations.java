@@ -2,6 +2,7 @@ package GUI;
 
 import SubFunctionalities.GUI.DateTime;
 import SubFunctionalities.GUI.Table;
+import SubFunctionalities.InputValidations.GUIValidations;
 import SubFunctionalities.Prompts.GUIPrompts;
 import org.jdatepicker.impl.JDatePickerImpl;
 
@@ -9,20 +10,20 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.Arrays;
 import java.util.Date;
 
 public class Consultations extends BaseFrame {
-    private String doctorId, date, startTime, endTime, cost;
+    private String selectedRow, date, startTime, endTime;
     private JLabel displayData;
     private JButton back;
 
     protected Consultations() {
         super("Consultations", 1100, 600);
-        this.doctorId = "";
+        this.selectedRow = "-1";
         this.date = "";
         this.startTime = "";
         this.endTime = "";
-        this.cost = "";
         addContents();
     }
 
@@ -31,7 +32,7 @@ public class Consultations extends BaseFrame {
         this.addTable();
         this.addButtons();
         this.addDatePicker();
-        this.addTimePicker();
+        this.addTimePickers();
     }
 
     private void addLabels() {
@@ -44,25 +45,25 @@ public class Consultations extends BaseFrame {
         this.add(tableHeading);
 
         JLabel dateHeading = new JLabel(GUIPrompts.SELECT_DATE_SUBHEADING);
-        this.subHeadingLabel(dateHeading, 370, 410);
+        this.subHeadingLabel(dateHeading, 310, 410);
         this.add(dateHeading);
 
         JLabel startTimeHeading = new JLabel(GUIPrompts.SELECT_S_TIME_SUBHEADING);
-        this.subHeadingLabel(startTimeHeading, 370, 450);
+        this.subHeadingLabel(startTimeHeading, 310, 450);
         this.add(startTimeHeading);
 
         JLabel endTimeHeading = new JLabel(GUIPrompts.SELECT_E_TIME_SUBHEADING);
-        this.subHeadingLabel(endTimeHeading, 370, 490);
+        this.subHeadingLabel(endTimeHeading, 310, 490);
         this.add(endTimeHeading);
 
         JLabel detailBoxHeading = new JLabel(GUIPrompts.DETAIL_BOX_SUBHEADING);
-        this.subHeadingLabel(detailBoxHeading, 755, 400);
+        this.subHeadingLabel(detailBoxHeading, 622, 400);
         this.add(detailBoxHeading);
 
         displayData = new JLabel(GUIPrompts.DETAIL_BOX_DEFAULT_1);
         displayData.setVerticalAlignment(SwingConstants.TOP);
         displayData.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        displayData.setBounds(630, 430, 300, 110);
+        displayData.setBounds(527, 430, 250, 110);
         this.add(displayData);
     }
 
@@ -75,8 +76,8 @@ public class Consultations extends BaseFrame {
         ListSelectionModel selectionModel = table.getSelectionModel();
         selectionModel.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()){
-                this.doctorId = (DOCTOR_ARRAY.get(table.getSelectedRow())).getMedicalLicenceNumber();
-                getInputs();
+                selectedRow = String.valueOf(table.getSelectedRow());
+                processInputs();
             }
         });
 
@@ -87,8 +88,12 @@ public class Consultations extends BaseFrame {
 
     private void addButtons() {
         back = new JButton("Back");
-        this.setButton(back, 26, 480, 250, 40);
+        this.setButton(back, 20, 480, 250, 40);
         this.add(back);
+
+        JButton checkAvailability = new JButton("Check Availability");
+        this.setButton(checkAvailability, 815, 480, 250, 40);
+        this.add(checkAvailability);
     }
 
     private void addDatePicker() {
@@ -96,34 +101,39 @@ public class Consultations extends BaseFrame {
 
         datePicker.addActionListener(e -> {
             Date selectedDate = (Date) datePicker.getModel().getValue();
-            date = selectedDate.toString();
-            getInputs();
+            this.date = selectedDate.toString();
+            processInputs();
         });
 
-        datePicker.setBounds(470, 410, 43, 30);
+        datePicker.setBounds(410, 410, 43, 30);
         this.add(datePicker);
     }
 
-    private void addTimePicker(){
+    private void addTimePickers(){
         JSpinner startTimePicker = DateTime.CreateTimePicker();
         startTimePicker.addChangeListener(e -> {
             this.startTime = DateTime.getTime(startTimePicker);
-            getInputs();
+            processInputs();
         });
-        startTimePicker.setBounds(500, 450, 50, 30);
+        startTimePicker.setBounds(440, 450, 50, 30);
         this.add(startTimePicker);
 
         JSpinner endTimePicker = DateTime.CreateTimePicker();
         endTimePicker.addChangeListener(e -> {
             this.endTime = DateTime.getTime(endTimePicker);
-            getInputs();
+            processInputs();
         });
-        endTimePicker.setBounds(500, 490, 50, 30);
+        endTimePicker.setBounds(440, 490, 50, 30);
         this.add(endTimePicker);
     }
 
-    private void getInputs(){
-        String formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC),doctorId, date, startTime, endTime, cost);
+    private void processInputs(){
+        GUIValidations validate = new GUIValidations(selectedRow, date, startTime, endTime);
+        validate.validateAll();
+
+        String[] outputs = validate.getValidation();
+
+        String formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC), outputs[0], outputs[1], outputs[2], outputs[3]);
         displayData.setText(formattedText);
     }
 

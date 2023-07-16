@@ -1,6 +1,10 @@
 package SubFunctionalities.InputValidations;
 
+import Classes.Doctor;
+import Classes.WestminsterSkinConsultationManager;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public abstract class ConsoleValidations extends Validations {
     private static final  String OPTION_PROMPT = "Enter your option : ";
@@ -35,7 +39,7 @@ public abstract class ConsoleValidations extends Validations {
 
     public static LocalDate dateInput(){
         String input = getInput(DATE_OF_BIRTH_PROMPT);
-        if(!(checkWhiteSpaces(input) && dateFormat(input) && futureDateOfBirth() && dateAgeRange(20, 60))){
+        if(!(checkWhiteSpaces(input) && dateFormat(input) && pastDate() && dateAgeRange(20, 60))){
             System.out.println(errorMessage + "\n");
             return dateInput();
         }

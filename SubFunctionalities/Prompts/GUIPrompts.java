@@ -10,6 +10,6 @@ public abstract class GUIPrompts {
     public static final String SELECT_S_TIME_SUBHEADING = "Select the start time";
     public static final String SELECT_E_TIME_SUBHEADING = "Select the end time";
     public static final String DETAIL_BOX_SUBHEADING = "DETAILS";
-    public static final String DETAIL_BOX_DEFAULT_1 = "<html><br>&nbsp;DOCTOR :<br>&nbsp;DATE :<br>&nbsp;START TIME :<br>&nbsp;END TIME :<br>&nbsp;COST :<br></html>";
-    public static final String DETAIL_BOX_DYNAMIC = "<html><br>&nbsp;DOCTOR : %s<br>&nbsp;DATE : %s<br>&nbsp;START TIME : %s<br>&nbsp;END TIME : %s<br>&nbsp;COST : %s<br></html>";
+    public static final String DETAIL_BOX_DEFAULT_1 = "<html><br>&nbsp;DOCTOR :<br>&nbsp;DATE :<br>&nbsp;START TIME :<br>&nbsp;END TIME :<br></html>";
+    public static final String DETAIL_BOX_DYNAMIC = "<html><br>&nbsp;DOCTOR : %s<br>&nbsp;DATE : %s<br>&nbsp;START TIME : %s<br>&nbsp;END TIME : %s<br></html>";
 }
