@@ -12,12 +12,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Date;
 
-public class Consultations extends BaseFrame {
+public class BookConsultation extends BaseFrame {
     private String selectedRow, date, startTime, endTime;
     private JLabel displayData;
     private JButton back, checkAvailability, bookConsultation;
 
-    protected Consultations() {
+    protected BookConsultation() {
         super("Consultations", 1100, 600);
         this.selectedRow = "-1";
         this.date = "";

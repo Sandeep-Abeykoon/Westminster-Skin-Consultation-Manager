@@ -1,5 +1,6 @@
 package GUI;
 
+import Classes.Consultation;
 import Classes.Doctor;
 import Classes.WestminsterSkinConsultationManager;
 
@@ -8,11 +9,11 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public abstract class BaseFrame extends JFrame implements ActionListener {
     protected static final ArrayList<Doctor> DOCTOR_ARRAY = WestminsterSkinConsultationManager.getDoctorList();
+
     protected BaseFrame(String title, int width, int height){
         this.setTitle(title);
         this.setSize(width, height);

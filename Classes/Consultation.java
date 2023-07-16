@@ -1,12 +1,13 @@
 package Classes;
 
-import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
+import java.util.ArrayList;
 
 public class Consultation {
-    private Date date;
-    private Time time;
+    private static final ArrayList<Consultation> CONSULTATION_ARRAY = new ArrayList<>();
+    private LocalDate date;
+    private LocalTime time;
     private double cost;
     private String notes;
 }
