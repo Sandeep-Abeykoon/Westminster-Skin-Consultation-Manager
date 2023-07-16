@@ -16,15 +16,18 @@ public class GUIValidations extends Validations {
     private static final String TOO_LONG = "<font color='red'>SESSION TOO LONG</font>";
     private static final String TOO_SHORT = "<font color='red'>SESSION TOO SHORT</font>";
     private final ArrayList<String> outputs = new ArrayList<>();
-    String rowIndex, selectedDate, startTime, endTime, doctorId;
-    LocalDate consultationDate;
-    LocalTime sTime, eTime;
+    private final String rowIndex, selectedDate, selectedStartTime, selectedEndTime;
+    private String doctorId;
+    private LocalTime sTime, eTime;
     public GUIValidations(String rowIndex, String date, String startTime, String endTime){
         super();
         this.rowIndex = rowIndex;
         this.selectedDate = date;
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.selectedStartTime = startTime;
+        this.selectedEndTime = endTime;
+        this.doctorId = null;
+        this.sTime = null;
+        this.eTime = null;
     }
 
     private boolean validateRow(){
@@ -49,7 +52,6 @@ public class GUIValidations extends Validations {
             outputs.add(NOT_SELECTED);
             return false;
         }
-        consultationDate = date;
         outputs.add(String.valueOf(date));
         return true;
     }
@@ -61,9 +63,9 @@ public class GUIValidations extends Validations {
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-        if(!(startTime.equals("") || endTime.equals(""))){
-            sTime = LocalTime.parse(startTime, formatter);
-            eTime = LocalTime.parse(endTime, formatter);
+        if(!(selectedStartTime.equals("") || selectedEndTime.equals(""))){
+            sTime = LocalTime.parse(selectedStartTime, formatter);
+            eTime = LocalTime.parse(selectedEndTime, formatter);
 
             Duration duration = Duration.between(sTime,eTime);
             if (duration.toHours() > MAX_CONSULTATION_TIME){
@@ -79,11 +81,27 @@ public class GUIValidations extends Validations {
     }
 
     public boolean validateAll(){
-        return validateRow() & validateDate() & validateTime(startTime) & validateTime(endTime);
+        return validateRow() & validateDate() & validateTime(selectedStartTime) & validateTime(selectedEndTime);
     }
 
-    public String[] getValidation(){
+    public String[] computeInputs(){
         return outputs.toArray(new String[0]);
+    }
+
+    public String getDoctorId(){
+        return doctorId;
+    }
+
+    public LocalDate getDate(){
+        return date;
+    }
+
+    public LocalTime getStartTime(){
+        return sTime;
+    }
+
+    public LocalTime getEndTime(){
+        return eTime;
     }
 }
 

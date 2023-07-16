@@ -1,6 +1,5 @@
 package GUI;
 
-import Classes.Consultation;
 import SubFunctionalities.GUI.ConsultationFunctionalities;
 import SubFunctionalities.GUI.DateTime;
 import SubFunctionalities.GUI.Table;
@@ -15,9 +14,10 @@ import java.awt.event.ActionEvent;
 import java.util.Date;
 
 public class BookConsultation extends BaseFrame {
-    private String selectedRow, date, startTime, endTime;
+    private String selectedRow, date, startTime, endTime, formattedText;
     private JLabel displayData;
     private JButton back, checkAvailability, bookConsultation;
+    private GUIValidations validate;
 
     protected BookConsultation() {
         super("Consultations", 1100, 600);
@@ -135,26 +135,35 @@ public class BookConsultation extends BaseFrame {
     }
 
     private void processInputs(){
-        GUIValidations validate = new GUIValidations(selectedRow, date, startTime, endTime);
+        validate = new GUIValidations(selectedRow, date, startTime, endTime);
         boolean valid = validate.validateAll();
 
-        String[] outputs = validate.getValidation();
+        String[] outputs = validate.computeInputs();
 
-        String formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC), outputs[0], outputs[1], outputs[2], outputs[3]);
+        formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC), outputs[0], outputs[1], outputs[2], outputs[3]);
         displayData.setText(formattedText);
-
-        if (valid){
-            checkAvailability.setEnabled(true);
-            boolean availability = ConsultationFunctionalities.getDoctorAvailability()
+        checkAvailability.setEnabled(valid);
         }
-
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == back) {
             this.dispose();
             new Menu();
+
+        } else if (e.getSource() == checkAvailability) {
+
+            boolean available = ConsultationFunctionalities.getDoctorAvailability(validate.getDoctorId(),
+                    validate.getDate(), validate.getStartTime(), validate.getEndTime());
+
+            if(available){
+
+                displayData.setText(GUIPrompts.appendToHtml(formattedText, GUIPrompts.DOCTOR_AVAILABLE));
+
+            }else{
+                this.bookConsultation.setEnabled(available);
+                displayData.setText(GUIPrompts.appendToHtml(formattedText, GUIPrompts.NO_ANY_DOCTORS));
+            }
         }
     }
 }
