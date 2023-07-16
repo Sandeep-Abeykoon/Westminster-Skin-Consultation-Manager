@@ -10,13 +10,12 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.Arrays;
 import java.util.Date;
 
 public class Consultations extends BaseFrame {
     private String selectedRow, date, startTime, endTime;
     private JLabel displayData;
-    private JButton back, checkAvailability;
+    private JButton back, checkAvailability, bookConsultation;
 
     protected Consultations() {
         super("Consultations", 1100, 600);
@@ -88,13 +87,18 @@ public class Consultations extends BaseFrame {
 
     private void addButtons() {
         back = new JButton("Back");
-        this.setButton(back, 20, 480, 250, 40);
+        this.setButton(back, 20, 500, 250, 40);
         this.add(back);
 
         checkAvailability = new JButton("Check Availability");
         this.setButton(checkAvailability, 815, 450, 250, 40);
         checkAvailability.setEnabled(false);
         this.add(checkAvailability);
+
+        bookConsultation = new JButton("Book Consultation");
+        this.setButton(bookConsultation, 815, 500, 250, 40);
+        bookConsultation.setEnabled(false);
+        this.add(bookConsultation);
     }
 
     private void addDatePicker() {
@@ -136,12 +140,7 @@ public class Consultations extends BaseFrame {
 
         String formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC), outputs[0], outputs[1], outputs[2], outputs[3]);
         displayData.setText(formattedText);
-
-        if(valid){
-            checkAvailability.setEnabled(true);
-        }else {
-            checkAvailability.setEnabled(false);
-        }
+        checkAvailability.setEnabled(valid);
     }
 
     @Override
