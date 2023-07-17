@@ -57,4 +57,5 @@ public abstract class BaseFrame extends JFrame implements ActionListener {
         label.setFont(new Font("Arial", Font.BOLD, 12 ));
         label.setBounds(x, y, 400, 30);
     }
+
 }

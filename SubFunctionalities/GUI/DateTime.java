@@ -30,7 +30,6 @@ public abstract class DateTime {
             Calendar minDate = Calendar.getInstance();
             minDate.setTime(startDate);
         }
-
         return new JDatePickerImpl(panel, null);
     }
 

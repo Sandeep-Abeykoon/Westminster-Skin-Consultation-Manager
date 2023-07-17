@@ -1,6 +1,5 @@
 package GUI;
 
-import Classes.Consultation;
 import SubFunctionalities.GUI.ConsultationFunctionalities;
 import SubFunctionalities.GUI.DateTime;
 import SubFunctionalities.GUI.Table;
