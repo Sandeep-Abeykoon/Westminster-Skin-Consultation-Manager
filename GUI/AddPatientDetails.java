@@ -16,6 +16,18 @@ public class AddPatientDetails extends BaseFrame{
         JLabel heading = new JLabel(GUIPrompts.ADD_PATIENT_DETAILS);
         this.mainHeadingLabel(heading, 410, 20);
         this.add(heading);
+
+        JLabel patientDetailHeading = new JLabel(GUIPrompts.ADD_PATIENT_DETAILS);
+        this.subHeadingLabel(patientDetailHeading, 30, 80);
+        this.add(patientDetailHeading);
+
+        JLabel fNameLabel  = new JLabel(GUIPrompts.FIRST_NAME_SUBHEADING);
+        this.subHeadingLabel(fNameLabel, 30, 100);
+        this.add(fNameLabel);
+
+        JLabel lNameLabel = new JLabel(GUIPrompts.LAST_NAME_SUBHEADING);
+        this.subHeadingLabel(lNameLabel, 200, 100);
+        this.add(lNameLabel);
     }
 
     @Override
