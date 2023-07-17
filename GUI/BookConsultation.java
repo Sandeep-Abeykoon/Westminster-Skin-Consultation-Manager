@@ -166,7 +166,7 @@ public class BookConsultation extends BaseFrame {
                 displayData.setText(GUIPrompts.appendToHtml(formattedText, GUIPrompts.NO_ANY_DOCTORS));
             }
         } else if (e.getSource() == bookConsultation) {
-            this.dispose();
+            this.setVisible(false);
             new AddPatientDetails();
         }
     }

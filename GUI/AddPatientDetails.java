@@ -50,6 +50,10 @@ public class AddPatientDetails extends BaseFrame{
         JLabel mobileNumberLabel = new JLabel(GUIPrompts.MOBILE_NUMBER_SUBHEADING);
         this.subHeadingLabel(mobileNumberLabel, 30, 254);
         this.add(mobileNumberLabel);
+
+        JLabel patientIdLabel = new JLabel(GUIPrompts.PATIENT_ID_SUBHEADING);
+        this.subHeadingLabel(patientIdLabel, 30, 320);
+        this.add(patientIdLabel);
     }
 
     private void addTextFields() {
@@ -64,7 +68,6 @@ public class AddPatientDetails extends BaseFrame{
         JTextField mobileNumberField = new JTextField(20);
         mobileNumberField.setText(GUIPrompts.DUMMY_MOBILE_NUMBER);
         mobileNumberField.setBounds(30, 282, 155, 28);
-
         mobileNumberField.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -79,8 +82,11 @@ public class AddPatientDetails extends BaseFrame{
                 }
             }
         });
-
         this.add(mobileNumberField);
+
+        JTextField patientIdField = new JTextField(20);
+        patientIdField.setBounds(30, 348, 155, 28);
+        this.add(patientIdField);
     }
 
     private void addDatePicker() {
@@ -94,6 +100,10 @@ public class AddPatientDetails extends BaseFrame{
 
         datePicker.setBounds(72, 214, 43, 30);
         this.add(datePicker);
+    }
+
+    private void addTextArea(){
+        
     }
 
 
