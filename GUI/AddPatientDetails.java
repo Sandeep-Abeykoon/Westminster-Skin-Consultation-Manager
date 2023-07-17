@@ -6,6 +6,8 @@ import org.jdatepicker.impl.JDatePickerImpl;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.util.Date;
 
 public class AddPatientDetails extends BaseFrame{
@@ -44,6 +46,10 @@ public class AddPatientDetails extends BaseFrame{
         JLabel dateOfBirthLabel = new JLabel(GUIPrompts.SELECT_DOB_SUBHEADING);
         this.subHeadingLabel(dateOfBirthLabel, 30, 186);
         this.add(dateOfBirthLabel);
+
+        JLabel mobileNumberLabel = new JLabel(GUIPrompts.MOBILE_NUMBER_SUBHEADING);
+        this.subHeadingLabel(mobileNumberLabel, 30, 254);
+        this.add(mobileNumberLabel);
     }
 
     private void addTextFields() {
@@ -54,6 +60,27 @@ public class AddPatientDetails extends BaseFrame{
         JTextField lastNameField = new JTextField(20);
         lastNameField.setBounds(200, 148, 155, 28);
         this.add(lastNameField);
+
+        JTextField mobileNumberField = new JTextField(20);
+        mobileNumberField.setText(GUIPrompts.DUMMY_MOBILE_NUMBER);
+        mobileNumberField.setBounds(30, 282, 155, 28);
+
+        mobileNumberField.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if(mobileNumberField.getText().equals(GUIPrompts.DUMMY_MOBILE_NUMBER)){
+                    mobileNumberField.setText("");
+                }
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (mobileNumberField.getText().isEmpty()){
+                    mobileNumberField.setText(GUIPrompts.DUMMY_MOBILE_NUMBER);
+                }
+            }
+        });
+
+        this.add(mobileNumberField);
     }
 
     private void addDatePicker() {
@@ -65,7 +92,7 @@ public class AddPatientDetails extends BaseFrame{
             //processInputs();
         });
 
-        datePicker.setBounds(75, 214, 43, 30);
+        datePicker.setBounds(72, 214, 43, 30);
         this.add(datePicker);
     }
 

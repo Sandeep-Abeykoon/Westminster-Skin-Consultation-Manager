@@ -18,6 +18,8 @@ public abstract class GUIPrompts {
     public static final String FIRST_NAME_SUBHEADING = "FIRST NAME";
     public static final String SUR_NAME_SUBHEADING = "SURNAME";
     public static final String SELECT_DOB_SUBHEADING = "SELECT DATE OF BIRTH";
+    public static final String MOBILE_NUMBER_SUBHEADING = "MOBILE NUMBER";
+    public static final String DUMMY_MOBILE_NUMBER = "07x1234567";
 
     public static String appendToHtml(String original, String append){
         String truncate = original.replace("</html>", "");
