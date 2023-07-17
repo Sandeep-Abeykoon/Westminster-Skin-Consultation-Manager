@@ -5,6 +5,7 @@ import SubFunctionalities.Prompts.GUIPrompts;
 import org.jdatepicker.impl.JDatePickerImpl;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -24,6 +25,7 @@ public class AddPatientDetails extends BaseFrame{
         this.addLabels();
         this.addTextFields();
         this.addDatePicker();
+        this.addTextArea();
     }
 
     private void addLabels() {
@@ -54,6 +56,10 @@ public class AddPatientDetails extends BaseFrame{
         JLabel patientIdLabel = new JLabel(GUIPrompts.PATIENT_ID_SUBHEADING);
         this.subHeadingLabel(patientIdLabel, 30, 320);
         this.add(patientIdLabel);
+
+        JLabel notesLabel  = new JLabel(GUIPrompts.FIRST_NAME_SUBHEADING);
+        this.subHeadingLabel(notesLabel, 30, 120);
+        this.add(notesLabel);
     }
 
     private void addTextFields() {
@@ -61,24 +67,27 @@ public class AddPatientDetails extends BaseFrame{
         firstNameField.setBounds(30, 148, 155, 28);
         this.add(firstNameField);
 
-        JTextField lastNameField = new JTextField(20);
-        lastNameField.setBounds(200, 148, 155, 28);
-        this.add(lastNameField);
+        JTextField surNameField = new JTextField(20);
+        surNameField.setBounds(200, 148, 155, 28);
+        this.add(surNameField);
 
         JTextField mobileNumberField = new JTextField(20);
         mobileNumberField.setText(GUIPrompts.DUMMY_MOBILE_NUMBER);
         mobileNumberField.setBounds(30, 282, 155, 28);
+        mobileNumberField.setForeground(Color.GRAY);
         mobileNumberField.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
                 if(mobileNumberField.getText().equals(GUIPrompts.DUMMY_MOBILE_NUMBER)){
                     mobileNumberField.setText("");
+                    mobileNumberField.setForeground(Color.BLACK);
                 }
             }
             @Override
             public void focusLost(FocusEvent e) {
                 if (mobileNumberField.getText().isEmpty()){
                     mobileNumberField.setText(GUIPrompts.DUMMY_MOBILE_NUMBER);
+                    mobileNumberField.setForeground(Color.GRAY);
                 }
             }
         });
@@ -103,7 +112,23 @@ public class AddPatientDetails extends BaseFrame{
     }
 
     private void addTextArea(){
-        
+        JTextArea noteTextArea = new JTextArea(10, 20);
+        noteTextArea.setLineWrap(true);
+        noteTextArea.setWrapStyleWord(true);
+
+        JScrollPane scrollPane = new JScrollPane(noteTextArea);
+        scrollPane.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                super.focusGained(e);
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+                super.focusLost(e);
+            }
+        });
+        scrollPane.setBounds(30, 386, 325, 150);
+        this.add(scrollPane);
     }
 
 
