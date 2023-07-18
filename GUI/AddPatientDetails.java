@@ -115,19 +115,27 @@ public class AddPatientDetails extends BaseFrame{
         JTextArea noteTextArea = new JTextArea(10, 20);
         noteTextArea.setLineWrap(true);
         noteTextArea.setWrapStyleWord(true);
+        noteTextArea.setText(GUIPrompts.PATIENT_NOTE_PROMPT);
+        noteTextArea.setForeground(Color.GRAY);
 
         JScrollPane scrollPane = new JScrollPane(noteTextArea);
-        scrollPane.addFocusListener(new FocusAdapter() {
+        noteTextArea.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                super.focusGained(e);
+                if(noteTextArea.getText().equals(GUIPrompts.PATIENT_NOTE_PROMPT)){
+                    noteTextArea.setText("");
+                    noteTextArea.setForeground(Color.BLACK);
+                }
             }
             @Override
             public void focusLost(FocusEvent e) {
-                super.focusLost(e);
+                if (noteTextArea.getText().isEmpty()){
+                    noteTextArea.setText(GUIPrompts.PATIENT_NOTE_PROMPT);
+                    noteTextArea.setForeground(Color.GRAY);
+                }
             }
         });
-        scrollPane.setBounds(30, 386, 325, 150);
+        scrollPane.setBounds(30, 386, 325, 130);
         this.add(scrollPane);
     }
 
