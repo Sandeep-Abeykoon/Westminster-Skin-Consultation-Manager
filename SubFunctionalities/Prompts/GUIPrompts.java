@@ -21,6 +21,7 @@ public abstract class GUIPrompts {
     public static final String MOBILE_NUMBER_SUBHEADING = "MOBILE NUMBER";
     public static final String DUMMY_MOBILE_NUMBER = "07x1234567";
     public static final String PATIENT_ID_SUBHEADING = "PATIENT ID";
+    public static final String PATIENT_NOTE_PROMPT = "Type any notes to be included...";
 
     public static String appendToHtml(String original, String append){
         String truncate = original.replace("</html>", "");
