@@ -1,6 +1,5 @@
 package GUI;
 
-import Classes.Consultation;
 import Classes.Doctor;
 import Classes.WestminsterSkinConsultationManager;
 

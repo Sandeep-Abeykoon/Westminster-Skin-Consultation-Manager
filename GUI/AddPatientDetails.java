@@ -14,6 +14,8 @@ import java.util.Date;
 public class AddPatientDetails extends BaseFrame{
 
     private String date;
+    private JButton back, proceed;
+    private JLabel displayData;
 
     protected AddPatientDetails() {
         super("Add patient Details", 1100, 600);
@@ -26,6 +28,7 @@ public class AddPatientDetails extends BaseFrame{
         this.addTextFields();
         this.addDatePicker();
         this.addTextArea();
+        this.addButtons();
     }
 
     private void addLabels() {
@@ -36,6 +39,10 @@ public class AddPatientDetails extends BaseFrame{
         JLabel patientDetailHeading = new JLabel(GUIPrompts.ADD_PATIENT_DETAILS);
         this.subHeadingLabel(patientDetailHeading, 30, 85);
         this.add(patientDetailHeading);
+
+        JLabel additionalDetailHeading = new JLabel(GUIPrompts.ADD_ADDITIONAL_DETAILS);
+        this.subHeadingLabel(additionalDetailHeading, 550, 85);
+        this.add(additionalDetailHeading);
 
         JLabel fNameLabel  = new JLabel(GUIPrompts.FIRST_NAME_SUBHEADING);
         this.subHeadingLabel(fNameLabel, 30, 120);
@@ -57,9 +64,23 @@ public class AddPatientDetails extends BaseFrame{
         this.subHeadingLabel(patientIdLabel, 30, 320);
         this.add(patientIdLabel);
 
-        JLabel notesLabel  = new JLabel(GUIPrompts.FIRST_NAME_SUBHEADING);
-        this.subHeadingLabel(notesLabel, 30, 120);
+        JLabel notesLabel  = new JLabel(GUIPrompts.ADDITIONAL_NOTES_SUBHEADING);
+        this.subHeadingLabel(notesLabel, 550, 120);
         this.add(notesLabel);
+
+        JLabel imageLabel  = new JLabel(GUIPrompts.ADD_IMAGE_SUBHEADING);
+        this.subHeadingLabel(imageLabel, 550, 306);
+        this.add(imageLabel);
+
+        JLabel detailBoxHeading = new JLabel(GUIPrompts.DETAIL_BOX_SUBHEADING);
+        this.subHeadingLabel(detailBoxHeading, 622, 400);
+        this.add(detailBoxHeading);
+
+        displayData = new JLabel(GUIPrompts.DETAIL_BOX_DEFAULT_1);
+        displayData.setVerticalAlignment(SwingConstants.TOP);
+        displayData.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        displayData.setBounds(527, 430, 250, 110);
+        this.add(displayData);
     }
 
     private void addTextFields() {
@@ -135,13 +156,26 @@ public class AddPatientDetails extends BaseFrame{
                 }
             }
         });
-        scrollPane.setBounds(30, 386, 325, 130);
+        scrollPane.setBounds(550, 148, 400, 130);
         this.add(scrollPane);
     }
 
+    private void addButtons(){
+        back = new JButton("Back");
+        this.setButton(back, 20, 500, 250, 40);
+        this.add(back);
+
+        proceed = new JButton("Book Consultation");
+        this.setButton(proceed, 815, 500, 250, 40);
+        proceed.setEnabled(false);
+        this.add(proceed);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if(e.getSource() == back){
+            this.dispose();
+            new BookConsultation();
+        }
     }
 }

@@ -15,6 +15,7 @@ public abstract class GUIPrompts {
     public static final String DOCTOR_AVAILABLE = "&emsp;&emsp;&emsp;&emsp;&emsp;<font color='green'>DOCTOR IS AVAILABLE</font>";
     public static final String NO_ANY_DOCTORS = "<font color='red>NO ANY DOCTOR AVAILABLE FOR THE SLOT</font>";
     public static final String ADD_PATIENT_DETAILS = "ADD PATIENT DETAILS";
+    public static final String ADD_ADDITIONAL_DETAILS = "ADD ADDITIONAL DETAILS";
     public static final String FIRST_NAME_SUBHEADING = "FIRST NAME";
     public static final String SUR_NAME_SUBHEADING = "SURNAME";
     public static final String SELECT_DOB_SUBHEADING = "SELECT DATE OF BIRTH";
@@ -22,6 +23,8 @@ public abstract class GUIPrompts {
     public static final String DUMMY_MOBILE_NUMBER = "07x1234567";
     public static final String PATIENT_ID_SUBHEADING = "PATIENT ID";
     public static final String PATIENT_NOTE_PROMPT = "Type any notes to be included...";
+    public static final String ADDITIONAL_NOTES_SUBHEADING = "ADDITIONAL NOTES";
+    public static final String  ADD_IMAGE_SUBHEADING = "ADD AN IMAGE";
 
     public static String appendToHtml(String original, String append){
         String truncate = original.replace("</html>", "");
