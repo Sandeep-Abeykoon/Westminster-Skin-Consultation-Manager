@@ -7,7 +7,6 @@ import SubFunctionalities.Prompts.GUIPrompts;
 import org.jdatepicker.impl.JDatePickerImpl;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
@@ -190,7 +189,7 @@ public class AddPatientDetails extends BaseFrame{
         boolean valid = validate.validatePatient();
 
         String[] outputs = validate.getOutputs();
-
+        System.out.println(outputs[0]);
         formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_2), outputs[0], outputs[1], outputs[2], outputs[3], outputs[4]);
         displayData.setText(formattedText);
         proceed.setEnabled(valid);

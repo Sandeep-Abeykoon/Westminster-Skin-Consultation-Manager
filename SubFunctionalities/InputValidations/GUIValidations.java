@@ -18,12 +18,12 @@ public class GUIValidations extends Validations {
     private static final String TOO_LONG = "<font color='red'>SESSION TOO LONG</font>";
     private static final String TOO_SHORT = "<font color='red'>SESSION TOO SHORT</font>";
     private static final String EMPTY = "<font color='red'>EMPTY</font>";
-    private static final String INVALID_NAME = "<font color='red'>INVALID NAME</font>";
-    private static final String WHITE_SPACE_ERROR = "<font color='red>WHITESPACES NOT ALLOWED</font>";
+    private static final String CHARACTER_VIOLATION = "<font color='red'>TYPE ONLY LETTERS</font>";
+    private static final String WHITE_SPACE_ERROR = "<font color='red'>AVOID WHITESPACES</font>";
     private static final String NAME_TOO_SHORT = "<font color='red'>NAME TOO SHORT</font>";
     private static final String INVALID_MOBILE_NUMBER = "<font color='red'>INVALID MOBILE NUMBER</font>";
-    private static final String CHARACTER_COUNT_VIOLATION = "<font color='red'>NUMBER WITH " + MOBILE_NUMBER_CHARACTERS + "CHARACTERS IS ALLOWED"  + "</font>";
-    private static final String MIN_CHARACTER_COUNT_VIOLATION = "<font color='red'>NUMBER WITH " + MOBILE_NUMBER_CHARACTERS + "MINIMUM CHARACTERS ALLOWED"  + "</font>";
+    private static final String CHARACTER_COUNT_VIOLATION = "<font color='red'>CHARACTER COUNT SHOULD BE : " + MOBILE_NUMBER_CHARACTERS + "</font>";
+    private static final String MIN_CHARACTER_COUNT_VIOLATION = "<font color='red'>MINIMUM CHARACTERS : " + MOBILE_NUMBER_CHARACTERS + "</font>";
     private final ArrayList<String> outputs = new ArrayList<>();
     private String rowIndex, selectedDate, selectedStartTime, selectedEndTime;
     private String firstName, surName, dateOfBirth, mobileNumber, patientId;
@@ -115,17 +115,23 @@ public class GUIValidations extends Validations {
 
     private boolean validateName(String name) {
         if (isEmpty(name)) {
-            System.out.println(isEmpty(name));
             outputs.add(EMPTY);
             return false;
-        }  else if (!(checkWhiteSpaces(name))) {
+        }
+        if(!(checkWhiteSpaces(name))) {
             outputs.add(WHITE_SPACE_ERROR);
             return false;
-        } else if (!(minCharacterCount(name,3))) {
-        outputs.add(NAME_TOO_SHORT);
-        return false;
-
         }
+        if(!(containsOtherCharacters(name))){
+            outputs.add(CHARACTER_VIOLATION);
+            return false;
+        }
+        if (!(minCharacterCount(name,3))) {
+            outputs.add(NAME_TOO_SHORT);
+            return false;
+       }
+        name = name.toLowerCase();
+        name = name.substring(0, 1).toUpperCase() + name.substring(1);
         outputs.add(name);
         return true;
     }
