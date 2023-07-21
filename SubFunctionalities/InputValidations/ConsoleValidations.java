@@ -1,10 +1,6 @@
 package SubFunctionalities.InputValidations;
 
-import Classes.Doctor;
-import Classes.WestminsterSkinConsultationManager;
-
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public abstract class ConsoleValidations extends Validations {
     private static final  String OPTION_PROMPT = "Enter your option : ";

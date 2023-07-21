@@ -11,7 +11,9 @@ public abstract class GUIPrompts {
     public static final String SELECT_E_TIME_SUBHEADING = "Select the end time";
     public static final String DETAIL_BOX_SUBHEADING = "DETAILS";
     public static final String DETAIL_BOX_DEFAULT_1 = "<html><br>&ensp;DOCTOR :<br>&ensp;DATE :<br>&ensp;START TIME :<br>&ensp;END TIME :<br></html>";
-    public static final String DETAIL_BOX_DYNAMIC = "<html><br>&ensp;DOCTOR : %s<br>&ensp;DATE : %s<br>&ensp;START TIME : %s<br>&ensp;END TIME : %s<br></html>";
+    public static final String DETAIL_BOX_DYNAMIC_1 = "<html><br>&ensp;DOCTOR : %s<br>&ensp;DATE : %s<br>&ensp;START TIME : %s<br>&ensp;END TIME : %s<br></html>";
+    public static final String DETAIL_BOX_DEFAULT_2 = "<html><br>&ensp;FIRST NAME :<br>&ensp;SURNAME :<br>&ensp;DATE OF BIRTH :<br>&ensp;MOBILE NUMBER :<br>&ensp;PATIENT ID :<br></html>";
+    public static final String DETAIL_BOX_DYNAMIC_2 = "<html><br>&ensp;FIRST NAME : %s<br>&ensp;SURNAME : %s<br>&ensp;DATE OF BIRTH : %s<br>&ensp;MOBILE NUMBER : %s<br>&ensp;PATIENT ID : %s<br></html>";
     public static final String DOCTOR_AVAILABLE = "&emsp;&emsp;&emsp;&emsp;&emsp;<font color='green'>DOCTOR IS AVAILABLE</font>";
     public static final String NO_ANY_DOCTORS = "<font color='red>NO ANY DOCTOR AVAILABLE FOR THE SLOT</font>";
     public static final String ADD_PATIENT_DETAILS = "ADD PATIENT DETAILS";

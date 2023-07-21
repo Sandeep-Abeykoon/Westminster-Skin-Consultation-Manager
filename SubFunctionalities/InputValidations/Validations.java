@@ -34,18 +34,16 @@ abstract class Validations {
         System.out.print(prompt);
         String input = scanner.nextLine().trim();
         if(isEmpty(input)){
+            System.out.println(EMPTY_MESSAGE + "\n");
             getInput(prompt);
         }
         return input;
     }
 
-    protected static boolean isEmpty(String input){
-        if(input.equals("")){
-            System.out.println(EMPTY_MESSAGE + "\n");
-            return true;
-        }
-        return false;
+    protected static boolean isEmpty(String input) {
+        return input.equals("");
     }
+
 
     protected static boolean checkNumerical(String input){
         try{

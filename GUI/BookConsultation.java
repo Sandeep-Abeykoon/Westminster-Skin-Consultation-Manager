@@ -137,11 +137,11 @@ public class BookConsultation extends BaseFrame {
     private void processInputs(){
         bookConsultation.setEnabled(false);
         validate = new GUIValidations(selectedRow, date, startTime, endTime);
-        boolean valid = validate.validateAll();
+        boolean valid = validate.validateConsultation();
 
-        String[] outputs = validate.computeInputs();
+        String[] outputs = validate.getOutputs();
 
-        formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC), outputs[0], outputs[1], outputs[2], outputs[3]);
+        formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_1), outputs[0], outputs[1], outputs[2], outputs[3]);
         displayData.setText(formattedText);
         checkAvailability.setEnabled(valid);
         }

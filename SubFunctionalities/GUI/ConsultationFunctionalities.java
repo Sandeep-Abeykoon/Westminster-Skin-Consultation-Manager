@@ -10,7 +10,7 @@ public abstract class ConsultationFunctionalities {
         for(Consultation consultation : Consultation.getConsultations()){
             if(consultation.getDoctorId().equals(doctorId)){
                 if(consultation.getDate().equals(date)){
-                    if(!(startTime.isAfter(consultation.getEndTime())) || !(endTime.isBefore(consultation.getEndTime()))){
+                    if(!(startTime.isAfter(consultation.getEndTime())) || !(endTime.isBefore(consultation.getStartTime()))){
                         return false;
                     }
                 }

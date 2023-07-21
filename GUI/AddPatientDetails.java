@@ -1,10 +1,13 @@
 package GUI;
 
 import SubFunctionalities.GUI.DateTime;
+import SubFunctionalities.GUI.TextFieldChangeListener;
+import SubFunctionalities.InputValidations.GUIValidations;
 import SubFunctionalities.Prompts.GUIPrompts;
 import org.jdatepicker.impl.JDatePickerImpl;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
@@ -13,13 +16,18 @@ import java.util.Date;
 
 public class AddPatientDetails extends BaseFrame{
 
-    private String date;
+    private String firstName, surName, dateOfBirth, mobileNumber, patientId;
+    private String formattedText;
     private JButton back, proceed;
     private JLabel displayData;
 
     protected AddPatientDetails() {
         super("Add patient Details", 1100, 600);
-        this.date = "";
+        this.firstName = "";
+        this.surName = "";
+        this.dateOfBirth = "";
+        this.mobileNumber = "";
+        this.patientId = "";
         this.addContents();
     }
 
@@ -76,7 +84,7 @@ public class AddPatientDetails extends BaseFrame{
         this.subHeadingLabel(detailBoxHeading, 622, 400);
         this.add(detailBoxHeading);
 
-        displayData = new JLabel(GUIPrompts.DETAIL_BOX_DEFAULT_1);
+        displayData = new JLabel(GUIPrompts.DETAIL_BOX_DEFAULT_2);
         displayData.setVerticalAlignment(SwingConstants.TOP);
         displayData.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         displayData.setBounds(527, 430, 250, 110);
@@ -86,6 +94,11 @@ public class AddPatientDetails extends BaseFrame{
     private void addTextFields() {
         JTextField firstNameField = new JTextField(20);
         firstNameField.setBounds(30, 148, 155, 28);
+
+        TextFieldChangeListener.addChangeListener(firstNameField, () -> {
+            firstName = firstNameField.getText();
+            processInputs();
+        });
         this.add(firstNameField);
 
         JTextField surNameField = new JTextField(20);
@@ -124,8 +137,8 @@ public class AddPatientDetails extends BaseFrame{
 
         datePicker.addActionListener(e -> {
             Date selectedDate = (Date) datePicker.getModel().getValue();
-            this.date = selectedDate.toString();
-            //processInputs();
+            this.dateOfBirth = selectedDate.toString();
+            processInputs();
         });
 
         datePicker.setBounds(72, 214, 43, 30);
@@ -165,10 +178,22 @@ public class AddPatientDetails extends BaseFrame{
         this.setButton(back, 20, 500, 250, 40);
         this.add(back);
 
-        proceed = new JButton("Book Consultation");
+        proceed = new JButton("Proceed");
         this.setButton(proceed, 815, 500, 250, 40);
         proceed.setEnabled(false);
         this.add(proceed);
+    }
+
+    private void processInputs(){
+        proceed.setEnabled(false);
+        GUIValidations validate = new GUIValidations(firstName, surName, dateOfBirth, mobileNumber, patientId);
+        boolean valid = validate.validatePatient();
+
+        String[] outputs = validate.getOutputs();
+
+        formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_2), outputs[0], outputs[1], outputs[2], outputs[3], outputs[4]);
+        displayData.setText(formattedText);
+        proceed.setEnabled(valid);
     }
 
     @Override
