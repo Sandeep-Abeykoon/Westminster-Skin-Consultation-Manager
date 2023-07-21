@@ -195,7 +195,6 @@ public class AddPatientDetails extends BaseFrame{
     }
 
     private void processInputs(){
-        System.out.println("the value of the birth date is : " + dateOfBirth);
         proceed.setEnabled(false);
         GUIValidations validate = new GUIValidations(firstName, surName, dateOfBirth, mobileNumber, patientId);
         boolean valid = validate.validatePatient();

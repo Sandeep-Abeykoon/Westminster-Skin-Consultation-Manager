@@ -17,12 +17,13 @@ public class GUIValidations extends Validations {
     private static final String FUTURE_DATE = "<font color='red'>A FUTURE DATE</font>";
     private static final String TOO_LONG = "<font color='red'>SESSION TOO LONG</font>";
     private static final String TOO_SHORT = "<font color='red'>SESSION TOO SHORT</font>";
+    private static final String INPUT_TOO_LONG = "<font color='red'>INPUT TOO LONG</font>";
     private static final String EMPTY = "<font color='red'>EMPTY</font>";
-    private static final String CHARACTER_VIOLATION = "<font color='red'>TYPE ONLY LETTERS</font>";
+    private static final String CHARACTER_VIOLATION_ALPHA = "<font color='red'>TYPE ONLY LETTERS</font>";
+    private static final String CHARACTER_VIOLATION_NUMERICAL = "<font color='red'>TYPE ONLY NUMBERS</font>";
     private static final String WHITE_SPACE_ERROR = "<font color='red'>AVOID WHITESPACES</font>";
     private static final String NAME_TOO_SHORT = "<font color='red'>NAME TOO SHORT</font>";
-    private static final String INVALID_MOBILE_NUMBER = "<font color='red'>INVALID NUMBER</font>";
-    private static final String CHARACTER_COUNT_VIOLATION = "<font color='red'>CHARACTER COUNT SHOULD BE : " + MOBILE_NUMBER_CHARACTERS + "</font>";
+    private static final String MOBILE_NUMBER_CHAR_COUNT = "<font color='red'>%s/" + MOBILE_NUMBER_CHARACTERS + "</font>";
     private static final String MIN_CHARACTER_COUNT_VIOLATION = "<font color='red'>MINIMUM CHARACTERS : " + MOBILE_NUMBER_CHARACTERS + "</font>";
     private final ArrayList<String> outputs = new ArrayList<>();
     private String rowIndex, selectedDate, selectedStartTime, selectedEndTime;
@@ -126,7 +127,7 @@ public class GUIValidations extends Validations {
             return false;
         }
         if(!(containsOtherCharacters(name))){
-            outputs.add(CHARACTER_VIOLATION);
+            outputs.add(CHARACTER_VIOLATION_ALPHA);
             return false;
         }
         if (!(minCharacterCount(name,3))) {
@@ -144,13 +145,20 @@ public class GUIValidations extends Validations {
         if(isEmpty(mobileNumber)){
             outputs.add(EMPTY);
             return false;
-        } else if (checkWhiteSpaces(mobileNumber) | !(containsOnlyNumbers(mobileNumber))) {
-            outputs.add(INVALID_MOBILE_NUMBER);
-            return false;
-        } else if (!(characterCount(mobileNumber, MOBILE_NUMBER_CHARACTERS))) {
-            outputs.add(CHARACTER_COUNT_VIOLATION);
+        }
+        if (!(checkWhiteSpaces(mobileNumber))){
+            outputs.add(WHITE_SPACE_ERROR);
             return false;
         }
+        if (!(containsOnlyNumbers(mobileNumber))){
+            outputs.add(CHARACTER_VIOLATION_NUMERICAL);
+            return false;
+        }
+        if (!(characterCount(mobileNumber, MOBILE_NUMBER_CHARACTERS))){
+            outputs.add((mobileNumber.length() <= MOBILE_NUMBER_CHARACTERS)? String.format(MOBILE_NUMBER_CHAR_COUNT,mobileNumber.length()) : INPUT_TOO_LONG);
+            return false;
+        }
+        outputs.add(mobileNumber);
         return true;
     }
 
