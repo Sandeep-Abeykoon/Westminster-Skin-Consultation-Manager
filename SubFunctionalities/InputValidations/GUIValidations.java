@@ -14,14 +14,14 @@ public class GUIValidations extends Validations {
     private static final int MOBILE_NUMBER_CHARACTERS = 10;
     private static final String NOT_SELECTED = "<font color='red'>NOT SELECTED</font>";
     private static final String PAST_DATE = "<font color='red'>CANNOT BE A PAST DATE</font>";
-    private static final String FUTURE_DATE = "<font color='red'>CANNOT BE A FUTURE DATE</font>";
+    private static final String FUTURE_DATE = "<font color='red'>A FUTURE DATE</font>";
     private static final String TOO_LONG = "<font color='red'>SESSION TOO LONG</font>";
     private static final String TOO_SHORT = "<font color='red'>SESSION TOO SHORT</font>";
     private static final String EMPTY = "<font color='red'>EMPTY</font>";
     private static final String CHARACTER_VIOLATION = "<font color='red'>TYPE ONLY LETTERS</font>";
     private static final String WHITE_SPACE_ERROR = "<font color='red'>AVOID WHITESPACES</font>";
     private static final String NAME_TOO_SHORT = "<font color='red'>NAME TOO SHORT</font>";
-    private static final String INVALID_MOBILE_NUMBER = "<font color='red'>INVALID MOBILE NUMBER</font>";
+    private static final String INVALID_MOBILE_NUMBER = "<font color='red'>INVALID NUMBER</font>";
     private static final String CHARACTER_COUNT_VIOLATION = "<font color='red'>CHARACTER COUNT SHOULD BE : " + MOBILE_NUMBER_CHARACTERS + "</font>";
     private static final String MIN_CHARACTER_COUNT_VIOLATION = "<font color='red'>MINIMUM CHARACTERS : " + MOBILE_NUMBER_CHARACTERS + "</font>";
     private final ArrayList<String> outputs = new ArrayList<>();
@@ -29,15 +29,17 @@ public class GUIValidations extends Validations {
     private String firstName, surName, dateOfBirth, mobileNumber, patientId;
     private String doctorId;
     private LocalTime sTime, eTime;
-    public GUIValidations(String rowIndex, String date, String startTime, String endTime){
+    public GUIValidations(String rowIndex, String consultDate, String startTime, String endTime){
         super();
         this.rowIndex = rowIndex;
-        this.selectedDate = date;
+        this.selectedDate = consultDate;
         this.selectedStartTime = startTime;
         this.selectedEndTime = endTime;
+
         this.doctorId = null;
         this.sTime = null;
         this.eTime = null;
+        date = null;
     }
 
     public GUIValidations(String firstName, String surname, String dateOfBirth, String mobileNumber, String patientId){
@@ -47,6 +49,7 @@ public class GUIValidations extends Validations {
         this.dateOfBirth = dateOfBirth;
         this.mobileNumber = mobileNumber;
         this.patientId = patientId;
+        date = null;
     }
 
     private boolean validateRow(){

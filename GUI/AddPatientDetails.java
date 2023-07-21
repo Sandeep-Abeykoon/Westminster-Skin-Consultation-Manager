@@ -95,13 +95,19 @@ public class AddPatientDetails extends BaseFrame{
         firstNameField.setBounds(30, 148, 155, 28);
 
         TextFieldChangeListener.addChangeListener(firstNameField, () -> {
-            firstName = firstNameField.getText();
+            firstName = firstNameField.getText().trim();
             processInputs();
         });
         this.add(firstNameField);
 
         JTextField surNameField = new JTextField(20);
         surNameField.setBounds(200, 148, 155, 28);
+
+        TextFieldChangeListener.addChangeListener(surNameField, () -> {
+            surName = surNameField.getText().trim();
+            processInputs();
+        });
+
         this.add(surNameField);
 
         JTextField mobileNumberField = new JTextField(20);
@@ -123,6 +129,11 @@ public class AddPatientDetails extends BaseFrame{
                     mobileNumberField.setForeground(Color.GRAY);
                 }
             }
+        });
+
+        TextFieldChangeListener.addChangeListener(mobileNumberField, () -> {
+            mobileNumber = mobileNumberField.getText().trim();
+            processInputs();
         });
         this.add(mobileNumberField);
 
@@ -184,12 +195,12 @@ public class AddPatientDetails extends BaseFrame{
     }
 
     private void processInputs(){
+        System.out.println("the value of the birth date is : " + dateOfBirth);
         proceed.setEnabled(false);
         GUIValidations validate = new GUIValidations(firstName, surName, dateOfBirth, mobileNumber, patientId);
         boolean valid = validate.validatePatient();
 
         String[] outputs = validate.getOutputs();
-        System.out.println(outputs[0]);
         formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_2), outputs[0], outputs[1], outputs[2], outputs[3], outputs[4]);
         displayData.setText(formattedText);
         proceed.setEnabled(valid);
