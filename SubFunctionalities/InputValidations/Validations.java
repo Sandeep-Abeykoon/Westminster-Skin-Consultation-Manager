@@ -11,7 +11,7 @@ public abstract class Validations {
     private static int errorCode;
     private static int lowerBound;
     private static int upperBound;
-    private static LocalDate validatedDate;
+    private static LocalDate date;
 
     // Main Functionalities
     protected static boolean validateName(String name, int minCharCount){
@@ -31,7 +31,9 @@ public abstract class Validations {
         if (inputDate == null) {
             return setError(5);
         }
-        LocalDate date = dateFormat(inputDate);
+        if (!(dateFormat(inputDate))){
+            return setError(12);
+        }
         if (past && !pastDate(date)) {
             return setError(6);
         }
@@ -41,7 +43,6 @@ public abstract class Validations {
         if (calAge && !(dateAgeRange(date, lowerBound, upperBound))){
             return setError(11);
         }
-        validatedDate = date;
         return true;
     }
 
@@ -87,7 +88,7 @@ public abstract class Validations {
     //----------------------------------------------------------------------------------------------------------------//
 
     public static LocalDate getValidatedDate(){
-        return validatedDate;
+        return date;
     }
     protected static int getErrorCode(){
         return errorCode;
@@ -124,8 +125,13 @@ public abstract class Validations {
         return input.length() >= size;
     }
 
-    private static LocalDate dateFormat(String input){
-        return LocalDate.parse(input, DateTimeFormatter.ofPattern("u-M-d").withResolverStyle(ResolverStyle.STRICT));
+    private static boolean dateFormat(String input){
+        try {
+           date =  LocalDate.parse(input, DateTimeFormatter.ofPattern("u-M-d").withResolverStyle(ResolverStyle.STRICT));
+           return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private static boolean pastDate(LocalDate date){

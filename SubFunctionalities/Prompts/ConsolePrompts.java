@@ -25,16 +25,17 @@ public abstract class ConsolePrompts {
 
 
     //----------------------------------------------------------------------------------------------------------------//
-    private final static String NUMERICAL_INVALID_MESSAGE = "ONLY NUMERICAL INPUT IS ALLOWED !";
-    private final static String INVALID_BOUNDS_MESSAGE = "PLEASE ENTER AN OPTION BETWEEN %s AND %s !";
-    private final static String WHITE_SPACE_MESSAGE = "THE INPUT CANNOT HAVE WHITESPACES !";
-    private final static String INVALID_WORD_MESSAGE = "ONLY LETTERS CAN BE INCLUDED !";
-    private final static String INVALID_DATE_MESSAGE = "ENTER A DATE WHICH MATCHES THE GIVEN DATE FORMAT !";
-    private final static String FUTURE_DATE_OF_BIRTH_MESSAGE = "THE DATE OF BIRTH CANNOT BE A FUTURE DATE !";
-    private final static String INVALID_AGE_MESSAGE = "THE AGE SHOULD BE BETWEEN %s AND %s !";
-    private final static String INVALID_CHARACTER_COUNT_MESSAGE = "INPUT HAVING %s CHARACTERS SHOULD BE ENTERED !";
-    private final static String MIN_CHARACTER_COUNT_MESSAGE = "THE INPUT SHOULD HAVE AT LEAST MINIMUM OF %s CHARACTERS !";
     private final static String EMPTY_MESSAGE = "THE INPUT CANNOT BE EMPTY !";
+    private final static String WHITE_SPACE_MESSAGE = "THE INPUT CANNOT HAVE WHITESPACES !";
+    private final static String INVALID_ALPHA_MESSAGE = "ONLY LETTERS CAN BE INCLUDED !";
+    private final static String MIN_CHARACTER_COUNT_MESSAGE = "THE INPUT SHOULD HAVE AT LEAST MINIMUM OF %s CHARACTERS !";
+    private final static String FUTURE_DATE_VIOLATION_MESSAGE = "THE DATE OF BIRTH CANNOT BE A FUTURE DATE !";
+    private final static String NUMERICAL_INVALID_MESSAGE = "ONLY NUMERICAL INPUT IS ALLOWED !";
+    private final static String INVALID_CHARACTER_COUNT_MESSAGE = "INPUT HAVING %s CHARACTERS SHOULD BE ENTERED !";
+    private final static String INVALID_BOUNDS_MESSAGE = "PLEASE ENTER AN OPTION BETWEEN %s AND %s !";
+    private final static String INVALID_AGE_MESSAGE = "THE AGE SHOULD BE BETWEEN %s AND %s !";
+    private final static String INVALID_DATE_MESSAGE = "ENTER A DATE WHICH MATCHES THE GIVEN DATE FORMAT !";
+
 
     //----------------------------------------------------------------------------------------------------------------//
     // Get Input Prompts
@@ -45,4 +46,19 @@ public abstract class ConsolePrompts {
     public static final String MOBILE_NUMBER_PROMPT = "Enter the mobile phone number in the following format 07x1234567 : ";
     public static final String MEDICAL_LICENSE_NUMBER_PROMPT = "Enter the medical license number : ";
     public static final String SPECIALISATION_PROMPT = "Enter the specialisation : ";
+
+    public static String promptSelector(int code){
+        return switch (code) {
+            case 1, 5 -> EMPTY_MESSAGE;
+            case 2 -> WHITE_SPACE_MESSAGE;
+            case 3 -> INVALID_ALPHA_MESSAGE;
+            case 4 -> MIN_CHARACTER_COUNT_MESSAGE;
+            case 6 -> FUTURE_DATE_VIOLATION_MESSAGE;
+            case 8 -> NUMERICAL_INVALID_MESSAGE;
+            case 9 -> INVALID_CHARACTER_COUNT_MESSAGE;
+            case 10 -> INVALID_BOUNDS_MESSAGE;
+            case 11 -> INVALID_AGE_MESSAGE;
+            default -> "";
+        };
+    }
 }
