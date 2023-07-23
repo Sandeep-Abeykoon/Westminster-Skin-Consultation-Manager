@@ -58,6 +58,7 @@ public abstract class ConsolePrompts {
             case 9 -> INVALID_CHARACTER_COUNT_MESSAGE;
             case 10 -> INVALID_BOUNDS_MESSAGE;
             case 11 -> INVALID_AGE_MESSAGE;
+            case 12 -> INVALID_DATE_MESSAGE;
             default -> "";
         };
     }

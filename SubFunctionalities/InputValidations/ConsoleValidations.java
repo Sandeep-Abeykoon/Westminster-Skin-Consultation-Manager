@@ -13,14 +13,15 @@ public abstract class ConsoleValidations extends Validations {
         return scanner.nextLine().trim();
         }
 
-    private static void printError(){
-        System.out.println(getErrorCode() + "\n");
+    private static void printError(String... args){
+        String formattedString = String.format(ConsolePrompts.promptSelector(getErrorCode()), (Object[]) args);
+        System.out.println(formattedString + "\n");
     }
 
     public static String optionInput(int characters, int lowerBound, int upperBound) {
         String input = getInput(ConsolePrompts.OPTION_PROMPT);
         if (!(validateNumber(input, characters, lowerBound, upperBound))) {
-            printError();
+            printError(String.valueOf(lowerBound), String.valueOf(upperBound));
             return optionInput(characters, lowerBound, upperBound);
         }
         return input;
