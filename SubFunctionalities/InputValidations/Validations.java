@@ -15,7 +15,7 @@ public abstract class Validations {
 
     // Main Functionalities
     protected static boolean validateName(String name, int minCharCount){
-        if (!(basicInputValidation(name, false))){
+        if (!(basicInputValidation(name,false, false))){
             return false;
         }
         if (!(containsOnlyLetters(name))){
@@ -34,11 +34,8 @@ public abstract class Validations {
         if (!(dateFormat(inputDate))){
             return setError(12);
         }
-        if (past && !pastDate(date)) {
-            return setError(6);
-        }
-        if (pastDate(date)) {
-            return setError(7);
+        if (past != pastDate(date)) {
+            return setError(past ? 6 : 7);
         }
         if (calAge && !(dateAgeRange(date, lowerBound, upperBound))){
             return setError(11);
@@ -47,7 +44,7 @@ public abstract class Validations {
     }
 
     protected static boolean validateNumber(String number, int characters, int lowerBound, int upperBound){
-        if (!(basicInputValidation(number, false))){
+        if (!(basicInputValidation(number, false, false))){
             return false;
         }
         if (!(containsOnlyNumbers(number))){
@@ -63,7 +60,7 @@ public abstract class Validations {
     }
 
     protected static boolean validateId(String idNumber, int characters){
-        if (!(basicInputValidation(idNumber, false))) {
+        if (!(basicInputValidation(idNumber, false, false))) {
             return false;
         }
         if (!(minCharacterCount(idNumber, characters))){
@@ -72,14 +69,14 @@ public abstract class Validations {
         return true;
     }
 
-    public static boolean basicInputValidation(String input, boolean minChar){
+    public static boolean basicInputValidation(String input, boolean whiteSpacesAllowed, boolean minCharTrigger){
         if (isEmpty(input)){
             return setError(1);
         }
-        if (checkWhiteSpaces(input)){
+        if (whiteSpacesAllowed & checkWhiteSpaces(input)){
             return setError(2);
         }
-        if(minChar && !(minCharacterCount(input, lowerBound))){
+        if(minCharTrigger && !(minCharacterCount(input, lowerBound))){
             return setError(4);
         }
         return true;
@@ -103,6 +100,18 @@ public abstract class Validations {
     public static void setLowerAndUpperBound(int newLowerBound, int newUpperBound){
         lowerBound = newLowerBound;
         upperBound = newUpperBound;
+    }
+
+    public static String getLowerBound(){
+        return String.valueOf(lowerBound);
+    }
+
+    public static void setLowerBound (int newLowerBound){
+        lowerBound = newLowerBound;
+    }
+
+    public static String getUpperBound(){
+        return String.valueOf(upperBound);
     }
 
     //----------------------------------------------------------------------------------------------------------------//

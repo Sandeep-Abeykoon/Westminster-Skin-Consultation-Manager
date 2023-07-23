@@ -48,10 +48,12 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
             String surname = ConsoleValidations.nameInput("surname", 3);
 
             Validations.setLowerAndUpperBound(20, 60);
-
             LocalDate dateOfBirth = ConsoleValidations.dateInput(true, true);
+
             String mobileNumber = ConsoleValidations.mobileNumberInput(10);
             String medicalLicenseNumber = ConsoleValidations.medicalLicenseNumberInput(5);
+
+            Validations.setLowerBound(3);
             String specialization = ConsoleValidations.specialisationInput();
 
             if((DoctorFunctionalities.alreadyRegistered(medicalLicenseNumber) == null)){

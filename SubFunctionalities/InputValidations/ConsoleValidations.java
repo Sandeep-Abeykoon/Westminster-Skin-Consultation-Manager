@@ -42,7 +42,7 @@ public abstract class ConsoleValidations extends Validations {
     public static LocalDate dateInput(boolean past, boolean calAge){
         String input = getInput(ConsolePrompts.DATE_OF_BIRTH_PROMPT);
         if(!(validateDate(input, past, calAge))){
-            printError();
+            printError(getLowerBound(), getUpperBound());
             return dateInput(past, calAge);
         }
         return getValidatedDate();
@@ -51,7 +51,7 @@ public abstract class ConsoleValidations extends Validations {
     public static String mobileNumberInput(int count){
         String input = getInput(ConsolePrompts.MOBILE_NUMBER_PROMPT);
         if(!(validateNumber(input, count, 0, 999999999))){
-            printError();
+            printError(String.valueOf(count));
             return mobileNumberInput(count);
         }
         return input;
@@ -60,7 +60,7 @@ public abstract class ConsoleValidations extends Validations {
     public static String medicalLicenseNumberInput(int charCount){
         String input = getInput(ConsolePrompts.MEDICAL_LICENSE_NUMBER_PROMPT);
         if(!(validateId(input, charCount))){
-            printError();
+            printError(String.valueOf(charCount));
             return medicalLicenseNumberInput(charCount);
         }
         return input;
@@ -68,8 +68,8 @@ public abstract class ConsoleValidations extends Validations {
 
     public static String specialisationInput(){
         String input = getInput(ConsolePrompts.SPECIALISATION_PROMPT);
-        if(!(basicInputValidation(input, true))){
-            printError();
+        if(!(basicInputValidation(input, true, true))){
+            printError(getLowerBound());
             return specialisationInput();
         }
         return input;
