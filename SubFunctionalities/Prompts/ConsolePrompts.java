@@ -21,10 +21,10 @@ public abstract class ConsolePrompts {
     public static final String LOAD_ERROR = "\nTHERE WAS A PROBLEM LOADING THE DATA TO THE SYSTEM\n";
     public static final String EXIT_PROGRAM = "\nTHANK YOU FOR USING OUR SOFTWARE AND HAVE A NICE DAY!\n";
 
-    //----------------------------------------------------------------------------------------------------------------------//
-    //Error prompts
 
-    private final static String EMPTY_MESSAGE = "THE INPUT CANNOT BE EMPTY !";
+
+
+    //----------------------------------------------------------------------------------------------------------------//
     private final static String NUMERICAL_INVALID_MESSAGE = "ONLY NUMERICAL INPUT IS ALLOWED !";
     private final static String INVALID_BOUNDS_MESSAGE = "PLEASE ENTER AN OPTION BETWEEN %s AND %s !";
     private final static String WHITE_SPACE_MESSAGE = "THE INPUT CANNOT HAVE WHITESPACES !";
@@ -34,5 +34,15 @@ public abstract class ConsolePrompts {
     private final static String INVALID_AGE_MESSAGE = "THE AGE SHOULD BE BETWEEN %s AND %s !";
     private final static String INVALID_CHARACTER_COUNT_MESSAGE = "INPUT HAVING %s CHARACTERS SHOULD BE ENTERED !";
     private final static String MIN_CHARACTER_COUNT_MESSAGE = "THE INPUT SHOULD HAVE AT LEAST MINIMUM OF %s CHARACTERS !";
+    private final static String EMPTY_MESSAGE = "THE INPUT CANNOT BE EMPTY !";
 
+    //----------------------------------------------------------------------------------------------------------------//
+    // Get Input Prompts
+    public static final  String OPTION_PROMPT = "Enter your option : ";
+    public static final String FIRST_NAME_PROMPT = "Enter the Doctor's first name : ";
+    public static final String SURNAME_PROMPT = "Enter the Doctor's surname name : ";
+    public static final String DATE_OF_BIRTH_PROMPT = "Enter the date of birth in the following format (YYYY-MM-DD) : ";
+    public static final String MOBILE_NUMBER_PROMPT = "Enter the mobile phone number in the following format 07x1234567 : ";
+    public static final String MEDICAL_LICENSE_NUMBER_PROMPT = "Enter the medical license number : ";
+    public static final String SPECIALISATION_PROMPT = "Enter the specialisation : ";
 }

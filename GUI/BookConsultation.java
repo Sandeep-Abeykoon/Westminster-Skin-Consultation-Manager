@@ -136,14 +136,14 @@ public class BookConsultation extends BaseFrame {
 
     private void processInputs(){
         bookConsultation.setEnabled(false);
-        validate = new GUIValidations(selectedRow, date, startTime, endTime);
-        boolean valid = validate.validateConsultation();
+        //validate = new GUIValidations(selectedRow, date, startTime, endTime);
+        //boolean valid = validate.validateConsultation();
 
-        String[] outputs = validate.getOutputs();
+       // String[] outputs = validate.getOutputs();
 
-        formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_1), outputs[0], outputs[1], outputs[2], outputs[3]);
+       // formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_1), outputs[0], outputs[1], outputs[2], outputs[3]);
         displayData.setText(formattedText);
-        checkAvailability.setEnabled(valid);
+       // checkAvailability.setEnabled(valid);
         }
 
     @Override
@@ -154,10 +154,10 @@ public class BookConsultation extends BaseFrame {
 
         } else if (e.getSource() == checkAvailability) {
             checkAvailability.setEnabled(false);
-            boolean available = ConsultationFunctionalities.getDoctorAvailability(validate.getDoctorId(),
-                    validate.getDate(), validate.getStartTime(), validate.getEndTime());
+           // boolean available = ConsultationFunctionalities.getDoctorAvailability(validate.getDoctorId(),
+              //      validate.getDate(), validate.getStartTime(), validate.getEndTime());
 
-            if(available){
+          //  if(available){
                 this.bookConsultation.setEnabled(true);
                 displayData.setText(GUIPrompts.appendToHtml(formattedText, GUIPrompts.DOCTOR_AVAILABLE));
 
@@ -165,10 +165,10 @@ public class BookConsultation extends BaseFrame {
                 this.bookConsultation.setEnabled(false);
                 displayData.setText(GUIPrompts.appendToHtml(formattedText, GUIPrompts.NO_ANY_DOCTORS));
             }
-        } else if (e.getSource() == bookConsultation) {
-            this.setVisible(false);
-            new AddPatientDetails();
+        } //else if (e.getSource() == bookConsultation) {
+           // this.setVisible(false);
+           // new AddPatientDetails();
         }
-    }
-}
+    //}
+//}
 

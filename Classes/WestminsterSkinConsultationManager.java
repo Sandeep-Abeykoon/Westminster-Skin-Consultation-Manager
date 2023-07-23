@@ -4,6 +4,7 @@ import GUI.Menu;
 import Interfaces.SkinConsultationManager;
 import SubFunctionalities.CommonFunctionalities;
 import SubFunctionalities.Console.DoctorFunctionalities;
+import SubFunctionalities.InputValidations.Validations;
 import SubFunctionalities.Prompts.ConsolePrompts;
 import SubFunctionalities.InputValidations.ConsoleValidations;
 import SubFunctionalities.Console.NavigationFunctionalities;
@@ -36,18 +37,21 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
                 
                 """);
 
-        return ConsoleValidations.optionInput(1,6);
+        return ConsoleValidations.optionInput(1,1,6);
     }
 
     @Override
     public void addDoctor() {
         System.out.println(ConsolePrompts.ADD_DOCTOR);
         if(doctorArray.size() < maxDoctors){
-            String firstName = ConsoleValidations.nameInput("first");
-            String surname = ConsoleValidations.nameInput("surname");
-            LocalDate dateOfBirth = ConsoleValidations.dateInput();
+            String firstName = ConsoleValidations.nameInput("first", 3);
+            String surname = ConsoleValidations.nameInput("surname", 3);
+
+            Validations.setLowerAndUpperBound(20, 60);
+
+            LocalDate dateOfBirth = ConsoleValidations.dateInput(true, true);
             String mobileNumber = ConsoleValidations.mobileNumberInput(10);
-            String medicalLicenseNumber = ConsoleValidations.medicalLicenseNumberInput();
+            String medicalLicenseNumber = ConsoleValidations.medicalLicenseNumberInput(5);
             String specialization = ConsoleValidations.specialisationInput();
 
             if((DoctorFunctionalities.alreadyRegistered(medicalLicenseNumber) == null)){
@@ -69,7 +73,7 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
     public void deleteDoctor() {
         System.out.println(ConsolePrompts.DELETE_DOCTOR);
         if (!(doctorArray.size() == 0)){
-            String medicalLicenseNumber = ConsoleValidations.medicalLicenseNumberInput();
+            String medicalLicenseNumber = ConsoleValidations.medicalLicenseNumberInput(5);
             Doctor doctor = DoctorFunctionalities.alreadyRegistered(medicalLicenseNumber);
             if(doctor == null){
                 System.out.printf(ConsolePrompts.NO_MATCHING_DOCTORS, medicalLicenseNumber);

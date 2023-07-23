@@ -139,6 +139,11 @@ public class AddPatientDetails extends BaseFrame{
 
         JTextField patientIdField = new JTextField(20);
         patientIdField.setBounds(30, 348, 155, 28);
+
+        TextFieldChangeListener.addChangeListener(patientIdField, () -> {
+           patientId = patientIdField.getText().trim();
+           processInputs();
+        });
         this.add(patientIdField);
     }
 
@@ -196,13 +201,14 @@ public class AddPatientDetails extends BaseFrame{
 
     private void processInputs(){
         proceed.setEnabled(false);
-        GUIValidations validate = new GUIValidations(firstName, surName, dateOfBirth, mobileNumber, patientId);
-        boolean valid = validate.validatePatient();
+        //GUIValidations validate = new GUIValidations(surName, dateOfBirth, mobileNumber, patientId);
+        GUIValidations validate = new GUIValidations();
+        //boolean valid = validate.validatePatient();
 
-        String[] outputs = validate.getOutputs();
-        formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_2), outputs[0], outputs[1], outputs[2], outputs[3], outputs[4]);
-        displayData.setText(formattedText);
-        proceed.setEnabled(valid);
+        //String[] outputs = validate.getOutputs();
+        //formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_2), outputs[0], outputs[1], outputs[2], outputs[3], outputs[4]);
+       // displayData.setText(formattedText);
+       // proceed.setEnabled(valid);
     }
 
     @Override

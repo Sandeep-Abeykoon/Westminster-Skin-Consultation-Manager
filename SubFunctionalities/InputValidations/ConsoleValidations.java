@@ -1,70 +1,75 @@
 package SubFunctionalities.InputValidations;
 
+import SubFunctionalities.Prompts.ConsolePrompts;
+
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public abstract class ConsoleValidations extends Validations {
-    private static final  String OPTION_PROMPT = "Enter your option : ";
-    private static final String FIRST_NAME_PROMPT = "Enter the Doctor's first name : ";
-    private static final String SURNAME_PROMPT = "Enter the Doctor's surname name : ";
-    private static final String DATE_OF_BIRTH_PROMPT = "Enter the date of birth in the following format (YYYY-MM-DD) : ";
-    private static final String MOBILE_NUMBER_PROMPT = "Enter the mobile phone number in the following format 07x1234567 : ";
-    private static final String MEDICAL_LICENSE_NUMBER_PROMPT = "Enter the medical license number : ";
-    private static final String SPECIALISATION_PROMPT = "Enter the specialisation : ";
+    private final static Scanner scanner = new Scanner(System.in);
 
-    public static String optionInput(int lowerBound, int upperBound) {
-        String input = getInput(OPTION_PROMPT);
-        if (!(checkNumerical(input) && checkBounds(input, lowerBound, upperBound))) {
-            System.out.println(errorMessage + "\n");
-            return optionInput(lowerBound, upperBound);
+    private static String getInput(String prompt){
+        System.out.print(prompt);
+        return scanner.nextLine().trim();
+        }
+
+    private static void printError(){
+        System.out.println(getErrorCode() + "\n");
+    }
+
+    public static String optionInput(int characters, int lowerBound, int upperBound) {
+        String input = getInput(ConsolePrompts.OPTION_PROMPT);
+        if (!(validateNumber(input, characters, lowerBound, upperBound))) {
+            printError();
+            return optionInput(characters, lowerBound, upperBound);
         }
         return input;
     }
 
 
-    public static String nameInput(String nameCategory){
-        String category = nameCategory.equals("first") ? FIRST_NAME_PROMPT : SURNAME_PROMPT;
+    public static String nameInput(String nameCategory, int minCharCount){
+        String category = nameCategory.equals("first") ? ConsolePrompts.FIRST_NAME_PROMPT : ConsolePrompts.SURNAME_PROMPT;
         String input = getInput(category).toLowerCase();
-        input = input.substring(0, 1).toUpperCase() + input.substring(1);
-        if(!(checkWhiteSpaces(input) && containsOtherCharacters(input) && minCharacterCount(input, 3))){
-            System.out.println(errorMessage + "\n");
-            return nameInput(nameCategory);
+        if(!(validateName(input, minCharCount))){
+            printError();
+            return nameInput(nameCategory, minCharCount);
         }
-        return input;
+        return input.substring(0, 1).toUpperCase() + input.substring(1);
     }
 
 
-    public static LocalDate dateInput(){
-        String input = getInput(DATE_OF_BIRTH_PROMPT);
-        if(!(checkWhiteSpaces(input) && dateFormat(input) && pastDate() && dateAgeRange(20, 60))){
-            System.out.println(errorMessage + "\n");
-            return dateInput();
+    public static LocalDate dateInput(boolean past, boolean calAge){
+        String input = getInput(ConsolePrompts.DATE_OF_BIRTH_PROMPT);
+        if(!(validateDate(input, past, calAge))){
+            printError();
+            return dateInput(past, calAge);
         }
-        return date;
+        return getValidatedDate();
     }
 
     public static String mobileNumberInput(int count){
-        String input = getInput(MOBILE_NUMBER_PROMPT);
-        if(!(checkWhiteSpaces(input) && containsOnlyNumbers(input) && characterCount(input, count))){
-            System.out.println(errorMessage + "\n");
+        String input = getInput(ConsolePrompts.MOBILE_NUMBER_PROMPT);
+        if(!(validateNumber(input, count, 0, 999999999))){
+            printError();
             return mobileNumberInput(count);
         }
         return input;
     }
 
-    public static String medicalLicenseNumberInput(){
-        String input = getInput(MEDICAL_LICENSE_NUMBER_PROMPT);
-        if(!(checkWhiteSpaces(input) && minCharacterCount(input, 5))){
-            System.out.println(errorMessage + "\n");
-            return medicalLicenseNumberInput();
+    public static String medicalLicenseNumberInput(int charCount){
+        String input = getInput(ConsolePrompts.MEDICAL_LICENSE_NUMBER_PROMPT);
+        if(!(validateId(input, charCount))){
+            printError();
+            return medicalLicenseNumberInput(charCount);
         }
         return input;
     }
 
     public static String specialisationInput(){
-        String input = getInput(SPECIALISATION_PROMPT);
-        if(!(checkWhiteSpaces(input) && minCharacterCount(input, 2))){
-            System.out.println(errorMessage + "\n");
-            return medicalLicenseNumberInput();
+        String input = getInput(ConsolePrompts.SPECIALISATION_PROMPT);
+        if(!(basicInputValidation(input, true))){
+            printError();
+            return specialisationInput();
         }
         return input;
     }

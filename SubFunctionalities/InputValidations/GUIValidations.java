@@ -8,26 +8,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class GUIValidations extends Validations {
-    private static final int MIN_CONSULTATION_TIME = 5;
-    private static final int MAX_CONSULTATION_TIME = 12;
-    private static final int MOBILE_NUMBER_CHARACTERS = 10;
-    private static final String NOT_SELECTED = "<font color='red'>NOT SELECTED</font>";
-    private static final String PAST_DATE = "<font color='red'>CANNOT BE A PAST DATE</font>";
-    private static final String FUTURE_DATE = "<font color='red'>A FUTURE DATE</font>";
-    private static final String TOO_LONG = "<font color='red'>SESSION TOO LONG</font>";
-    private static final String TOO_SHORT = "<font color='red'>SESSION TOO SHORT</font>";
-    private static final String INPUT_TOO_LONG = "<font color='red'>INPUT TOO LONG</font>";
-    private static final String EMPTY = "<font color='red'>EMPTY</font>";
-    private static final String CHARACTER_VIOLATION_ALPHA = "<font color='red'>TYPE ONLY LETTERS</font>";
-    private static final String CHARACTER_VIOLATION_NUMERICAL = "<font color='red'>TYPE ONLY NUMBERS</font>";
-    private static final String WHITE_SPACE_ERROR = "<font color='red'>AVOID WHITESPACES</font>";
-    private static final String NAME_TOO_SHORT = "<font color='red'>NAME TOO SHORT</font>";
-    private static final String MOBILE_NUMBER_CHAR_COUNT = "<font color='red'>%s/" + MOBILE_NUMBER_CHARACTERS + "</font>";
-    private static final String MIN_CHARACTER_COUNT_VIOLATION = "<font color='red'>MINIMUM CHARACTERS : " + MOBILE_NUMBER_CHARACTERS + "</font>";
-    private final ArrayList<String> outputs = new ArrayList<>();
-    private String rowIndex, selectedDate, selectedStartTime, selectedEndTime;
-    private String firstName, surName, dateOfBirth, mobileNumber, patientId;
+public class GUIValidations extends Validations {}
+   /* private String rowIndex, selectedDate, selectedStartTime, selectedEndTime;
     private String doctorId;
     private LocalTime sTime, eTime;
     public GUIValidations(String rowIndex, String consultDate, String startTime, String endTime){
@@ -43,14 +25,8 @@ public class GUIValidations extends Validations {
         date = null;
     }
 
-    public GUIValidations(String firstName, String surname, String dateOfBirth, String mobileNumber, String patientId){
+    public GUIValidations(){
         super();
-        this.firstName = firstName;
-        this.surName = surname;
-        this.dateOfBirth = dateOfBirth;
-        this.mobileNumber = mobileNumber;
-        this.patientId = patientId;
-        date = null;
     }
 
     private boolean validateRow(){
@@ -163,13 +139,19 @@ public class GUIValidations extends Validations {
     }
 
     private boolean validatePatientId(){
-        if(checkWhiteSpaces(patientId)){
+        if(isEmpty(patientId)){
             outputs.add(EMPTY);
             return false;
-        } else if (minCharacterCount(patientId, 10)) {
+        }
+        if(!(checkWhiteSpaces(patientId))){
+            outputs.add(WHITE_SPACE_ERROR);
+            return false;
+        }
+        if (!(minCharacterCount(patientId, 5))) {
             outputs.add(MIN_CHARACTER_COUNT_VIOLATION);
             return false;
         }
+        outputs.add(patientId);
         return true;
     }
 
@@ -202,6 +184,8 @@ public class GUIValidations extends Validations {
         return eTime;
     }
 }
+*/
+
 
 
 

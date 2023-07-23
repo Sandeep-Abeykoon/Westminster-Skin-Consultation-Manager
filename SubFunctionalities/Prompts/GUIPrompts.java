@@ -28,6 +28,21 @@ public abstract class GUIPrompts {
     public static final String ADDITIONAL_NOTES_SUBHEADING = "ADDITIONAL NOTES";
     public static final String  ADD_IMAGE_SUBHEADING = "ADD AN IMAGE";
 
+    //----------------------------------------------------------------------------------------------------------------//
+    private static final String NOT_SELECTED = "<font color='red'>NOT SELECTED</font>";
+    private static final String PAST_DATE = "<font color='red'>CANNOT BE A PAST DATE</font>";
+    private static final String FUTURE_DATE = "<font color='red'>A FUTURE DATE</font>";
+    private static final String TOO_LONG = "<font color='red'>SESSION TOO LONG</font>";
+    private static final String TOO_SHORT = "<font color='red'>SESSION TOO SHORT</font>";
+    private static final String INPUT_TOO_LONG = "<font color='red'>INPUT TOO LONG</font>";
+    private static final String EMPTY = "<font color='red'>EMPTY</font>";
+    private static final String CHARACTER_VIOLATION_ALPHA = "<font color='red'>TYPE ONLY LETTERS</font>";
+    private static final String CHARACTER_VIOLATION_NUMERICAL = "<font color='red'>TYPE ONLY NUMBERS</font>";
+    private static final String WHITE_SPACE_ERROR = "<font color='red'>AVOID WHITESPACES</font>";
+    private static final String NAME_TOO_SHORT = "<font color='red'>NAME TOO SHORT</font>";
+    //private static final String MOBILE_NUMBER_CHAR_COUNT = "<font color='red'>%s/" + MOBILE_NUMBER_CHARACTERS + "</font>";
+    //private static final String MIN_CHARACTER_COUNT_VIOLATION = "<font color='red'>MINIMUM CHARACTERS : " + MOBILE_NUMBER_CHARACTERS + "</font>";
+
     public static String appendToHtml(String original, String append){
         String truncate = original.replace("</html>", "");
         return truncate + append + "</html>";
