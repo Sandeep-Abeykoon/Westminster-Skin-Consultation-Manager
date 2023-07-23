@@ -1,5 +1,7 @@
 package GUI;
 
+import Classes.Doctor;
+import SubFunctionalities.CommonFunctionalities;
 import SubFunctionalities.GUI.ConsultationFunctionalities;
 import SubFunctionalities.GUI.DateTime;
 import SubFunctionalities.GUI.Table;
@@ -14,18 +16,17 @@ import java.awt.event.ActionEvent;
 import java.util.Date;
 
 public class BookConsultation extends BaseFrame {
-    private String selectedRow, date, startTime, endTime, formattedText;
+    int selectedRow;
+    private String  date, startTime, endTime, formattedText;
     private JLabel displayData;
     private JButton back, checkAvailability, bookConsultation;
     private GUIValidations validate;
 
     protected BookConsultation() {
         super("Consultations", 1100, 600);
-        this.selectedRow = "-1";
-        this.date = "";
-        this.startTime = "";
-        this.endTime = "";
         addContents();
+
+        selectedRow = -1;
     }
 
     public void addContents() {
@@ -77,7 +78,7 @@ public class BookConsultation extends BaseFrame {
         ListSelectionModel selectionModel = table.getSelectionModel();
         selectionModel.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()){
-                selectedRow = String.valueOf(table.getSelectedRow());
+                selectedRow = table.getSelectedRow();
                 processInputs();
             }
         });
@@ -136,7 +137,12 @@ public class BookConsultation extends BaseFrame {
 
     private void processInputs(){
         bookConsultation.setEnabled(false);
-        //validate = new GUIValidations(selectedRow, date, startTime, endTime);
+
+        // Validating and getting the inputs
+        Doctor doctor = ConsultationFunctionalities.getDoctor(selectedRow);
+        System.out.println(selectedRow);
+
+        //validate = new GUIValidations();
         //boolean valid = validate.validateConsultation();
 
        // String[] outputs = validate.getOutputs();

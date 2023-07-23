@@ -1,6 +1,8 @@
 package SubFunctionalities.GUI;
 
 import Classes.Consultation;
+import Classes.Doctor;
+import Classes.WestminsterSkinConsultationManager;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -17,5 +19,9 @@ public abstract class ConsultationFunctionalities {
             }
         }
         return true;
+    }
+
+    public static Doctor getDoctor(int index){
+        return index == -1? null : WestminsterSkinConsultationManager.getDoctorList().get(index);
     }
 }

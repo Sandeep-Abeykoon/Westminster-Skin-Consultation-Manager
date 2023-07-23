@@ -6,28 +6,10 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
-public class GUIValidations extends Validations {}
-   /* private String rowIndex, selectedDate, selectedStartTime, selectedEndTime;
-    private String doctorId;
-    private LocalTime sTime, eTime;
-    public GUIValidations(String rowIndex, String consultDate, String startTime, String endTime){
-        super();
-        this.rowIndex = rowIndex;
-        this.selectedDate = consultDate;
-        this.selectedStartTime = startTime;
-        this.selectedEndTime = endTime;
 
-        this.doctorId = null;
-        this.sTime = null;
-        this.eTime = null;
-        date = null;
-    }
-
-    public GUIValidations(){
-        super();
-    }
+public class GUIValidations extends Validations{}
+    /*private boolean valid = false;
 
     private boolean validateRow(){
         if(rowIndex.equals("-1")){
@@ -185,6 +167,7 @@ public class GUIValidations extends Validations {}
     }
 }
 */
+
 
 
 
