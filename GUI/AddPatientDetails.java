@@ -88,7 +88,7 @@ public class AddPatientDetails extends BaseFrame{
         displayData = new JLabel(GUIPrompts.DETAIL_BOX_DEFAULT_2);
         displayData.setVerticalAlignment(SwingConstants.TOP);
         displayData.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        displayData.setBounds(527, 430, 250, 110);
+        displayData.setBounds(527, 430, 267, 110);
         this.add(displayData);
     }
 
@@ -231,7 +231,7 @@ public class AddPatientDetails extends BaseFrame{
             new BookConsultation();
         } else if (e.getSource() == proceed) {
             proceed.setEnabled(false);
-            
+
         }
     }
 }

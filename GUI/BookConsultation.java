@@ -72,7 +72,7 @@ public class BookConsultation extends BaseFrame {
         displayData = new JLabel(GUIPrompts.DETAIL_BOX_DEFAULT_1);
         displayData.setVerticalAlignment(SwingConstants.TOP);
         displayData.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        displayData.setBounds(527, 430, 250, 110);
+        displayData.setBounds(527, 430, 267, 110);
         this.add(displayData);
     }
 
