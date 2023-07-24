@@ -29,7 +29,7 @@ public class GUIValidations extends Validations{
             Period age = calculateAge(date);
             String string =getValidatedDate() + String.format(GUIPrompts.AGE, age.getYears(), age.getMonths());
             outputPrompts.add(string);
-            return false;
+            return true;
         }
         outputPrompts.add(String.valueOf(getValidatedDate()));
         return true;

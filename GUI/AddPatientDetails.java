@@ -210,7 +210,9 @@ public class AddPatientDetails extends BaseFrame{
             & validate.nameInput(surName, 3)
             & validate.dateInput(dateOfBirth, true, true)
             & validate.mobileNumberInput(mobileNumber, 10)
-            & validate.patientIdInput(patientId, 5)    ;
+            & validate.patientIdInput(patientId, 5);
+
+        System.out.println(valid);
 
         String formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_2),
                 validate.getValidationPrompts().get(0),
@@ -220,8 +222,7 @@ public class AddPatientDetails extends BaseFrame{
                 validate.getValidationPrompts().get(4));
 
         displayData.setText(formattedText);
-        this.proceed.setEnabled(true);
-
+        this.proceed.setEnabled(valid);
     }
 
     @Override
@@ -231,6 +232,12 @@ public class AddPatientDetails extends BaseFrame{
             new BookConsultation();
         } else if (e.getSource() == proceed) {
             proceed.setEnabled(false);
+
+            int response = JOptionPane.showConfirmDialog(null,
+                            "",
+                            "CONFIRM BOOKING",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE);
 
         }
     }
