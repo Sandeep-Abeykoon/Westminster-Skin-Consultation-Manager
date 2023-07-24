@@ -56,7 +56,8 @@ public class Consultation extends Patient implements DataEntity {
 
     @Override
     public String[] getData(String type) {
-        return new String[0];
+    return new String[]{getName(), getSurname(), getDateOfBirth().toString(), getMobileNumber(), doctorId,
+            String.valueOf(date), String.valueOf(startTime), String.valueOf(endTime), String.valueOf(cost), notes};
     }
 
     @Override
@@ -64,6 +65,17 @@ public class Consultation extends Patient implements DataEntity {
     }
 
     public void parseData(Object[] data){
+        doctorId = (String) data[0];
+        date = (LocalDate) data[1];
+        startTime = (LocalTime) data[2];
+        endTime = (LocalTime) data[3];
+        cost = (double) data[4];
+        this.setName((String) data[5]);
+        this.setSurname((String) data[6]);
+        this.setDateOfBirth((LocalDate) data[7]);
+        this.setMobileNumber((String) data[8]);
+        patientId = (String) data[9];
+        notes = (String) data[10];
     }
 }
 

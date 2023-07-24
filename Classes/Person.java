@@ -38,12 +38,19 @@ public abstract class Person {
         this.surname = surname;
     }
 
+    public String getFullName(){
+        return getName() + " " + getSurname();
+    }
     public LocalDate getDateOfBirth(){
         return this.dateOfBirth;
     }
 
     public void setDateOfBirth(String dateOfBirth){
         this.dateOfBirth = LocalDate.parse(dateOfBirth, DateTimeFormatter.ofPattern("uuuu-M-d").withResolverStyle(ResolverStyle.STRICT));
+    }
+
+    public void setDateOfBirth(LocalDate date){
+        this.dateOfBirth = date;
     }
 
     public String getMobileNumber(){

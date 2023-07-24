@@ -24,10 +24,6 @@ public class Doctor extends Person implements Comparable<Doctor>, DataEntity {
         return this.medicalLicenceNumber;
     }
 
-    public String getFullName(){
-        return getName() + " " + getSurname();
-    }
-
     @Override
     public String[] getData(String type) {
          String[] full = {getName(),getSurname(),getDateOfBirth().toString(),getMobileNumber(),medicalLicenceNumber,specialisation};

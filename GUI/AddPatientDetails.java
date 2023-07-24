@@ -2,6 +2,7 @@ package GUI;
 
 import Classes.Consultation;
 import Classes.Doctor;
+import SubFunctionalities.CommonFunctionalities;
 import SubFunctionalities.GUI.DateTime;
 import SubFunctionalities.GUI.TextFieldChangeListener;
 import SubFunctionalities.InputValidations.GUIValidations;
@@ -16,16 +17,19 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.Date;
 
 public class AddPatientDetails extends BaseFrame{
-    Doctor doctor;
-    LocalDate consultationDate;
-    LocalTime startTime, endTime;
+    private final Doctor doctor;
+    private final LocalDate consultationDate;
+    private final LocalTime startTime, endTime;
     private String firstName, surName, mobileNumber, patientId;
-    LocalDate dateOfBirth;
+    private LocalDate dateOfBirth;
     private JButton back, proceed;
     private JLabel displayData;
+    private JTextArea noteTextArea;
+
 
     protected AddPatientDetails(Doctor doctor, LocalDate date, LocalTime startTime, LocalTime endTime) {
         super("Add patient Details", 1100, 600);
@@ -173,7 +177,7 @@ public class AddPatientDetails extends BaseFrame{
     }
 
     private void addTextArea(){
-        JTextArea noteTextArea = new JTextArea(10, 20);
+        noteTextArea = new JTextArea(10, 20);
         noteTextArea.setLineWrap(true);
         noteTextArea.setWrapStyleWord(true);
         noteTextArea.setText(GUIPrompts.PATIENT_NOTE_PROMPT);
@@ -242,16 +246,16 @@ public class AddPatientDetails extends BaseFrame{
         } else if (e.getSource() == proceed) {
             proceed.setEnabled(false);
 
-            Object[] details = {doctor.getFullName(), consultationDate, startTime, endTime, 0, firstName, surName,
-                                dateOfBirth, mobileNumber, patientId};
+            Object[] details = {doctor.getFullName(), consultationDate, startTime, endTime, 0.0, firstName, surName,
+                                dateOfBirth, mobileNumber, patientId, noteTextArea.getText(), ""};
 
             int response = JOptionPane.showConfirmDialog(null,
-                            String.format(GUIPrompts.BOOKING_CONFIRMATION_MESSAGE, details),
+                            String.format(GUIPrompts.BOOKING_CONFIRMATION_MESSAGE, Arrays.copyOfRange(details, 0, details.length - 2)),
                             "CONFIRM BOOKING",
                             JOptionPane.YES_NO_OPTION,
                             JOptionPane.QUESTION_MESSAGE);
 
-            details[1] = doctor.getMedicalLicenceNumber();
+            details[0] = doctor.getMedicalLicenceNumber();
 
             if(response == JOptionPane.YES_OPTION){
                 this.dispose();
@@ -259,6 +263,10 @@ public class AddPatientDetails extends BaseFrame{
                 Consultation consultation = new Consultation();
                 consultation.parseData(details);
                 Consultation.getConsultationArray().add(consultation);
+
+                System.out.println(Consultation.getConsultationArray().get(0).getFullName());
+
+                CommonFunctionalities.writeData("TextFiles/consultations.txt", Consultation.getConsultationArray());
 
                 JOptionPane.showMessageDialog(null, "Consultation is successful", "CONSULTATION SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                 new BookConsultation();
