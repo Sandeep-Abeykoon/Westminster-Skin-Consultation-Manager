@@ -4,6 +4,7 @@ import SubFunctionalities.Prompts.GUIPrompts;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Period;
 import java.util.ArrayList;
 
 
@@ -22,6 +23,12 @@ public class GUIValidations extends Validations{
     public boolean dateInput(LocalDate date, boolean past, boolean calAge){
         if(!(validateDate(String.valueOf(date), past, calAge))){
             outputPrompts.add(GUIPrompts.promptSelector(getErrorCode()));
+            return false;
+        }
+        if(calAge){
+            Period age = calculateAge(date);
+            String string =getValidatedDate() + String.format(GUIPrompts.AGE, age.getYears(), age.getMonths());
+            outputPrompts.add(string);
             return false;
         }
         outputPrompts.add(String.valueOf(getValidatedDate()));
@@ -52,13 +59,17 @@ public class GUIValidations extends Validations{
     }
 
     public boolean patientIdInput(String number, int characters){
+        System.out.println("ERROR CODE : " + getErrorCode());
         if(!(validateId(number, characters))){
             outputPrompts.add(GUIPrompts.promptSelector(getErrorCode()));
             return false;
         }
         outputPrompts.add(number);
         return true;
+    }
 
+    public Period calculateAge(LocalDate date){
+        return Period.between(date, LocalDate.now());
     }
 
     public ArrayList<String> getValidationPrompts(){

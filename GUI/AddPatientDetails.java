@@ -3,6 +3,7 @@ package GUI;
 import SubFunctionalities.GUI.DateTime;
 import SubFunctionalities.GUI.TextFieldChangeListener;
 import SubFunctionalities.InputValidations.GUIValidations;
+import SubFunctionalities.InputValidations.Validations;
 import SubFunctionalities.Prompts.GUIPrompts;
 import org.jdatepicker.impl.JDatePickerImpl;
 
@@ -23,11 +24,11 @@ public class AddPatientDetails extends BaseFrame{
 
     protected AddPatientDetails() {
         super("Add patient Details", 1100, 600);
-        this.firstName = null;
-        this.surName = null;
+        this.firstName = "";
+        this.surName = "";
         this.dateOfBirth = null;
-        this.mobileNumber = null;
-        this.patientId = null;
+        this.mobileNumber = "";
+        this.patientId = "";
         this.addContents();
     }
 
@@ -203,24 +204,23 @@ public class AddPatientDetails extends BaseFrame{
         proceed.setEnabled(false);
         GUIValidations validate = new GUIValidations();
 
+        Validations.setLowerAndUpperBound(0, 100);
+
         boolean valid = validate.nameInput(firstName, 3)
             & validate.nameInput(surName, 3)
             & validate.dateInput(dateOfBirth, true, true)
-            & validate.mobileNumberInput(mobileNumber, 10);
+            & validate.mobileNumberInput(mobileNumber, 10)
+            & validate.patientIdInput(patientId, 5)    ;
 
         String formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_2),
                 validate.getValidationPrompts().get(0),
                 validate.getValidationPrompts().get(1),
-                validate.getValidationPrompts().get(3));
-                /*
-        formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_1), doctor != null ? doctor.getName() +
-                        " " + doctor.getSurname() : GUIPrompts.NOT_SELECTED,
-                validate.getValidationPrompts().get(0),
-                validate.getValidationPrompts().get(1),
-                validate.getValidationPrompts().get(2));
+                validate.getValidationPrompts().get(2),
+                validate.getValidationPrompts().get(3),
+                validate.getValidationPrompts().get(4));
 
         displayData.setText(formattedText);
-        checkAvailability.setEnabled(valid);*/
+
     }
 
     @Override

@@ -27,24 +27,22 @@ public abstract class GUIPrompts {
     public static final String PATIENT_NOTE_PROMPT = "Type any notes to be included...";
     public static final String ADDITIONAL_NOTES_SUBHEADING = "ADDITIONAL NOTES";
     public static final String  ADD_IMAGE_SUBHEADING = "ADD AN IMAGE";
+    public static final String AGE = "&ensp;(%s Y and %s M)";
 
     //----------------------------------------------------------------------------------------------------------------//
     private static final String EMPTY = "<font color='red'>EMPTY</font>";
     private static final String WHITE_SPACE_ERROR = "<font color='red'>AVOID WHITESPACES</font>";
     private static final String CHARACTER_VIOLATION_ALPHA = "<font color='red'>TYPE ONLY LETTERS</font>";
+    private static final String CHARACTER_VIOLATION_NUMBER = "<font color='red'>TYPE ONLY NUMBERS</font>";
     public static final String NOT_SELECTED = "<font color='red'>NOT SELECTED</font>";
     private static final String FUTURE_DATE = "<font color='red'>A FUTURE DATE</font>";
+    private static final String CHECK_AGE = "<font color='red'>AGE NOT POSSIBLE</font>";
     private static final String PAST_DATE = "<font color='red'>CANNOT BE A PAST DATE</font>";
     private static final String TOO_LONG = "<font color='red'>SESSION TOO LONG</font>";
     private static final String TOO_SHORT = "<font color='red'>SESSION TOO SHORT</font>";
     public static final String INPUT_TOO_LONG = "<font color='red'>INPUT TOO LONG</font>";
-
-
-
-
-    private static final String NAME_TOO_SHORT = "<font color='red'>NAME TOO SHORT</font>";
+    private static final String INPUT_TOO_SHORT = "<font color='red'>INPUT TOO SHORT</font>";
     public static final String MOBILE_NUMBER_CHAR_COUNT = "<font color='red'>%s/%s</font>";
-    //private static final String MIN_CHARACTER_COUNT_VIOLATION = "<font color='red'>MINIMUM CHARACTERS : " + MOBILE_NUMBER_CHARACTERS + "</font>";
 
     public static String appendToHtml(String original, String append){
         String truncate = original.replace("</html>", "");
@@ -54,9 +52,14 @@ public abstract class GUIPrompts {
     public static String promptSelector(int code){
         return switch (code) {
             case 1 -> EMPTY;
+            case 2 -> WHITE_SPACE_ERROR;
+            case 3 -> CHARACTER_VIOLATION_ALPHA;
+            case 4 -> INPUT_TOO_SHORT;
             case 5 -> NOT_SELECTED;
             case 6 -> FUTURE_DATE;
             case 7 -> PAST_DATE;
+            case 8 -> CHARACTER_VIOLATION_NUMBER;
+            case 11 -> CHECK_AGE;
             case 13 -> TOO_LONG;
             case 14 -> TOO_SHORT;
             default -> null;
