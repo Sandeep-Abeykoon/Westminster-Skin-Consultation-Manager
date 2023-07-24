@@ -4,6 +4,7 @@ import Classes.Consultation;
 import Classes.Doctor;
 import SubFunctionalities.CommonFunctionalities;
 import SubFunctionalities.GUI.DateTime;
+import SubFunctionalities.GUI.EncryptionDecryption;
 import SubFunctionalities.GUI.TextFieldChangeListener;
 import SubFunctionalities.InputValidations.GUIValidations;
 import SubFunctionalities.InputValidations.Validations;
@@ -15,6 +16,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
@@ -29,6 +31,7 @@ public class AddPatientDetails extends BaseFrame{
     private JButton back, proceed;
     private JLabel displayData;
     private JTextArea noteTextArea;
+    private EncryptionDecryption instance;
 
 
     protected AddPatientDetails(Doctor doctor, LocalDate date, LocalTime startTime, LocalTime endTime) {
@@ -246,8 +249,14 @@ public class AddPatientDetails extends BaseFrame{
         } else if (e.getSource() == proceed) {
             proceed.setEnabled(false);
 
-            Object[] details = {doctor.getFullName(), consultationDate, startTime, endTime, 0.0, firstName, surName,
-                                dateOfBirth, mobileNumber, patientId, noteTextArea.getText(), ""};
+            Object[] details;
+            try {
+                instance = new EncryptionDecryption();
+                details = new Object[]{doctor.getFullName(), consultationDate, startTime, endTime, 0.0, firstName, surName,
+                                    dateOfBirth, mobileNumber, patientId, instance.encryptString(noteTextArea.getText()), ""};
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
 
             int response = JOptionPane.showConfirmDialog(null,
                             String.format(GUIPrompts.BOOKING_CONFIRMATION_MESSAGE, Arrays.copyOfRange(details, 0, details.length - 2)),
@@ -263,8 +272,6 @@ public class AddPatientDetails extends BaseFrame{
                 Consultation consultation = new Consultation();
                 consultation.parseData(details);
                 Consultation.getConsultationArray().add(consultation);
-
-                System.out.println(Consultation.getConsultationArray().get(0).getFullName());
 
                 CommonFunctionalities.writeData("TextFiles/consultations.txt", Consultation.getConsultationArray(), "BASIC");
                 CommonFunctionalities.writeData("TextFiles/additionalDetails.txt", Consultation.getConsultationArray(), "ADDITIONAL");
