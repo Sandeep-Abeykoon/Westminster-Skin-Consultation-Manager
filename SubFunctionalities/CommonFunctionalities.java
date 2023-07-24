@@ -13,11 +13,11 @@ import java.util.Scanner;
 
 public abstract class CommonFunctionalities {
 
-    public static <T extends DataEntity> void writeData(String filename, ArrayList<T> entities) {
+    public static <T extends DataEntity> void writeData(String filename, ArrayList<T> entities, String option) {
         try {
             FileWriter fileWriter = new FileWriter(filename);
             for (T entity : entities) {
-                String[] data = entity.getData("Full");
+                String[] data = entity.getData(option);
                 fileWriter.write(String.join(" ", data) + "\n");
             }
             fileWriter.close();

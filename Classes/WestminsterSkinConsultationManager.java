@@ -115,7 +115,7 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
 
     @Override
     public void saveData() {
-        CommonFunctionalities.writeData("TextFiles/doctors.txt", doctorArray);
+        CommonFunctionalities.writeData("TextFiles/doctors.txt", doctorArray, "FULL");
     }
 
     @Override

@@ -80,7 +80,7 @@ public class BookConsultation extends BaseFrame {
         JTable table = new JTable();
         DefaultTableModel model = new DefaultTableModel();
         this.setTable(model, table);
-        Table.addTableData(model, GUIPrompts.SELECT_DOCTOR_HEADERS, DOCTOR_ARRAY, "TYPICAL_DATA");
+        Table.addTableData(model, GUIPrompts.SELECT_DOCTOR_HEADERS, DOCTOR_ARRAY, "BASIC");
 
         ListSelectionModel selectionModel = table.getSelectionModel();
         selectionModel.addListSelectionListener(e -> {
@@ -153,8 +153,8 @@ public class BookConsultation extends BaseFrame {
                 & validate.consultTimeInput(startTime, endTime, 5, 5, false)
                 & validate.consultTimeInput(endTime, startTime, 5, 5, true);
 
-        formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_1), doctor != null ? doctor.getName() +
-                        " " + doctor.getSurname() : GUIPrompts.NOT_SELECTED,
+        formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_1), doctor != null ? doctor.getFullName()
+                        : GUIPrompts.NOT_SELECTED,
                 validate.getValidationPrompts().get(0),
                 validate.getValidationPrompts().get(1),
                 validate.getValidationPrompts().get(2));

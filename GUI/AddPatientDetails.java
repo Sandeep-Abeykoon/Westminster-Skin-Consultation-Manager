@@ -266,7 +266,8 @@ public class AddPatientDetails extends BaseFrame{
 
                 System.out.println(Consultation.getConsultationArray().get(0).getFullName());
 
-                CommonFunctionalities.writeData("TextFiles/consultations.txt", Consultation.getConsultationArray());
+                CommonFunctionalities.writeData("TextFiles/consultations.txt", Consultation.getConsultationArray(), "BASIC");
+                CommonFunctionalities.writeData("TextFiles/additionalDetails.txt", Consultation.getConsultationArray(), "ADDITIONAL");
 
                 JOptionPane.showMessageDialog(null, "Consultation is successful", "CONSULTATION SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                 new BookConsultation();

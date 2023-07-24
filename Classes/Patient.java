@@ -11,4 +11,11 @@ public class Patient extends Person {
     }
 
     public Patient(){}
+
+    public String getPatientId(){
+        return this.patientId;
+    }
+    public void setPatientId(String patientId){
+        this.patientId = patientId;
+    }
 }

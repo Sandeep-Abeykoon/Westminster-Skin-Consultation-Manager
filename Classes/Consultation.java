@@ -8,12 +8,12 @@ import java.util.ArrayList;
 
 public class Consultation extends Patient implements DataEntity {
     private static final ArrayList<Consultation> CONSULTATION_ARRAY = new ArrayList<>();
+    private final static String ADDITIONAL = "ADDITIONAL";
     private String doctorId;
     private LocalDate date;
     private LocalTime startTime;
     private LocalTime endTime;
     private double cost;
-    private String patientId;
     private String notes;
 
     public Consultation(String name, String surname, LocalDate dateOfBirth, String mobileNumber, String patientId,
@@ -56,8 +56,12 @@ public class Consultation extends Patient implements DataEntity {
 
     @Override
     public String[] getData(String type) {
-    return new String[]{getName(), getSurname(), getDateOfBirth().toString(), getMobileNumber(), doctorId,
-            String.valueOf(date), String.valueOf(startTime), String.valueOf(endTime), String.valueOf(cost), notes};
+    String[] basic = {getName(), getSurname(), getDateOfBirth().toString(), getMobileNumber(), getPatientId(),
+            doctorId, String.valueOf(date), String.valueOf(startTime), String.valueOf(endTime), String.valueOf(cost)};
+
+    String[] additional = {notes, ""};
+
+        return type.equals(ADDITIONAL)? additional : basic;
     }
 
     @Override
@@ -74,7 +78,7 @@ public class Consultation extends Patient implements DataEntity {
         this.setSurname((String) data[6]);
         this.setDateOfBirth((LocalDate) data[7]);
         this.setMobileNumber((String) data[8]);
-        patientId = (String) data[9];
+        setPatientId((String) data[9]);
         notes = (String) data[10];
     }
 }
