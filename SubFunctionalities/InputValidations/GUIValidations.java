@@ -50,6 +50,7 @@ public class GUIValidations extends Validations{
             if (getErrorCode() == 9) {
                 outputPrompts.add(number.length() <= characters ? String.format(
                         GUIPrompts.MOBILE_NUMBER_CHAR_COUNT, number.length(), characters) : GUIPrompts.INPUT_TOO_LONG);
+                        return false;
             }
             outputPrompts.add(GUIPrompts.promptSelector(getErrorCode()));
             return false;
@@ -59,7 +60,6 @@ public class GUIValidations extends Validations{
     }
 
     public boolean patientIdInput(String number, int characters){
-        System.out.println("ERROR CODE : " + getErrorCode());
         if(!(validateId(number, characters))){
             outputPrompts.add(GUIPrompts.promptSelector(getErrorCode()));
             return false;

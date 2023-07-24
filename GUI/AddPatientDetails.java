@@ -220,6 +220,7 @@ public class AddPatientDetails extends BaseFrame{
                 validate.getValidationPrompts().get(4));
 
         displayData.setText(formattedText);
+        this.proceed.setEnabled(true);
 
     }
 
@@ -228,6 +229,9 @@ public class AddPatientDetails extends BaseFrame{
         if(e.getSource() == back){
             this.dispose();
             new BookConsultation();
+        } else if (e.getSource() == proceed) {
+            proceed.setEnabled(false);
+            
         }
     }
 }
