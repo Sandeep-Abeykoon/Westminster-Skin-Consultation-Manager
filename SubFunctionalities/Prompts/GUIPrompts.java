@@ -47,4 +47,20 @@ public abstract class GUIPrompts {
         String truncate = original.replace("</html>", "");
         return truncate + append + "</html>";
     }
+
+    /*public static String promptSelector(int code){
+        return switch (code) {
+            case 1, 5 -> EMPTY_MESSAGE;
+            case 2 -> WHITE_SPACE_MESSAGE;
+            case 3 -> INVALID_ALPHA_MESSAGE;
+            case 4 -> MIN_CHARACTER_COUNT_MESSAGE;
+            case 6 -> FUTURE_DATE_VIOLATION_MESSAGE;
+            case 8 -> NUMERICAL_INVALID_MESSAGE;
+            case 9 -> INVALID_CHARACTER_COUNT_MESSAGE;
+            case 10 -> INVALID_BOUNDS_MESSAGE;
+            case 11 -> INVALID_AGE_MESSAGE;
+            case 12 -> INVALID_DATE_MESSAGE;
+            default -> "";
+        };
+    }*/
 }

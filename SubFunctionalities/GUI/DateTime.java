@@ -1,10 +1,12 @@
 package SubFunctionalities.GUI;
 
+import org.jdatepicker.DateModel;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.SqlDateModel;
 
 import javax.swing.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -51,9 +53,14 @@ public abstract class DateTime {
         return timeSpinner;
     }
 
-    public static String getTime(JSpinner jSpinner){
+    public static LocalTime getTime(JSpinner jSpinner){
         Date d = (Date) jSpinner.getModel().getValue();
-        LocalTime time = LocalDateTime.ofInstant(d.toInstant(), ZoneId.systemDefault()).toLocalTime();
-        return time.format(DateTimeFormatter.ofPattern("HH:mm"));
+        return LocalDateTime.ofInstant(d.toInstant(), ZoneId.systemDefault()).toLocalTime();
+        //time.format(DateTimeFormatter.ofPattern("HH:mm"));
+    }
+
+    public static LocalDate getDate(JDatePickerImpl datePicker){
+        DateModel<?> model = datePicker.getModel();
+        return LocalDate.of(model.getYear(), model.getMonth() + 1, model.getDay());
     }
 }

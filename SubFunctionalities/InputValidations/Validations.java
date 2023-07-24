@@ -1,6 +1,8 @@
 package SubFunctionalities.InputValidations;
 
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
@@ -12,6 +14,7 @@ public abstract class Validations {
     private static int lowerBound;
     private static int upperBound;
     private static LocalDate date;
+    private static LocalTime time;
 
     // Main Functionalities
     protected static boolean validateName(String name, int minCharCount){
@@ -28,8 +31,8 @@ public abstract class Validations {
     }
 
     protected static boolean validateDate(String inputDate, boolean past, boolean calAge) {
-        if (inputDate == null) {
-            return setError(5);
+        if (!(basicInputValidation(inputDate,false, false))) {
+            return false;
         }
         if (!(dateFormat(inputDate))){
             return setError(12);
@@ -39,6 +42,25 @@ public abstract class Validations {
         }
         if (calAge && !(dateAgeRange(date, lowerBound, upperBound))){
             return setError(11);
+        }
+        return true;
+    }
+
+    protected static boolean validateTimeRange(LocalTime check, LocalTime secondaryTime, int minDuration, int maxDuration, boolean timeSwapped){
+        if (check == null){
+            return setError(5);
+        }
+        if(!(secondaryTime == null)){
+            LocalTime
+            time1 = timeSwapped? secondaryTime : check,
+            time2 = timeSwapped? check : secondaryTime;
+
+            Duration duration = Duration.between(time1, time2);
+            if(duration.toHours() > maxDuration){
+                return setError(13);
+            } else if (duration.toMinutes() < minDuration) {
+                return setError(14);
+            }
         }
         return true;
     }
@@ -73,7 +95,10 @@ public abstract class Validations {
         if (isEmpty(input)){
             return setError(1);
         }
-        if (whiteSpacesAllowed & checkWhiteSpaces(input)){
+        if(input.equals(null)){
+            return setError(5);
+        }
+        if (!whiteSpacesAllowed & checkWhiteSpaces(input)){
             return setError(2);
         }
         if(minCharTrigger && !(minCharacterCount(input, lowerBound))){
@@ -87,6 +112,11 @@ public abstract class Validations {
     public static LocalDate getValidatedDate(){
         return date;
     }
+
+    public static LocalTime getValidatedTime(){
+        return time;
+    }
+
     protected static int getErrorCode(){
         return errorCode;
     }
@@ -140,6 +170,16 @@ public abstract class Validations {
            return true;
         } catch (Exception e) {
             return false;
+        }
+    }
+
+    private static boolean timeFormat(String input){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        try {
+            time = LocalTime.parse(input, formatter);
+            return true;
+        }catch (Exception e) {
+            return  false;
         }
     }
 

@@ -1,7 +1,6 @@
 package GUI;
 
 import Classes.Doctor;
-import SubFunctionalities.CommonFunctionalities;
 import SubFunctionalities.GUI.ConsultationFunctionalities;
 import SubFunctionalities.GUI.DateTime;
 import SubFunctionalities.GUI.Table;
@@ -13,20 +12,26 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 public class BookConsultation extends BaseFrame {
     int selectedRow;
-    private String  date, startTime, endTime, formattedText;
+    LocalDate date;
+    LocalTime startTime, endTime;
     private JLabel displayData;
     private JButton back, checkAvailability, bookConsultation;
-    private GUIValidations validate;
+    String formattedText;
 
     protected BookConsultation() {
         super("Consultations", 1100, 600);
         addContents();
 
         selectedRow = -1;
+        date = null;
+        startTime = null;
+        endTime = null;
     }
 
     public void addContents() {
@@ -108,8 +113,7 @@ public class BookConsultation extends BaseFrame {
         JDatePickerImpl datePicker = DateTime.CreateDatePicker(new Date());
 
         datePicker.addActionListener(e -> {
-            Date selectedDate = (Date) datePicker.getModel().getValue();
-            this.date = selectedDate.toString();
+            date = DateTime.getDate(datePicker);
             processInputs();
         });
 
@@ -140,16 +144,16 @@ public class BookConsultation extends BaseFrame {
 
         // Validating and getting the inputs
         Doctor doctor = ConsultationFunctionalities.getDoctor(selectedRow);
-        System.out.println(selectedRow);
 
-        //validate = new GUIValidations();
-        //boolean valid = validate.validateConsultation();
-
-       // String[] outputs = validate.getOutputs();
+        GUIValidations validate = new GUIValidations();
+        boolean valid = doctor != null
+                && validate.consultDateInput(date)
+                && validate.consultTimeInput(startTime, endTime, 5, 5, false)
+                && validate.consultTimeInput(endTime, startTime, 5, 5, true);
+        checkAvailability.setEnabled(valid);
 
        // formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_1), outputs[0], outputs[1], outputs[2], outputs[3]);
-        displayData.setText(formattedText);
-       // checkAvailability.setEnabled(valid);
+        //displayData.setText(formattedText);
         }
 
     @Override
