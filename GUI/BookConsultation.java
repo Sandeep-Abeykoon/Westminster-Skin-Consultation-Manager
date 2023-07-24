@@ -184,7 +184,7 @@ public class BookConsultation extends BaseFrame {
             }
         } else if (e.getSource() == bookConsultation) {
             this.setVisible(false);
-            new AddPatientDetails();
+            new AddPatientDetails(doctor, date, startTime, endTime);
         }
     }
 }

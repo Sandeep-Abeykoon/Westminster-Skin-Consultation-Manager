@@ -1,5 +1,7 @@
 package GUI;
 
+import Classes.Consultation;
+import Classes.Doctor;
 import SubFunctionalities.GUI.DateTime;
 import SubFunctionalities.GUI.TextFieldChangeListener;
 import SubFunctionalities.InputValidations.GUIValidations;
@@ -13,17 +15,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 public class AddPatientDetails extends BaseFrame{
-
+    Doctor doctor;
+    LocalDate consultationDate;
+    LocalTime startTime, endTime;
     private String firstName, surName, mobileNumber, patientId;
     LocalDate dateOfBirth;
     private JButton back, proceed;
     private JLabel displayData;
 
-    protected AddPatientDetails() {
+    protected AddPatientDetails(Doctor doctor, LocalDate date, LocalTime startTime, LocalTime endTime) {
         super("Add patient Details", 1100, 600);
+
+        this.doctor = doctor;
+        this.consultationDate = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+
         this.firstName = "";
         this.surName = "";
         this.dateOfBirth = null;
@@ -212,8 +223,6 @@ public class AddPatientDetails extends BaseFrame{
             & validate.mobileNumberInput(mobileNumber, 10)
             & validate.patientIdInput(patientId, 5);
 
-        System.out.println(valid);
-
         String formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_2),
                 validate.getValidationPrompts().get(0),
                 validate.getValidationPrompts().get(1),
@@ -233,11 +242,27 @@ public class AddPatientDetails extends BaseFrame{
         } else if (e.getSource() == proceed) {
             proceed.setEnabled(false);
 
+            Object[] details = {doctor.getFullName(), consultationDate, startTime, endTime, 0, firstName, surName,
+                                dateOfBirth, mobileNumber, patientId};
+
             int response = JOptionPane.showConfirmDialog(null,
-                            "",
+                            String.format(GUIPrompts.BOOKING_CONFIRMATION_MESSAGE, details),
                             "CONFIRM BOOKING",
                             JOptionPane.YES_NO_OPTION,
                             JOptionPane.QUESTION_MESSAGE);
+
+            details[1] = doctor.getMedicalLicenceNumber();
+
+            if(response == JOptionPane.YES_OPTION){
+                this.dispose();
+
+                Consultation consultation = new Consultation();
+                consultation.parseData(details);
+                Consultation.getConsultationArray().add(consultation);
+
+                JOptionPane.showMessageDialog(null, "Consultation is successful", "CONSULTATION SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+                new BookConsultation();
+            }
 
         }
     }

@@ -9,4 +9,6 @@ public class Patient extends Person {
         super(name, surname, dateOfBirth, mobileNumber);
         this.patientId = patientId;
     }
+
+    public Patient(){}
 }

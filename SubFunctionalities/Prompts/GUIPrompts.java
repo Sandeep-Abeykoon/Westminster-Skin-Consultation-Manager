@@ -44,8 +44,8 @@ public abstract class GUIPrompts {
     private static final String INPUT_TOO_SHORT = "<font color='red'>INPUT TOO SHORT</font>";
     public static final String MOBILE_NUMBER_CHAR_COUNT = "<font color='red'>%s/%s</font>";
     public static final String BOOKING_CONFIRMATION_MESSAGE = """
-            \t<html>CONSULTATION DETAILS
-            \t--------------------------
+            \tCONSULTATION DETAILS
+            \t------------------------------------
             \tDOCTOR : %s
             \tDATE : %s
             \tSTART TIME : %s
@@ -53,16 +53,16 @@ public abstract class GUIPrompts {
             \tCOST : RS %s .00
             
             \tPATIENT DETAILS
-            \t---------------
+            \t------------------------
             \tFIRST NAME : %s
             \tSURNAME : %s
             \tDATE OF BIRTH : %s
             \tMOBILE NUMBER : %s
             \tPATIENT ID : %s
             
-            \t\tDO YOU WANT TO CONFIRM THE BOOKING?""";
+            DO YOU WANT TO CONFIRM THE BOOKING?""";
 
-    
+
     public static String appendToHtml(String original, String append){
         String truncate = original.replace("</html>", "");
         return truncate + append + "</html>";
