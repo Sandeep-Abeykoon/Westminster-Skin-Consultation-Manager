@@ -37,13 +37,13 @@ public abstract class GUIPrompts {
     private static final String PAST_DATE = "<font color='red'>CANNOT BE A PAST DATE</font>";
     private static final String TOO_LONG = "<font color='red'>SESSION TOO LONG</font>";
     private static final String TOO_SHORT = "<font color='red'>SESSION TOO SHORT</font>";
-    private static final String INPUT_TOO_LONG = "<font color='red'>INPUT TOO LONG</font>";
+    public static final String INPUT_TOO_LONG = "<font color='red'>INPUT TOO LONG</font>";
 
 
 
 
     private static final String NAME_TOO_SHORT = "<font color='red'>NAME TOO SHORT</font>";
-    //private static final String MOBILE_NUMBER_CHAR_COUNT = "<font color='red'>%s/" + MOBILE_NUMBER_CHARACTERS + "</font>";
+    public static final String MOBILE_NUMBER_CHAR_COUNT = "<font color='red'>%s/%s</font>";
     //private static final String MIN_CHARACTER_COUNT_VIOLATION = "<font color='red'>MINIMUM CHARACTERS : " + MOBILE_NUMBER_CHARACTERS + "</font>";
 
     public static String appendToHtml(String original, String append){
@@ -55,6 +55,7 @@ public abstract class GUIPrompts {
         return switch (code) {
             case 1 -> EMPTY;
             case 5 -> NOT_SELECTED;
+            case 6 -> FUTURE_DATE;
             case 7 -> PAST_DATE;
             case 13 -> TOO_LONG;
             case 14 -> TOO_SHORT;

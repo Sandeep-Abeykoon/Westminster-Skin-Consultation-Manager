@@ -17,9 +17,10 @@ import java.time.LocalTime;
 import java.util.Date;
 
 public class BookConsultation extends BaseFrame {
-    int selectedRow;
-    LocalDate date;
-    LocalTime startTime, endTime;
+    private Doctor doctor;
+    private int selectedRow;
+    private LocalDate date;
+    private LocalTime startTime, endTime;
     private JLabel displayData;
     private JButton back, checkAvailability, bookConsultation;
     String formattedText;
@@ -28,6 +29,7 @@ public class BookConsultation extends BaseFrame {
         super("Consultations", 1100, 600);
         addContents();
 
+        doctor = null;
         selectedRow = -1;
         date = null;
         startTime = null;
@@ -82,7 +84,7 @@ public class BookConsultation extends BaseFrame {
 
         ListSelectionModel selectionModel = table.getSelectionModel();
         selectionModel.addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting()){
+            if (!e.getValueIsAdjusting()) {
                 selectedRow = table.getSelectedRow();
                 processInputs();
             }
@@ -121,7 +123,7 @@ public class BookConsultation extends BaseFrame {
         this.add(datePicker);
     }
 
-    private void addTimePickers(){
+    private void addTimePickers() {
         JSpinner startTimePicker = DateTime.CreateTimePicker();
         startTimePicker.addChangeListener(e -> {
             this.startTime = DateTime.getTime(startTimePicker);
@@ -139,26 +141,27 @@ public class BookConsultation extends BaseFrame {
         this.add(endTimePicker);
     }
 
-    private void processInputs(){
+    private void processInputs() {
         bookConsultation.setEnabled(false);
 
         // Validating and getting the inputs
-        Doctor doctor = ConsultationFunctionalities.getDoctor(selectedRow);
+        doctor = ConsultationFunctionalities.getDoctor(selectedRow);
 
         GUIValidations validate = new GUIValidations();
         boolean valid = doctor != null
-                & validate.consultDateInput(date)
+                & validate.dateInput(date, false, false)
                 & validate.consultTimeInput(startTime, endTime, 5, 5, false)
                 & validate.consultTimeInput(endTime, startTime, 5, 5, true);
 
-        formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_1), doctor != null? doctor.getName() : GUIPrompts.NOT_SELECTED,
-                        validate.getValidationPrompts().get(0),
-                        validate.getValidationPrompts().get(1),
-                        validate.getValidationPrompts().get(2));
+        formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_1), doctor != null ? doctor.getName() +
+                        " " + doctor.getSurname() : GUIPrompts.NOT_SELECTED,
+                validate.getValidationPrompts().get(0),
+                validate.getValidationPrompts().get(1),
+                validate.getValidationPrompts().get(2));
 
         displayData.setText(formattedText);
         checkAvailability.setEnabled(valid);
-        }
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -168,21 +171,22 @@ public class BookConsultation extends BaseFrame {
 
         } else if (e.getSource() == checkAvailability) {
             checkAvailability.setEnabled(false);
-           // boolean available = ConsultationFunctionalities.getDoctorAvailability(validate.getDoctorId(),
-              //      validate.getDate(), validate.getStartTime(), validate.getEndTime());
+            boolean available = ConsultationFunctionalities.getDoctorAvailability(doctor.getMedicalLicenceNumber(),
+                    date, startTime, endTime);
 
-          //  if(available){
+            if (available) {
                 this.bookConsultation.setEnabled(true);
                 displayData.setText(GUIPrompts.appendToHtml(formattedText, GUIPrompts.DOCTOR_AVAILABLE));
 
-            }else{
+            } else {
                 this.bookConsultation.setEnabled(false);
                 displayData.setText(GUIPrompts.appendToHtml(formattedText, GUIPrompts.NO_ANY_DOCTORS));
             }
-        } //else if (e.getSource() == bookConsultation) {
-           // this.setVisible(false);
-           // new AddPatientDetails();
+        } else if (e.getSource() == bookConsultation) {
+            this.setVisible(false);
+            new AddPatientDetails();
         }
-    //}
-//}
+    }
+}
+
 

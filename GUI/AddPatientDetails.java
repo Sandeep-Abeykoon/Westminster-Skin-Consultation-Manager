@@ -11,22 +11,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class AddPatientDetails extends BaseFrame{
 
-    private String firstName, surName, dateOfBirth, mobileNumber, patientId;
-    private String formattedText;
+    private String firstName, surName, mobileNumber, patientId;
+    LocalDate dateOfBirth;
     private JButton back, proceed;
     private JLabel displayData;
 
     protected AddPatientDetails() {
         super("Add patient Details", 1100, 600);
-        this.firstName = "";
-        this.surName = "";
-        this.dateOfBirth = "";
-        this.mobileNumber = "";
-        this.patientId = "";
+        this.firstName = null;
+        this.surName = null;
+        this.dateOfBirth = null;
+        this.mobileNumber = null;
+        this.patientId = null;
         this.addContents();
     }
 
@@ -151,8 +152,7 @@ public class AddPatientDetails extends BaseFrame{
         JDatePickerImpl datePicker = DateTime.CreateDatePicker(new Date());
 
         datePicker.addActionListener(e -> {
-            Date selectedDate = (Date) datePicker.getModel().getValue();
-            this.dateOfBirth = selectedDate.toString();
+            dateOfBirth = DateTime.getDate(datePicker);
             processInputs();
         });
 
@@ -201,14 +201,26 @@ public class AddPatientDetails extends BaseFrame{
 
     private void processInputs(){
         proceed.setEnabled(false);
-        //GUIValidations validate = new GUIValidations(surName, dateOfBirth, mobileNumber, patientId);
         GUIValidations validate = new GUIValidations();
-        //boolean valid = validate.validatePatient();
 
-        //String[] outputs = validate.getOutputs();
-        //formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_2), outputs[0], outputs[1], outputs[2], outputs[3], outputs[4]);
-       // displayData.setText(formattedText);
-       // proceed.setEnabled(valid);
+        boolean valid = validate.nameInput(firstName, 3)
+            & validate.nameInput(surName, 3)
+            & validate.dateInput(dateOfBirth, true, true)
+            & validate.mobileNumberInput(mobileNumber, 10);
+
+        String formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_2),
+                validate.getValidationPrompts().get(0),
+                validate.getValidationPrompts().get(1),
+                validate.getValidationPrompts().get(3));
+                /*
+        formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_1), doctor != null ? doctor.getName() +
+                        " " + doctor.getSurname() : GUIPrompts.NOT_SELECTED,
+                validate.getValidationPrompts().get(0),
+                validate.getValidationPrompts().get(1),
+                validate.getValidationPrompts().get(2));
+
+        displayData.setText(formattedText);
+        checkAvailability.setEnabled(valid);*/
     }
 
     @Override
