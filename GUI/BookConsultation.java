@@ -147,13 +147,17 @@ public class BookConsultation extends BaseFrame {
 
         GUIValidations validate = new GUIValidations();
         boolean valid = doctor != null
-                && validate.consultDateInput(date)
-                && validate.consultTimeInput(startTime, endTime, 5, 5, false)
-                && validate.consultTimeInput(endTime, startTime, 5, 5, true);
-        checkAvailability.setEnabled(valid);
+                & validate.consultDateInput(date)
+                & validate.consultTimeInput(startTime, endTime, 5, 5, false)
+                & validate.consultTimeInput(endTime, startTime, 5, 5, true);
 
-       // formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_1), outputs[0], outputs[1], outputs[2], outputs[3]);
-        //displayData.setText(formattedText);
+        formattedText = String.format((GUIPrompts.DETAIL_BOX_DYNAMIC_1), doctor != null? doctor.getName() : GUIPrompts.NOT_SELECTED,
+                        validate.getValidationPrompts().get(0),
+                        validate.getValidationPrompts().get(1),
+                        validate.getValidationPrompts().get(2));
+
+        displayData.setText(formattedText);
+        checkAvailability.setEnabled(valid);
         }
 
     @Override

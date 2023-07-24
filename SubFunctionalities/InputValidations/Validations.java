@@ -14,7 +14,6 @@ public abstract class Validations {
     private static int lowerBound;
     private static int upperBound;
     private static LocalDate date;
-    private static LocalTime time;
 
     // Main Functionalities
     protected static boolean validateName(String name, int minCharCount){
@@ -92,11 +91,11 @@ public abstract class Validations {
     }
 
     public static boolean basicInputValidation(String input, boolean whiteSpacesAllowed, boolean minCharTrigger){
+        if(input == null || input.equals("null")){
+            return setError(5);
+        }
         if (isEmpty(input)){
             return setError(1);
-        }
-        if(input.equals(null)){
-            return setError(5);
         }
         if (!whiteSpacesAllowed & checkWhiteSpaces(input)){
             return setError(2);
@@ -113,9 +112,6 @@ public abstract class Validations {
         return date;
     }
 
-    public static LocalTime getValidatedTime(){
-        return time;
-    }
 
     protected static int getErrorCode(){
         return errorCode;
@@ -173,15 +169,6 @@ public abstract class Validations {
         }
     }
 
-    private static boolean timeFormat(String input){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        try {
-            time = LocalTime.parse(input, formatter);
-            return true;
-        }catch (Exception e) {
-            return  false;
-        }
-    }
 
     private static boolean pastDate(LocalDate date){
         return date.isBefore(LocalDate.now());
