@@ -16,7 +16,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.security.NoSuchAlgorithmException;
+import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
@@ -31,8 +31,6 @@ public class AddPatientDetails extends BaseFrame{
     private JButton back, proceed;
     private JLabel displayData;
     private JTextArea noteTextArea;
-    private EncryptionDecryption instance;
-
 
     protected AddPatientDetails(Doctor doctor, LocalDate date, LocalTime startTime, LocalTime endTime) {
         super("Add patient Details", 1100, 600);
@@ -56,6 +54,7 @@ public class AddPatientDetails extends BaseFrame{
         this.addDatePicker();
         this.addTextArea();
         this.addButtons();
+        this.addFileChooser();
     }
 
     private void addLabels() {
@@ -218,6 +217,14 @@ public class AddPatientDetails extends BaseFrame{
         this.add(proceed);
     }
 
+    private void addFileChooser(){
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.showOpenDialog(null);
+        File file = fileChooser.getSelectedFile();
+        fileChooser.setBounds(550, 316, 200, 50);
+        this.add(fileChooser);
+    }
+
     private void processInputs(){
         proceed.setEnabled(false);
         GUIValidations validate = new GUIValidations();
@@ -250,6 +257,7 @@ public class AddPatientDetails extends BaseFrame{
             proceed.setEnabled(false);
 
             Object[] details;
+            EncryptionDecryption instance;
             try {
                 instance = new EncryptionDecryption();
                 details = new Object[]{doctor.getFullName(), consultationDate, startTime, endTime, 0.0, firstName, surName,
